@@ -1,7 +1,5 @@
 # Ignore node_modules folder
 node_modules/
 
-# Ignore other common files/folders
-*.log
-*.env
-/dist/
+# Ignore dist folder
+dist/
