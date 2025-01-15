@@ -14,14 +14,14 @@ const SupportPokeball: React.FC<SupportPokeballProps> = () => {
             count++;
             spriteSheetRef.current?.decrementSprite();
             //if (count === 7) { clearInterval(interval) };
-        }, 400);
+        }, 100);
     
         return () => clearInterval(interval);
     };
 
     useEffect(() => {
         if (spriteSheetRef.current) {
-            spin();
+            //spin();
         }
     }, []);
 

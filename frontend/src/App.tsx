@@ -5,6 +5,8 @@ import TrainerView from "./views/TrainerView";
 
 const App = () => {
 
+    const showDimensions = false;
+
     const [screenSize, setScreenSize] = useState({
         width: window.innerWidth,
         height: window.innerHeight,
@@ -30,8 +32,8 @@ const App = () => {
 
     return (
         <div className="App">
-            <div className='Dimension width'>{screenSize.width}</div>
-            <div className='Dimension height'>{screenSize.height}</div>
+            {showDimensions && <div className='Dimension width'>{screenSize.width}</div>}
+            {showDimensions && <div className='Dimension height'>{screenSize.height}</div>}
             <div className="AppBackground"/>
             <NavigationView/>
             <TrainerView/>
