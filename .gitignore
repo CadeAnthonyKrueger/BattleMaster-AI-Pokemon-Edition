@@ -3,3 +3,6 @@ node_modules/
 
 # Ignore dist folder
 dist/
+
+# Ignore Pokemon Essentials folder for now
+Pokemon\ Essentials\ v21.1\ 2023-07-30/
