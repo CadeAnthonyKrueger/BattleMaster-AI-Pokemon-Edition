@@ -1,0 +1,36 @@
+.NavigationView {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: clamp(390px, 35%, 35%);
+    height: clamp(66.5px, 11%, 11%);
+    padding-inline: clamp(11px, 1%, 1%);
+    box-shadow: 0px 0px 20px 2px rgba(10, 10, 10, 0.2);
+    background-image: linear-gradient(10deg, rgba(187, 205, 223, 1) 20%, rgba(255, 255, 255, 0.9) 50%, rgba(187, 205, 223, 1) 90%);
+    border-radius: 12px;
+}
+
+.NavigationView::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.9);
+    z-index: 11;
+    pointer-events: none;
+    border-radius: 12px;
+  }
+
+@media (max-height: 680px) {
+    .NavigationView {
+        width: clamp(367px, 35%, 35%);
+    }
+}

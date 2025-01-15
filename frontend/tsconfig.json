@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+      "target": "es5",                // or es6 depending on your setup
+      "module": "es6",
+      "strict": true,
+      "jsx": "react",
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "resolveJsonModule": true,       // This line should now work with "node" module resolution
+      "outDir": "./dist",              // Set your output directory
+      "moduleResolution": "node",      // Change this to "node" from "classic"
+      "rootDirs": ["./src"]
+    },   
+    "include": [
+      "src/**/*",                      // Include all TypeScript/TSX files in the src folder
+    ],
+    "exclude": [
+      "node_modules"                   // Exclude node_modules
+    ]
+}
+  

@@ -1,0 +1,44 @@
+.SupportPokeball {
+    height: 100%;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    //background-color: cadetblue;
+    margin-top: 0;
+    transform: none;
+    animation: Wiggle .8s linear infinite;
+}
+
+@keyframes Bob {
+    0% {
+        margin-top: 0px;
+    } 
+    20% {
+        margin-top: -5px;
+    }
+    40% {
+        margin-top: 0px;
+    }
+    70% {
+        margin-top: -8px;
+    }
+    100% {
+        margin-top: 0px;
+    }
+}
+
+@keyframes Wiggle {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-5deg);
+    }
+    75% {
+        transform: rotate(5deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}

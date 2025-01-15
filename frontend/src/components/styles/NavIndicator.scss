@@ -1,0 +1,86 @@
+.NavIndicator {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    justify-self: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 80%;
+    width: 40%;
+}
+
+.NavSection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 90%;
+    aspect-ratio: 1/1;
+    margin-inline: 3%;
+}
+
+.Icon { 
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    //box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.8);
+    border-radius: 25%;
+    transform: scale(0.7);
+    transition: transform 0.7s ease;
+    cursor: pointer;
+}
+
+.Icon.active {
+    transform: scale(1.2);
+    //box-shadow: 0 0 15px 0px rgba(255, 0, 0, 0.8);
+}
+
+.TrainerIcon {
+    position: fixed;
+    z-index: 101;
+    top: calc(-10% - 2px - 160px);
+    height: 160px;
+    width: 160px;
+    //background-color: red;
+    background-position: 0px 160px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), transparent);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), transparent);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    transition: background-position 0.6s ease;
+    overflow: hidden;
+}
+
+.TrainerIcon.active {
+    background-position: 0 28px;
+}
+
+.IconTitle {
+    position: absolute;
+    top: 107%;
+    height: fit-content;
+    width: fit-content;
+    background-color: rgba(6, 130, 255, 0.8);
+    font-family: "Public Pixel", sans-serif;
+    font-size: xx-small;
+    font-weight: 400;
+    text-wrap: nowrap;
+    color: white;
+    padding: 4px;
+    border-radius: 3px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.IconTitle.active {
+    opacity: 1;
+}

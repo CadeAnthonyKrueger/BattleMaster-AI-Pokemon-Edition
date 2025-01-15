@@ -1,0 +1,68 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+#root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+.App {
+    //background-color: #141414;
+    background-color: rgb(65, 65, 65);
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+}
+
+.AppBackground {
+    background-image: url('../public/assets/pokemon_backdrop1.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: 0 0;
+    position: fixed;
+    height: 94%;
+    width: 96%;
+    top: 3%;
+    left: 2%;
+    border-radius: 20px;
+    z-index: 1;
+    filter: blur(8px);
+}
+
+.App::after {
+    content: "";
+    background-image: none;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+    //border-radius: 20px;
+    //background-color: rgba(10, 10, 10, .8);
+    background-color: rgba(20, 20, 20, 0.8);
+    z-index: 2;
+}
+
+.Dimension {
+    z-index: 100;
+    position: fixed;
+    height: fit-content;
+    width: fit-content;
+    font-size: xx-large;
+    background-color: black;
+    color: white;
+}
+
+.Dimension.width {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.Dimension.height {
+    left: 50%;
+    transform: translateX(-50%);
+}
