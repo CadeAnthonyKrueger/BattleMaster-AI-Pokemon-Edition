@@ -1,0 +1,21 @@
+{
+    "name": "battlemaster-ai-pokemon-edition",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+      "start": "concurrently \"npm --prefix frontend run start:all\" \"npm --prefix backend run start\"",
+      "build": "npm --prefix frontend run build",
+      "start:frontend": "npm --prefix frontend run start:all",
+      "start:backend": "npm --prefix backend run start",
+      "start:electron": "npm --prefix frontend run start:electron"
+    },
+    "dependencies": {
+      "concurrently": "^9.1.2"
+    },
+    "devDependencies": {},
+    "keywords": [],
+    "author": "Cade Krueger",
+    "license": "ISC",
+    "description": "Pokemon Essentials App with React frontend and Node.js backend, featuring Python-based machine learning scripts which direct the AI opponent's moves."
+  }
+  
