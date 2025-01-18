@@ -1,6 +1,6 @@
 import React, { RefObject, SetStateAction } from "react";
 import "./styles/NavIndicator.scss";
-import NavSection from "./sub_components/NavSection";
+import NavSection from "./NavSection";
 
 interface NavIndicatorProps {
     currentPage: number;
@@ -19,9 +19,9 @@ const NavIndicator: React.FC<NavIndicatorProps> = ({ currentPage, setCurrentPage
     //const navIcons: string[] = ["trainer.png", "rival.jpg", "island.png", "overview.png"];
 
     const navSectionInfo: NavSectionInfo[] = [
+        {icon: "gear_wrench.png", trainer: "HIKER.png", title: "Options"},
         {icon: "grouped_pokeballs.png", trainer: "POKEMONTRAINER_Red.png", title: "My Trainer"},
         {icon: "opponent_AI.png", trainer: "RIVAL1.png", title: "AI Trainer"},
-        {icon: "gear_wrench.png", trainer: "HIKER.png", title: "Options"},
         {icon: "quality_overview.png", trainer: "PROFESSOR.png", title: "Overview"}
     ];
 

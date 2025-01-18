@@ -1,7 +1,6 @@
 import React, { SetStateAction, useEffect, useRef, useState } from "react";
-import "../styles/NavIndicator.scss";
-import { NavSectionInfo } from "../NavIndicator";
-import { Callback } from "webpack-cli";
+import "./styles/NavIndicator.scss";
+import { NavSectionInfo } from "./NavIndicator";
 
 interface NavSectionProps {
     pageNumber: number;

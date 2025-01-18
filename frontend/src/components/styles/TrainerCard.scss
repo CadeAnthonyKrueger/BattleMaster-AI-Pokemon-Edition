@@ -1,44 +1,251 @@
 .TrainerCard {
     position: relative;
+    display: flex;
+    position: relative;
     height: calc(100% - 20px);
     width: calc(100% - 20px);
     margin: 10px;
     border-radius: 10px;
     //background-color: rgba(255, 255, 255, 0.4);
-    background-image: linear-gradient(30deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.6));
+    background-image: linear-gradient(30deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4));
 }
 
-.TrainerImage {
-    background-image: url('../../../public/assets/POKEMONTRAINER_May.png');
-    background-repeat: 0;
-    background-position: 0 0;
-    background-size: 100% 100%;
+.TrainerBackground {
     margin-top: 2%;
     margin-left: 2%;
     height: 90%;
     aspect-ratio: 1/1;
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.5);
-    //box-shadow: 0 0 20px 0px rgba(6, 130, 255, 0.5);
+    overflow: hidden;
+    box-shadow: inset 0px 0px 20px 0px rgb(0, 0, 0);
+    background-color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+}
+
+.TrainerImage {
+    height: 100%;
+    aspect-ratio: 1/1;
+    background-image: url('../../../public/assets/POKEMONTRAINER_May.png');
+    background-repeat: 0;
+    background-position: 0 0;
+    background-size: 100% 100%;
+    //height: 100%;
+    //aspect-ratio: 1/1;
+    //background-color: rgba(50, 50, 50, 0.5);
+    //box-shadow: 0 0 10px 0px rgba(24, 24, 24, 0.2);
+}
+
+.TrainerAvatar {
+    height: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 10px;
+    //background-color: rgba(255, 255, 255, 0.1);
+    background-image: url('../../../public/assets/pixel_border.png');
+    background-repeat: 0;
+    background-position: 0 0;
+    background-size: 100% 100%;
+    //background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 0, 0, 0.5));
+    //background-color: rgba(24, 24, 24, 0.5);
+    //border: solid 1px rgba(24, 24, 24, 0.2);
+    //box-shadow: 0 0 10px 0px rgba(24, 24, 24, 0.2);
     //background-color: crimson;
 }
 
+.TrainerInfo {
+    position: relative;
+    flex: 1 1;
+    height: 96%;
+    margin-left: 2%;
+    margin-right: 1%;
+    margin-block: 2%;
+    //border-radius: 10px;
+    align-self: center;
+    //background-color: darkcyan;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.Name {
+    position: relative;
+    width: 98%;
+    height: fit-content;
+    padding-block: 2%;
+    margin-right: 2%;
+    //background-color: red;
+    font-family: "Public Pixel", sans-serif;
+    font-size: 2.8cqh;
+    color: rgb(255, 255, 255);
+    //text-indent: 10px;
+    border-bottom: solid 2px rgb(41, 41, 41);
+    text-wrap: nowrap;
+}
+
+.Name::after {
+    content: "May";
+    position: absolute;
+    z-index: -1;
+    top: .1cqi;
+    left: .1cqi;
+    width: 100%;
+    height: fit-content;
+    padding-block: 2%;
+    //background-color: red;
+    font-family: "Public Pixel", sans-serif;
+    font-size: 2.8cqh;
+    color: rgb(251, 0, 0);
+    text-wrap: nowrap;
+    //text-indent: 10px;
+    //border-bottom: solid 1px rgb(50, 50, 50);
+}
+
+.TrainerOptions {
+    flex: 1 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.TeamPresets {
+    flex: 1 1;
+    margin-right: 3%;
+    //width: 100%;
+    margin-bottom: 2%;
+    background-color: rgba(31, 31, 31, 0.3);
+    border-radius: 10px;
+    display: flex;
+    padding: 3%;
+    align-items: center;
+    justify-content: center;
+    //opacity: .7;
+    cursor: pointer;
+}
+
+.PresetsInner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 94%;
+    width: 94%;
+    background-color: rgba(31, 31, 31, 0.4);
+    border-radius: 5px;
+    transform: scale(1);
+    transition: transform 0.5s ease;
+}
+
+.TeamPresets:hover .PresetsInner {
+    transform: scale(1.05);
+}
+
+.PresetsTitle {
+    display: flex;
+    align-items: center;
+    //justify-content: center;
+    padding-left: 1%;
+    font-family: "Public Pixel", sans-serif;
+    //line-height: 2cqh;
+    line-height: 20px;
+    //font-size: 1.5cqh;
+    width: fit-content;
+    padding-left: 3%;
+    font-size: 12px;
+    color: rgb(255, 255, 255);
+    user-select: none;
+    overflow: hidden;
+}
+
+.PresetsIcon {
+    //margin-left: 10%;
+    background-image: url(../../../public/assets/pokeball_icon_bw.png);
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 80%;
+    aspect-ratio: 1/1;
+    opacity: .3;
+}
+
+.TeamPresets:hover .PresetsIcon {
+    background-image: url(../../../public/assets/pokeball_icon.png);
+}
+
 .Bag {
+    position: relative;
     opacity: .5;
     background-image: url('../../../public/assets/bag_1.png');
     background-repeat: 0;
     background-position: 0 0;
     background-size: 100% 100%;
-    position: absolute;
-    height: 40%;
+    margin-bottom: 0;
+    height: 100%;
     aspect-ratio: 1/1;
-    right: 1%;
-    bottom: 2%;
     cursor: pointer;
-    transition: opacity 0.3s ease, bottom 0.3s ease;
+    transition: opacity 0.3s ease, margin-bottom 0.3s ease;
+    //background-color: aquamarine;
+}
+
+.ItemCount {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-radius: 30%;
+    height: 22%;
+    aspect-ratio: 1.7/1;
+    background-color: rgba(31, 31, 31, 0.7);
+    color: white;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 2cqh;
 }
 
 .Bag:hover {
     opacity: .9;
-    bottom: 2.5%;
+    margin-bottom: 2.5%;
+}
+
+.ControlsContainer {
+    position: absolute;
+    top: 5px;
+    right: 4px;
+    height: 11%;
+    width: fit-content;
+    //background-color: yellow;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 2px;
+}
+
+.Randomize {
+    background-image: url(../../../public/assets/random.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: 0 0;
+    height: 100%;
+    aspect-ratio: 1/1;
+    filter: brightness(50%);
+    opacity: .5;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.Reset {
+    background-image: url(../../../public/assets/reset.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: 0 0;
+    height: 100%;
+    aspect-ratio: 1/1;
+    filter: brightness(50%);
+    opacity: .5;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.Reset:hover {
+    opacity: .8;
+}
+
+.Randomize:hover {
+    opacity: .8;
 }

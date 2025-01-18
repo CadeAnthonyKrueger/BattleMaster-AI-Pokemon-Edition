@@ -2,7 +2,7 @@
     position: absolute;
     z-index: 9;
     // width: 97%;
-    height: calc(94vh - clamp(66.5px, 11vh, 11vh) - 20px - 1.5vh);
+    height: calc(100vh - clamp(66.5px, 11vh, 11vh) - 20px - 1.5vh);
     // //height: 94%;
     // padding: 1.5%;
     //height: 100%;
@@ -112,5 +112,5 @@
     margin: 10px;
     border-radius: 10px;
     //background-color: rgba(255, 255, 255, 0.4);
-    background-image: linear-gradient(30deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.6));
+    background-image: linear-gradient(30deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4));
 }

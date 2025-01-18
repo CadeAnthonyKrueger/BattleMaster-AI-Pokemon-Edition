@@ -2,10 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import "./App.scss";
 import NavigationView from "./views/NavigationView";
 import TrainerView from "./views/TrainerView";
+import OverlayPane from "./views/OverlayPane";
+import { OverlayProvider } from "./utilities/OverlayContext";
 
 const App = () => {
 
-    const showDimensions = false;
+    const showDimensions = true;
 
     const [screenSize, setScreenSize] = useState({
         width: window.innerWidth,
@@ -35,8 +37,13 @@ const App = () => {
             {showDimensions && <div className='Dimension width'>{screenSize.width}</div>}
             {showDimensions && <div className='Dimension height'>{screenSize.height}</div>}
             <div className="AppBackground"/>
-            <NavigationView/>
-            <TrainerView/>
+            <OverlayProvider>
+                <div className="ContentPane">
+                    <NavigationView/>
+                    <TrainerView/>
+                </div>
+                <OverlayPane/>
+            </OverlayProvider>
         </div>
     )
 
