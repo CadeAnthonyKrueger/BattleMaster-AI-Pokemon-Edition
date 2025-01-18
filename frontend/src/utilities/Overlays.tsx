@@ -5,7 +5,6 @@ interface OverlayProps {
 }
 
 export const DescriptionOverlay: React.FC<OverlayProps> = ({ isExpanded, metrics, description, handleMenuChange }) => {
-    console.log({ isExpanded, metrics, description, handleMenuChange })
     return (
         isExpanded && <div className={`DescriptionContainer Overlay`} style={{
             top: `${metrics.y}px`, left: `${metrics.x}px`, width: `${metrics.width}px`, height: `${metrics.height}px`,

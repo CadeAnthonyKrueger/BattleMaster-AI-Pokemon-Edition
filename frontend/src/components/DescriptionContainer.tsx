@@ -77,7 +77,7 @@ const DescriptionContainer: React.FC<DescriptionContainerProps> = ({}) => {
             const descriptionTitleDiv = container.querySelector('.DescriptionTitle');
             let h = 0;
             if (descriptionDiv && descriptionTitleDiv) {
-                h = descriptionDiv.getBoundingClientRect().height + descriptionTitleDiv.getBoundingClientRect().height + 10;
+                h = descriptionDiv.getBoundingClientRect().height + descriptionTitleDiv.getBoundingClientRect().height + 24;
             }
             setTimeout(() => { 
                 setMetrics(prev => ({
@@ -95,7 +95,8 @@ const DescriptionContainer: React.FC<DescriptionContainerProps> = ({}) => {
             addOverlay({
                     className: "DescriptionContainer Overlay",
                     component: DescriptionOverlay,
-                    props: { isExpanded, metrics, description, handleMenuChange }
+                    props: { isExpanded, metrics, description, handleMenuChange },
+                    flag: isExpanded
             });
         }, time);
     }, [isExpanded]);
@@ -107,7 +108,8 @@ const DescriptionContainer: React.FC<DescriptionContainerProps> = ({}) => {
             addOverlay({
                     className: "DescriptionContainer Overlay",
                     component: DescriptionOverlay,
-                    props: { isExpanded, metrics, description, handleMenuChange }
+                    props: { isExpanded, metrics, description, handleMenuChange },
+                    flag: isExpanded
             });
         }, time);
     }, [metrics]);

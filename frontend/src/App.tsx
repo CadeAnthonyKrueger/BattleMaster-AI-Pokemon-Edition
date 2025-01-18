@@ -7,6 +7,8 @@ import { OverlayProvider } from "./utilities/OverlayContext";
 
 const App = () => {
 
+    const contentRef = useRef<HTMLDivElement | null>(null);
+
     const showDimensions = true;
 
     const [screenSize, setScreenSize] = useState({
@@ -38,11 +40,11 @@ const App = () => {
             {showDimensions && <div className='Dimension height'>{screenSize.height}</div>}
             <div className="AppBackground"/>
             <OverlayProvider>
-                <div className="ContentPane">
+                <div className="ContentPane" ref={contentRef}>
                     <NavigationView/>
                     <TrainerView/>
                 </div>
-                <OverlayPane/>
+                <OverlayPane contentRef={contentRef}/>
             </OverlayProvider>
         </div>
     )

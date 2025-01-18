@@ -3,7 +3,8 @@ import React, { createContext, useState, useContext, ReactNode, FC } from "react
 export interface Overlay {
     className: string,
     component: FC<any>,
-    props: any
+    props: any,
+    flag?: boolean
 }
 
 export interface OverlayContext {
