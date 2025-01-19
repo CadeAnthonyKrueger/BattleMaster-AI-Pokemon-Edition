@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./styles/DescriptionContainer.scss";
 import { useOverlay } from "../utilities/OverlayContext";
-import { DescriptionOverlay } from "../utilities/Overlays";
+import DescriptionOverlay from "../utilities/Overlays";
 
 interface DescriptionContainerProps {}
 
@@ -43,7 +43,7 @@ const DescriptionContainer: React.FC<DescriptionContainerProps> = ({}) => {
                     const descriptionTitleDiv = container.querySelector('.DescriptionTitle');
                     let h = 0;
                     if (descriptionDiv && descriptionTitleDiv) {
-                        h = descriptionDiv.getBoundingClientRect().height + descriptionTitleDiv.getBoundingClientRect().height + 10;
+                        h = descriptionDiv.getBoundingClientRect().height + descriptionTitleDiv.getBoundingClientRect().height + 24;
                     }
                     setMetrics(prev => { return { ...prev, height: h }});
                 }
