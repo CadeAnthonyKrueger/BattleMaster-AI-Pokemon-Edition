@@ -3,6 +3,7 @@ export interface TrainerSchema {
     name: string;
     description: string;
     image: string;
+    color: string;
 }
 
 export class TrainerModel {
@@ -12,6 +13,7 @@ export class TrainerModel {
             name: row.name,
             description: row.description,
             image: row.image,
+            color: row.color
         };
     }
 }

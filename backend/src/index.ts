@@ -1,5 +1,4 @@
 import express from 'express';
-import Database from 'better-sqlite3';
 import cors from 'cors';
 
 const app = express();
@@ -8,8 +7,6 @@ const PORT = 3001;
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cors());
-
-export const db = new Database('./database/database.db', { verbose: console.log });
 
 // // Example route to get all trainers
 // app.get('/trainers', (req, res) => {

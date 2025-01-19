@@ -1,5 +1,4 @@
-import { db } from "../index"
-
+import { db } from "../db"
 
 db.prepare(`
     CREATE TABLE IF NOT EXISTS trainers (
