@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
 
 const app = express();
 const PORT = 3001;
@@ -7,6 +8,18 @@ const PORT = 3001;
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cors());
+
+// Define the static folder for serving images
+const trainersFolder = path.join(__dirname, '../Pokemon Essentials v21.1 2023-07-30/Graphics/Trainers');
+app.use(express.static(trainersFolder)); // Now, images will be accessible directly
+
+// Example route to verify server is running
+app.get('/', (req, res) => {
+  res.send('Server is running! Access images directly by their filename, e.g., http://localhost:3001/g.png');
+});
+
+//app.use('/images', express.static(path.join(__dirname, 'public/images')));
+
 
 // // Example route to get all trainers
 // app.get('/trainers', (req, res) => {
