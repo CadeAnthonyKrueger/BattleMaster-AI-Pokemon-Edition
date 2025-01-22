@@ -1,7 +1,8 @@
 import path from "path";
 import fs from "fs";
+import { TrainerSchema } from "../../../models/TrainerModel";
 
-export const trainerData: { name: string, description: string, player_trainer: boolean, image: string, color: string }[] = [];
+export const trainerData: TrainerSchema[] = [];
 
 let fileNames = fs.readdirSync(path.join(__dirname, '../../../../Pokemon Essentials v21.1 2023-07-30/Graphics/Trainers'));
 fileNames = fileNames.filter((trainer) => trainer.slice(trainer.length - 8) !== 'back.png');
@@ -150,5 +151,3 @@ trainers.forEach((trainer, index) => {
         color: trainerColors[index] 
     });
 });
-
-console.log(trainerData);
