@@ -22,6 +22,19 @@ const OverlayPane = ({ contentRef }: { contentRef: RefObject<HTMLDivElement | nu
         }
     }, [contentRef, overlays]);
 
+    useEffect(() => {
+        const ref = self.current;
+        if (ref) {
+            setTimeout(() => {
+                ref.style.opacity = '0';
+            }, 1000);
+            setTimeout(() => {
+                ref.style.opacity = '1';
+                ref.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+            }, 2000);
+        }
+    }, [self]);
+
     return (
         <div className="OverlayPane" ref={self}>
             {overlays.map((overlay: Overlay, index: number) => {
@@ -29,9 +42,8 @@ const OverlayPane = ({ contentRef }: { contentRef: RefObject<HTMLDivElement | nu
                 return (
                     <Component {...overlay.props} key={index}/>
                 );
-            }
-        )}
-    </div>
+            })}
+        </div>
     )
 
 };

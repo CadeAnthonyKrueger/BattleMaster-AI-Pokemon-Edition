@@ -1,0 +1,98 @@
+.TitleView {
+    position: relative;
+    z-index: 0;
+    background-image: url(../../../public/assets/AI_Background.jpg);
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.TitleView::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    //background-color: black;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, .7), rgba(0, 0, 0, .9));
+}
+
+.GameTitle {
+    position: absolute;
+    z-index: 2;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    height: 60%;
+    aspect-ratio: 88/44;
+    overflow: hidden;
+    transition: opacity 2.5s ease;
+    //background-color: chartreuse;
+}
+
+.glimmer {
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-size: contain;
+    -webkit-mask-size: contain;
+}
+
+.title {
+    mask-image: url(../../../public/assets/game_title.png);
+    -webkit-mask-image: url(../../../public/assets/game_title.png);
+}
+
+.indicator {
+    mask-image: url(../../../public/assets/start_indicator.png);
+    -webkit-mask-image: url(../../../public/assets/start_indicator.png);
+}
+
+.Glimmer {
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 150%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    transform: skewX(-30deg);
+    pointer-events: none;
+}
+
+.Glimmer.indicator {
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 1), transparent);
+}
+
+.StartIndicator {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 80%;
+    height: 5%;
+    aspect-ratio: 421/56;
+    background-image: url(../../../public/assets/start_indicator.png);
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    overflow: hidden;
+    transition: opacity 0.5s ease;
+}
+
+.animate {
+    animation: Glimmer 4s infinite;
+}
+  
+@keyframes Glimmer {
+    0% {
+        transform: translateX(-150%) skewX(-30deg);
+    }
+    100% {
+        transform: translateX(150%) skewX(-30deg);
+    }
+}

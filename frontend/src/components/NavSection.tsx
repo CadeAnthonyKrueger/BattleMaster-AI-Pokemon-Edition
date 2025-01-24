@@ -17,7 +17,6 @@ const NavSection: React.FC<NavSectionProps> = ({ pageNumber, currentPage, setCur
 
     useEffect(() => {
         setIsActive(pageNumber === currentPage);
-        console.log(currentPage + ' <- theirs | mine -> ' + pageNumber);
     }, [currentPage, pageNumber]);
 
     const handleClick = () => {

@@ -1,0 +1,30 @@
+.ControlsContainer {
+    position: absolute;
+    top: 5px;
+    right: 4px;
+    //height: 11%;
+    //height: 19.3625px;
+    height: clamp(10px, 1.7vmax, 19.3625px);
+    width: fit-content;
+    //background-color: yellow;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 2px;
+}
+
+.Control {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: 0 0;
+    height: 100%;
+    aspect-ratio: 1/1;
+    //filter: brightness(50%);
+    filter: invert(1) brightness(100%);
+    opacity: .3;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.Control:hover {
+    opacity: .75;
+}

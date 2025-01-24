@@ -29,14 +29,20 @@
     background-repeat: no-repeat;
     background-size: 100% 100%;
     //box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.8);
+    opacity: 0.5;
     border-radius: 25%;
     transform: scale(0.7);
-    transition: transform 0.7s ease;
+    transition: transform 0.7s ease, opacity 0.3s ease;
     cursor: pointer;
+}
+
+.Icon:hover {
+    opacity: 0.8;
 }
 
 .Icon.active {
     transform: scale(1.2);
+    opacity: 1;
     //box-shadow: 0 0 15px 0px rgba(255, 0, 0, 0.8);
 }
 
@@ -70,7 +76,7 @@
     top: 107%;
     height: fit-content;
     width: fit-content;
-    background-color: rgba(6, 130, 255, 0.8);
+    background-color: rgba(52, 209, 125, 0.8);
     font-family: "Public Pixel", sans-serif;
     font-size: xx-small;
     font-weight: 400;

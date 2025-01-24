@@ -1,0 +1,11 @@
+.TeamOptions {
+    position: relative;
+    height: calc(100% - 20px);
+    width: calc(100% - 20px);
+    margin: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

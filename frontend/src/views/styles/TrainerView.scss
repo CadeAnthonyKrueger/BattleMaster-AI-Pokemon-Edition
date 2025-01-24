@@ -2,7 +2,8 @@
     position: absolute;
     z-index: 9;
     // width: 97%;
-    height: calc(100vh - clamp(66.5px, 11vh, 11vh) - 20px - 1.5vh);
+    //height: calc(100vh - clamp(66.5px, 11vh, 11vh) - 20px - 1.5vh);
+    height: calc(100vh - clamp(66.5px, 11vh, 11vh) - 20px - 6vh);
     // //height: 94%;
     // padding: 1.5%;
     //height: 100%;
@@ -45,13 +46,14 @@
     content: "My Trainer";
     position: absolute;
     z-index: -1;
-    top: .3cqi;
-    left: .3cqi;
+    top: .22cqi;
+    left: .22cqi;
     height: 100%;
     width: fit-content;
     align-content: center;
     //background-color: rgb(21, 44, 120);
-    color: rgba(6, 130, 255, 0.8);
+    //color: rgba(52, 209, 125, 0.8);
+    color: rgb(0, 140, 226);
     font-family: "Public Pixel", sans-serif;
     font-size: 4.5cqh;
     text-wrap: nowrap;
@@ -96,14 +98,6 @@
     //background-color: rgb(81, 72, 217);
 }
 
-.LoadOptionsArea {
-    grid-area: l;
-    display: flex;
-    //justify-content: center;
-    //align-items: center;
-    //background-color: rgb(220, 183, 20);
-}
-
 // Temporary Stuff
 
 .temp {
@@ -111,6 +105,7 @@
     width: calc(100% - 20px);
     margin: 10px;
     border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     //background-color: rgba(255, 255, 255, 0.4);
-    background-image: linear-gradient(30deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4));
+    //background-image: linear-gradient(30deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4));
 }

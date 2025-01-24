@@ -19,10 +19,10 @@ const NavIndicator: React.FC<NavIndicatorProps> = ({ currentPage, setCurrentPage
     //const navIcons: string[] = ["trainer.png", "rival.jpg", "island.png", "overview.png"];
 
     const navSectionInfo: NavSectionInfo[] = [
-        {icon: "gear_wrench.png", trainer: "HIKER.png", title: "Options"},
+        {icon: "gear_wrench.png", trainer: "PROFESSOR.png", title: "Options"},
         {icon: "grouped_pokeballs.png", trainer: "POKEMONTRAINER_Red.png", title: "My Trainer"},
         {icon: "opponent_AI.png", trainer: "RIVAL1.png", title: "AI Trainer"},
-        {icon: "quality_overview.png", trainer: "PROFESSOR.png", title: "Overview"}
+        {icon: "quality_overview.png", trainer: "GENTLEMAN.png", title: "Overview"}
     ];
 
     return (

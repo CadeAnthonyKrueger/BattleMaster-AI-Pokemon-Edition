@@ -9,14 +9,14 @@
     align-items: center;
     //background-color: cadetblue;
     margin-top: 0;
-    transform: none;
+    transform: scale(1);
     cursor: pointer;
-    transition: height 0.3s ease;
+    transition: transform 0.3s ease;
     //animation: Wiggle .8s linear infinite;
 }
 
 .SupportPokeball:active {
-    height: 64%;
+    transform: scale(.8);
 }
 
 @keyframes Bob {

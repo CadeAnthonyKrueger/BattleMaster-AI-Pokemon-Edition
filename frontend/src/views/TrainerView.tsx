@@ -2,6 +2,8 @@ import React, { useRef, useState, useEffect } from "react";
 import "./styles/TrainerView.scss";
 import SupportPokeball from "../components/SupportPokeball";
 import TrainerCard from "../components/TrainerCard";
+import TeamOptions from "../components/TeamOptions";
+import PokemonTeam from "../components/PokemonTeam";
 
 const TrainerView = () => {
 
@@ -37,9 +39,12 @@ const TrainerView = () => {
                 <div className="TrainerCardArea">
                     <TrainerCard/>
                 </div>
-                <div className="OptionsArea"><div className="temp" /></div>
-                <div className="PokemonTeamArea"><div className="temp" /></div>
-                <div className="LoadOptionsArea"><div className="temp" /></div>
+                <div className="OptionsArea">
+                    <TeamOptions/>
+                </div>
+                <div className="PokemonTeamArea">
+                    <PokemonTeam/>
+                </div>
             </div>
         </div>
     );

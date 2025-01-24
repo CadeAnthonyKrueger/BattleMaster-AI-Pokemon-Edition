@@ -39,6 +39,7 @@ module.exports = {
   },
   devtool: 'source-map',
   devServer: {
+    historyApiFallback: true,
     static: path.join(__dirname, 'public'),
     compress: true,
     port: 3000,

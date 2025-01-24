@@ -1,0 +1,30 @@
+.CardTitle {
+    position: relative;
+    width: 98%;
+    height: fit-content;
+    padding-block: 6.075px;
+    //margin-right: 6.075px;
+    font-family: "Public Pixel", sans-serif;
+    font-size: 19.47px;
+    color: rgb(255, 255, 255);
+    border-bottom: solid 2px rgba(255, 255, 255, 0.1);
+    text-wrap: nowrap;
+    //background-color: cornflowerblue;
+}
+
+.CardTitleShadow {
+    position: absolute;
+    z-index: -1;
+    top: 1.6px;
+    left: 1.6px;
+    width: 98%;
+    height: fit-content;
+    padding-block: 6.075px;
+    font-family: "Public Pixel", sans-serif;
+    //font-size: 2.8cqh;
+    font-size: 19.47px;
+    color: rgb(0, 140, 226);
+    text-wrap: nowrap;
+    //text-indent: 10px;
+    //border-bottom: solid 1px rgb(50, 50, 50);
+}
