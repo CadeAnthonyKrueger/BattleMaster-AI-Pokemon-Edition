@@ -79,6 +79,7 @@
 .SettingIcon.tc {
     height: 75%;
     opacity: .3;
+    filter: grayscale(.5);
 }
 
 .SettingButton.tc:hover .SettingIcon {
