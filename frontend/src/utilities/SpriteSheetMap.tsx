@@ -7,6 +7,7 @@ interface SpriteSheetMapProps {
     startRow?: number;
     startCol?: number;
     scaleFactor?: number;
+    style?: React.CSSProperties;
 }
 
 interface SpriteSheetMapState {
@@ -18,6 +19,7 @@ interface SpriteSheetMapState {
 class SpriteSheetMap extends Component<SpriteSheetMapProps, SpriteSheetMapState> {
 
     private imageSrc: string;
+    private style: React.CSSProperties | undefined;
 
     constructor(props: SpriteSheetMapProps) {
         super(props);
@@ -30,6 +32,7 @@ class SpriteSheetMap extends Component<SpriteSheetMapProps, SpriteSheetMapState>
             }
         };
         this.imageSrc = `/assets/${props.src}`;
+        this.style = props.style;
     }
 
     public incrementSprite() {
@@ -92,15 +95,17 @@ class SpriteSheetMap extends Component<SpriteSheetMapProps, SpriteSheetMapState>
         const { rows, cols } = this.props;
         const { width, height } = this.state;
 
+        const stylesCombined = { ...{
+            height: `${100 * (this.props.scaleFactor ? this.props.scaleFactor : 1)}%`,
+            aspectRatio: `${width / cols}/${height / rows}`,
+            backgroundImage: `url('${this.imageSrc}')`,
+            backgroundPosition: `${this.getBackgroundPosition()}`,
+            backgroundSize: `${cols * 100}% ${rows * 100}%`,
+            backgroundRepeat: "no-repeat"
+        }, ...this.style };
+
         return (
-            <div style={{
-                    height: `${100 * (this.props.scaleFactor ? this.props.scaleFactor : 1)}%`,
-                    aspectRatio: `${width / cols}/${height / rows}`,
-                    backgroundImage: `url('${this.imageSrc}')`,
-                    backgroundPosition: `${this.getBackgroundPosition()}`,
-                    backgroundSize: `${cols * 100}% ${rows * 100}%`,
-                    backgroundRepeat: "no-repeat"
-                }}
+            <div style={stylesCombined}
             />
         );
     }
