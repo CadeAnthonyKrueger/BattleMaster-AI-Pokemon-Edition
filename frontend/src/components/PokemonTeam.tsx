@@ -7,7 +7,7 @@ import SettingButton from "./SettingButton";
 
 interface PokemonTeamProps {}
 
-interface PokemonSetting {
+interface SettingButtonProps {
     title: string;
     image: string;
     blackIcon: boolean;
@@ -27,7 +27,7 @@ const PokemonTeam: React.FC<PokemonTeamProps> = () => {
     const titleRef = useRef<HTMLDivElement | null>(null);
     const iconRef = useRef<HTMLDivElement | null>(null);
 
-    const pokemonSettings: PokemonSetting[] = [
+    const settingButtonProps: SettingButtonProps[] = [
         { title: 'Save', image: 'save.png', blackIcon: true },
         { title: 'Load', image: 'load.png', blackIcon: true },
         { title: 'Presets', image: 'pokeball_icon_bw.png', blackIcon: false, refs: [buttonRef, titleRef, iconRef] }
@@ -155,13 +155,13 @@ const PokemonTeam: React.FC<PokemonTeamProps> = () => {
                     )}
                 </div>
                 {!asControl && <div className="PokemonSettings">
-                    {pokemonSettings.map((setting, index) => {
+                    {settingButtonProps.map((setting, index) => {
                         return <SettingButton title={setting.title} image={setting.image} blackIcon={setting.blackIcon} 
                             refs={setting.refs} iconOnly={iconOnly} asControl={asControl} key={index}/>
                     })}
                 </div>}
             </div>
-            <ControlsContainer additionalControls={pokemonSettings.map((setting) => { 
+            <ControlsContainer additionalControls={settingButtonProps.map((setting) => { 
                 return { title: setting.title, image: setting.image } 
             })} additionalActive={asControl}/>
         </div>
