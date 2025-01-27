@@ -2,7 +2,7 @@ import React, { Dispatch, RefObject, SetStateAction, useEffect, useRef, useState
 import "./styles/SettingButton.scss";
 import "./styles/TrainerCard.scss";
 
-interface SettingButtonProps {
+export interface SettingButtonProps {
     title: string;
     image: string;
     styleName?: string;

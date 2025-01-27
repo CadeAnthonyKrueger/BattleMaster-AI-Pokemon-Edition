@@ -101,12 +101,11 @@ class SpriteSheetMap extends Component<SpriteSheetMapProps, SpriteSheetMapState>
             backgroundImage: `url('${this.imageSrc}')`,
             backgroundPosition: `${this.getBackgroundPosition()}`,
             backgroundSize: `${cols * 100}% ${rows * 100}%`,
-            backgroundRepeat: "no-repeat"
+            backgroundRepeat: "no-repeat",
         }, ...this.style };
 
         return (
-            <div style={stylesCombined}
-            />
+            <div className="Sprite" style={stylesCombined}/>
         );
     }
 }

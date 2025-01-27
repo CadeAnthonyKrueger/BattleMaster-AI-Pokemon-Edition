@@ -1,24 +1,25 @@
-import React, { RefObject, SetStateAction, useEffect, useRef, useState } from "react";
+import React, { RefObject, useRef, useState } from "react";
 import "./styles/PokemonTeam.scss";
 import "./styles/SharedStyles.scss";
 import PokemonCard from "./PokemonCard";
 import ControlsContainer from "./ControlsContainer";
-import SettingButton from "./SettingButton";
+//import SettingButton from "./SettingButton";
+import SettingButtonContainer from "./SettingButtonContainer";
+import { SettingButtonProps } from "./SettingButton";
 
 interface PokemonTeamProps {}
 
-interface SettingButtonProps {
-    title: string;
+interface Pokemon {
+    name: string;
+    pokedexNumber: string;
+    typeIndexes: number[],
     image: string;
-    blackIcon: boolean;
-    refs?: RefObject<HTMLDivElement | null>[];
 }
 
-interface Dimensions { 
-    width: number; 
-    height: number;
-    distance?: number;
-    flag?: string;
+export interface PokemonInstance {
+    pokemon: Pokemon;
+    level: number;
+    gender: string;
 }
 
 const PokemonTeam: React.FC<PokemonTeamProps> = () => {
@@ -33,111 +34,17 @@ const PokemonTeam: React.FC<PokemonTeamProps> = () => {
         { title: 'Presets', image: 'pokeball_icon_bw.png', blackIcon: false, refs: [buttonRef, titleRef, iconRef] }
     ];
 
-    const minWidthRatios = { asControl: 60.79, iconOnly: 67 };
-    // const initialWindowSize: Dimensions = { width: window.innerWidth, height: window.innerHeight };
-    // const [windowSize, setWindowSize] = useState<Dimensions>({ width: window.innerWidth, height: window.innerHeight });
-
     const [iconOnly, setIconOnly] = useState<boolean>(false);
     const [asControl, setAsControl] = useState<boolean>(false);
-    const [refWidths, setRefWidths] = useState<{ button: number; title: number; icon: number }>();
-    const [checkPoint, setCheckPoint] = useState<Dimensions>({ 
-        width: window.innerWidth, height: window.innerHeight, flag: 'asControl' 
-    });
 
-    useEffect(() => {
-        const { bRef, tRef, iRef } = { bRef: buttonRef.current, tRef: titleRef.current, iRef: iconRef.current };
-
-        if (!bRef) return;
-
-        setRefWidths(() => {
-            return {
-                button: bRef.getBoundingClientRect().width, 
-                title: tRef ? tRef.getBoundingClientRect().width : 0, 
-                icon: iRef ? iRef.getBoundingClientRect().width : 0
-            }
-        });
-
-    }, [buttonRef, titleRef, iconRef]);
-
-    useEffect(() => {
-        const { bRef, tRef, iRef } = { 
-            bRef: buttonRef.current, tRef: titleRef.current, iRef: iconRef.current 
-        };
-
-        if (!bRef) return;
-
-        const resizeObserver = new ResizeObserver((entries) => {
-            for (let entry of entries) {
-                const { width } = entry.contentRect;
-                let { titleWidth, iconWidth } = { titleWidth: 0, iconWidth: 0 };
-                if (tRef) { titleWidth = tRef.getBoundingClientRect().width; }
-                if (iRef) { iconWidth = iRef.getBoundingClientRect().width; }
-                setRefWidths((prev) => {
-                    if (!prev) return;
-                    return {
-                            button: width !== 0 ? width : prev.button,
-                            title: titleWidth !== 0 ? titleWidth : prev.title,
-                            icon: iconWidth !== 0 ? iconWidth : prev.icon
-                    };
-                });       
-            }
-        });
-
-        resizeObserver.observe((bRef as HTMLDivElement));
-
-        return () => {
-            resizeObserver.disconnect();
-        };
-
-    }, [buttonRef, titleRef, iconRef, asControl, iconOnly]);
-
-    useEffect(() => {
-        const handleResize = () => {
-            const { innerWidth, innerHeight } =  window;
-            if (checkPoint && checkPoint.flag === 'asControl') {
-                setCheckPoint(prev => {
-                    if (!asControl) { return { ...prev, width: innerWidth, height: innerHeight, flag: 'asControl' }; }
-                    const dist = innerWidth - prev.width;
-                    const dist2 = -(innerHeight - prev.height);
-                    //console.log(dist + dist2);
-                    return { ...prev, distance: (dist*0.55) + (dist2*1.22) };
-                });
-            }
-        };
-
-        window.addEventListener('resize', handleResize);
-        
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-
-    }, [asControl]);
-
-    const compareWidths = (refWidth: number, buttonWidth: number, minWidthRatio: number, expr1: boolean = true) => {
-        const { lhs, rhs } = { lhs: (refWidth / buttonWidth) * 100, rhs: minWidthRatio };
-        return expr1 ? (lhs < rhs) : (lhs >= rhs);
-    };
-
-    useEffect(() => {
-        if (!refWidths) return;
-        
-        console.log(checkPoint.distance);
-        const { button: buttonWidth, title: titleWidth, icon: iconWidth } = refWidths;
-        if (asControl && checkPoint?.distance && !buttonRef.current) {
-            if (buttonWidth > iconWidth && checkPoint?.distance > 0) { 
-                setTimeout(() => {
-                    if (checkPoint?.distance && checkPoint?.distance > 4) setAsControl(false); 
-                }, 100);
-            }
-        } else if (iconOnly && !asControl && buttonRef.current) {
-            !compareWidths(iconWidth, buttonWidth, minWidthRatios.asControl, false) || setAsControl(true);
-        }
-        if (!asControl && iconOnly && !titleRef.current) { 
-            !compareWidths(titleWidth, buttonWidth, minWidthRatios.iconOnly) || setIconOnly(false); 
-        } else if (!iconOnly && !asControl && titleRef.current) { 
-            !compareWidths(titleWidth, buttonWidth, minWidthRatios.iconOnly, false) || setIconOnly(true); 
-        }
-    }, [refWidths, checkPoint?.distance]);
+    const pokemonTeam: PokemonInstance[] = [
+        { pokemon: { name: 'Deoxys', pokedexNumber: '0386', typeIndexes: [14], image: 'DEOXYS.png' }, level: 35, gender: 'male' },
+        { pokemon: { name: 'Kirlia', pokedexNumber: '0281', typeIndexes: [14], image: 'KIRLIA.png' }, level: 16, gender: 'female' },
+        { pokemon: { name: 'Houndoom', pokedexNumber: '0229', typeIndexes: [10, 17], image: 'HOUNDOOM.png' }, level: 41, gender: 'male' },
+        { pokemon: { name: 'Lycanroc', pokedexNumber: '0745', typeIndexes: [5], image: 'LYCANROC.png' }, level: 32, gender: 'male' },
+        { pokemon: { name: 'Vespiquen', pokedexNumber: '0416', typeIndexes: [6, 2], image: 'VESPIQUEN.png' }, level: 38, gender: 'female' },
+        { pokemon: { name: 'Archen', pokedexNumber: '0566', typeIndexes: [5, 2], image: 'ARCHEN.png' }, level: 12, gender: 'male' }
+    ]
 
     return (
         <div className="PokemonTeam">
@@ -147,19 +54,15 @@ const PokemonTeam: React.FC<PokemonTeamProps> = () => {
             </div>
             <div className="PokemonTeamArea">
                 <div className="PokemonTeamGrid">
-                    {['DEOXYS.png', "KIRLIA.png", "HOUNDOOM.png", "LYCANROC.png", "VESPIQUEN.png", "ARCHEN.png"].map(
+                    {pokemonTeam.map(
                         (pkmn, i) => <div className='PokemonSlot' key={i}>
-                            <PokemonCard pokemonInstance={pkmn} position={i} key={i}
-                            />
+                            <PokemonCard pokemonInstance={pkmn} position={i} key={i}/>
                         </div>
                     )}
                 </div>
-                {!asControl && <div className="PokemonSettings">
-                    {settingButtonProps.map((setting, index) => {
-                        return <SettingButton title={setting.title} image={setting.image} blackIcon={setting.blackIcon} 
-                            refs={setting.refs} iconOnly={iconOnly} asControl={asControl} key={index}/>
-                    })}
-                </div>}
+                <SettingButtonContainer className="PokemonSettings" iconOnly={iconOnly} setIconOnly={setIconOnly} 
+                    asControl={asControl} setAsControl={setAsControl} settingButtonProps={settingButtonProps}
+                />
             </div>
             <ControlsContainer additionalControls={settingButtonProps.map((setting) => { 
                 return { title: setting.title, image: setting.image } 

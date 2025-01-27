@@ -83,7 +83,7 @@ const TrainerCard: React.FC<TrainerCardProps> = () => {
     return (
         <div className="TrainerCard">
             <div className="TrainerBackground">
-                <div className="TrainerImage"><div className="TrainerAvatar"/></div>
+                <div className="TrainerImage Sprite"><div className="TrainerAvatar"/></div>
             </div>
             <div className="TrainerInfo">
                 <div className="CardTitle">
