@@ -24,6 +24,8 @@ export interface PokemonInstance {
 
 const PokemonTeam: React.FC<PokemonTeamProps> = () => {
 
+    const teamAreaRef = useRef<HTMLDivElement | null>(null);
+
     const buttonRef = useRef<HTMLDivElement | null>(null);
     const titleRef = useRef<HTMLDivElement | null>(null);
     const iconRef = useRef<HTMLDivElement | null>(null);
@@ -37,26 +39,26 @@ const PokemonTeam: React.FC<PokemonTeamProps> = () => {
     const [iconOnly, setIconOnly] = useState<boolean>(false);
     const [asControl, setAsControl] = useState<boolean>(false);
 
-    const pokemonTeam: PokemonInstance[] = [
-        { pokemon: { name: 'Deoxys', pokedexNumber: '0386', typeIndexes: [14], image: 'DEOXYS.png' }, level: 35, gender: 'male' },
-        { pokemon: { name: 'Kirlia', pokedexNumber: '0281', typeIndexes: [14], image: 'KIRLIA.png' }, level: 16, gender: 'female' },
-        { pokemon: { name: 'Houndoom', pokedexNumber: '0229', typeIndexes: [10, 17], image: 'HOUNDOOM.png' }, level: 41, gender: 'male' },
-        { pokemon: { name: 'Lycanroc', pokedexNumber: '0745', typeIndexes: [5], image: 'LYCANROC.png' }, level: 32, gender: 'male' },
-        { pokemon: { name: 'Vespiquen', pokedexNumber: '0416', typeIndexes: [6, 2], image: 'VESPIQUEN.png' }, level: 38, gender: 'female' },
+    const pokemonTeam: (PokemonInstance | null)[] = [
+        { pokemon: { name: 'Salamence', pokedexNumber: '0373', typeIndexes: [16, 2], image: 'SALAMENCE.png' }, level: 35, gender: 'male' },
+        //{ pokemon: { name: 'Kirlia', pokedexNumber: '0281', typeIndexes: [14], image: 'KIRLIA.png' }, level: 16, gender: 'female' },
+        //{ pokemon: { name: 'Houndoom', pokedexNumber: '0229', typeIndexes: [10, 17], image: 'HOUNDOOM.png' }, level: 41, gender: 'male' },
+        //{ pokemon: { name: 'Lycanroc', pokedexNumber: '0745', typeIndexes: [5], image: 'LYCANROC.png' }, level: 32, gender: 'male' },
+        //{ pokemon: { name: 'Vespiquen', pokedexNumber: '0416', typeIndexes: [6, 2], image: 'VESPIQUEN.png' }, level: 38, gender: 'female' },
         { pokemon: { name: 'Archen', pokedexNumber: '0566', typeIndexes: [5, 2], image: 'ARCHEN.png' }, level: 12, gender: 'male' }
     ]
 
     return (
-        <div className="PokemonTeam">
+        <div className="PokemonTeam" ref={teamAreaRef}>
             <div className="CardTitle" style={{ width: '95%', marginTop: '3.65px' }}>
                 Pokemon
                 <div className="CardTitleShadow" style={{ color: 'none' }}>Pokemon</div>
             </div>
             <div className="PokemonTeamArea">
                 <div className="PokemonTeamGrid">
-                    {pokemonTeam.map(
-                        (pkmn, i) => <div className='PokemonSlot' key={i}>
-                            <PokemonCard pokemonInstance={pkmn} position={i} key={i}/>
+                    {[0, 1, 2, 3, 4, 5].map((i) => 
+                        <div className='PokemonSlot' key={i}>
+                            <PokemonCard teamAreaRef={teamAreaRef} pokemonInstance={pokemonTeam[i] || null} key={i}/>
                         </div>
                     )}
                 </div>
