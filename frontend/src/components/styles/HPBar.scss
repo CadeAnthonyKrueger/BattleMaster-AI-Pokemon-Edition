@@ -1,0 +1,50 @@
+.HPBar {
+    position: relative;
+    height: 11px;
+    aspect-ratio: 132/32;
+    //background-color: blue;
+    display: flex;
+    align-items: center;
+}
+
+.HPLabel {
+    position: relative;
+    z-index: 3;
+    font-family: 'Public Pixel', sans-serif;
+    font-size: 7px;
+    padding-left: 1px;
+    color: white;
+    //background-color: gray;
+    height: 100%;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.HPBarUnder {
+    position: relative;
+    flex: 1 1;
+    height: 100%;
+    width: 100%;
+    //background-color: aqua;
+}
+
+.HPBarU {
+    position: absolute;
+    bottom: 0%;
+    height: 50%;
+    width: 100%;
+    //background-color: rgb(27, 27, 27);
+    background: linear-gradient(to top, rgb(27, 27, 27) 40%, rgb(60, 60, 60) 70%);
+    clip-path: polygon(0% 0%, 93% 0%, 100% 100%, 0% 100%);
+}
+
+.HPBarIndicator {
+    position: absolute;
+    bottom: 10%;
+    height: 44%;
+    width: 90%;
+    //background-color: #1db849;
+    background: linear-gradient(to bottom, #1db849 60%, #169339 80%);
+}

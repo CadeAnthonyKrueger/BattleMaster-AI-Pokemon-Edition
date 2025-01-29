@@ -5,29 +5,36 @@ import { CSS } from "@dnd-kit/utilities";
 import "./styles/DragAndDropTestPage.scss";
 
 const DragAndDropTestPage = () => {
-  const [colors, setColors] = useState([
-    "red",
-    "blue",
-    "green",
-    "yellow",
-    "orange",
-  ]);
+  // const [colors, setColors] = useState([
+  //   "red",
+  //   "blue",
+  //   "green",
+  //   "yellow",
+  //   "orange",
+  // ]);
 
-  const handleDragEnd = ({ active, over }: any) => {
-    if (!over || active.id === over.id) return;
+  // const handleDragEnd = ({ active, over }: any) => {
+  //   if (!over || active.id === over.id) return;
 
-    const oldIndex = colors.indexOf(active.id);
-    const newIndex = colors.indexOf(over.id);
+  //   const oldIndex = colors.indexOf(active.id);
+  //   const newIndex = colors.indexOf(over.id);
 
-    setColors((prevColors) => arrayMove(prevColors, oldIndex, newIndex));
-  };
+  //   setColors((prevColors) => arrayMove(prevColors, oldIndex, newIndex));
+  // };
 
-  console.log('render')
+  // console.log('render')
 
   return (
-    <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+    // <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <div className="DragAndDropTestPage">
-            <div className="DndGridArea">
+          <div className="HPbarContainer">
+            <div className="HPLabel">HP</div>
+            <div className="HPBarU"></div>
+            <div className="HPBarUnder">
+              <div className="HPBar"></div>
+            </div>
+          </div>
+            {/* <div className="DndGridArea">
                 <div className="DndGrid">
                     {[0, 1, 2, 3, 4, 5].map(() => (
                         <div style={{ backgroundColor: 'white' }}/>
@@ -40,9 +47,9 @@ const DragAndDropTestPage = () => {
                         ))}
                     </div>
                 </SortableContext>
-            </div>
+            </div> */}
         </div>
-    </DndContext>
+    //{/* </DndContext> */}
   );
 };
 

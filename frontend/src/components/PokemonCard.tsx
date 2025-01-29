@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./styles/PokemonCard.scss";
 import SpriteSheetMap from "../utilities/SpriteSheetMap";
 import { PokemonInstance } from "./PokemonTeam";
+import HPBar from "./HPBar";
 
 interface PokemonCardProps {
     pokemonInstance: PokemonInstance;
@@ -111,7 +112,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemonInstance, removePokemo
                         </div>
                         <div className="AttributeRow middle" style={{ backgroundColor: 'none' }}>
                             <div className="PokedexNumber">{`#${pokemonInstance.pokemon.pokedexNumber}`}</div>
-                            <div className="HealthBar" style={{ backgroundImage: `url('/assets/hp_bar.png')` }}/>
+                            <HPBar/>
                         </div>
                     </div>
                     <div className="AttributeRow end" style={{ backgroundColor: 'none' }}>
