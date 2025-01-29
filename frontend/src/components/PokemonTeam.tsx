@@ -1,7 +1,7 @@
 import React, { RefObject, useRef, useState } from "react";
 import "./styles/PokemonTeam.scss";
 import "./styles/SharedStyles.scss";
-import PokemonCard from "./PokemonCard";
+import PokemonTeamGridArea from "./PokemonTeamGridArea";
 import ControlsContainer from "./ControlsContainer";
 //import SettingButton from "./SettingButton";
 import SettingButtonContainer from "./SettingButtonContainer";
@@ -17,6 +17,7 @@ interface Pokemon {
 }
 
 export interface PokemonInstance {
+    id: string;
     pokemon: Pokemon;
     level: number;
     gender: string;
@@ -39,29 +40,14 @@ const PokemonTeam: React.FC<PokemonTeamProps> = () => {
     const [iconOnly, setIconOnly] = useState<boolean>(false);
     const [asControl, setAsControl] = useState<boolean>(false);
 
-    const pokemonTeam: (PokemonInstance | null)[] = [
-        { pokemon: { name: 'Salamence', pokedexNumber: '0373', typeIndexes: [16, 2], image: 'SALAMENCE.png' }, level: 35, gender: 'male' },
-        //{ pokemon: { name: 'Kirlia', pokedexNumber: '0281', typeIndexes: [14], image: 'KIRLIA.png' }, level: 16, gender: 'female' },
-        //{ pokemon: { name: 'Houndoom', pokedexNumber: '0229', typeIndexes: [10, 17], image: 'HOUNDOOM.png' }, level: 41, gender: 'male' },
-        //{ pokemon: { name: 'Lycanroc', pokedexNumber: '0745', typeIndexes: [5], image: 'LYCANROC.png' }, level: 32, gender: 'male' },
-        //{ pokemon: { name: 'Vespiquen', pokedexNumber: '0416', typeIndexes: [6, 2], image: 'VESPIQUEN.png' }, level: 38, gender: 'female' },
-        { pokemon: { name: 'Archen', pokedexNumber: '0566', typeIndexes: [5, 2], image: 'ARCHEN.png' }, level: 12, gender: 'male' }
-    ]
-
     return (
         <div className="PokemonTeam" ref={teamAreaRef}>
             <div className="CardTitle" style={{ width: '95%', marginTop: '3.65px' }}>
                 Pokemon
                 <div className="CardTitleShadow" style={{ color: 'none' }}>Pokemon</div>
             </div>
-            <div className="PokemonTeamArea">
-                <div className="PokemonTeamGrid">
-                    {[0, 1, 2, 3, 4, 5].map((i) => 
-                        <div className='PokemonSlot' key={i}>
-                            <PokemonCard teamAreaRef={teamAreaRef} pokemonInstance={pokemonTeam[i] || null} key={i}/>
-                        </div>
-                    )}
-                </div>
+            <div className="PokemonTeamInner">
+                <PokemonTeamGridArea/>
                 <SettingButtonContainer className="PokemonSettings" iconOnly={iconOnly} setIconOnly={setIconOnly} 
                     asControl={asControl} setAsControl={setAsControl} settingButtonProps={settingButtonProps}
                 />

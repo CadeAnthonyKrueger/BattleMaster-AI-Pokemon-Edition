@@ -4,18 +4,14 @@
     width: 94%;
     margin: 3%;
     border-radius: 10px;
-    //background-color: rgba(31, 31, 31, 0.3);
     cursor: pointer;
     border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    transition: transform 0.4s ease;
-}
-
-.PokemonCard:hover {
-    transform: scale(1.02);
+    pointer-events: all;
+    transition: box-shadow 0.4s ease;
 }
 
 .PokemonCardContent {
@@ -24,24 +20,11 @@
     width: 100%;
     border-radius: 10px;
     background-color: rgba(31, 31, 31, 0.3);
-    cursor: pointer;
-    //border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     justify-content: center;
     align-items: flex-end;
     overflow: hidden;
     user-select: none;
-}
-
-.placeholder {
-    height: 90%;
-    width: 90%;
-    background: url(../../../public/assets/pokeball_placeholder.png);
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    background-size: 100% 100%;
-    filter: invert(1);
-    opacity: 0.1;
 }
 
 .PokemonBackground {
@@ -50,9 +33,20 @@
     z-index: 1;
     height: 100%;
     width: 100%;
-    opacity: 0.2;
-    //background: radial-gradient(circle at 50% 160%, rgba(255, 255, 255, 1) 59%, #085ba5 60%, rgba(0, 0, 0, 0) 90%);
+    opacity: 0.9;
     box-shadow: inset 0 0 20px 0 rgba(31, 31, 31, 1);
+}
+
+.PokemonBackground::after {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    background-image: url(../../../public/assets/pokemoncard_backdrop2.png);
+    background-position: 0 0;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 .ImageContainer {
@@ -62,22 +56,6 @@
     width: 80%;
     margin-bottom: 4px;
 }
-
-// .ImageContainer::after {
-//     content: '';
-//     position: absolute;
-//     z-index: -1;
-//     background-image: url(../../../public/assets/floor_shadow.png);
-//     background-position: 0% 0;
-//     background-size: 100% 100%;
-//     background-repeat: no-repeat;
-//     height: 120%;
-//     width: 120%;
-//     transform: translateX(-10%);
-//     top: 28%;
-//     opacity: 0.1;
-//     filter: blur(4px);
-// }
 
 .AttributesContainer {
     position: absolute;
@@ -158,6 +136,7 @@
     font-size: 8px;
     color: white;
     margin-right: 2px;
+    text-wrap: nowrap;
 }
 
 .PokedexNumber {
@@ -189,7 +168,7 @@
     border-radius: 2px;
     height: 24px;
     aspect-ratio: 1/1;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -202,4 +181,49 @@
     background-repeat: no-repeat;
     height: 80%;
     width: 80%;
+}
+
+.OptionsContainer {
+    position: absolute;
+    z-index: 5;
+    bottom: 5px;
+    right: 1px;
+    height: 15px;
+    //background-color: red;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: width 0.3s ease;
+}
+
+.OptionIcon {
+    height: 100%;
+    aspect-ratio: 1/1;
+    background-position: 0 0;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    filter: invert(1);
+    opacity: 0.2;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.OptionIcon.closed {
+    background-image: url(../../../public/assets/three_dots.png);
+}
+
+.OptionIcon:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.PokemonCard:hover {
+    box-shadow: 0px 0px 5px 0px white;
+}
+
+.PokemonCard:active {
+    transform: scale(0.99);
+}
+
+.PokemonCard:hover .OptionIcon {
+    opacity: 0.9;
 }

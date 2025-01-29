@@ -1,4 +1,6 @@
-import React, { MouseEvent, RefObject, useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
+import SettingButtonContainer from "../components/SettingButtonContainer";
+import { SettingButtonProps } from "../components/SettingButton";
 
 interface OverlayProps {
     [key: string]: any;
@@ -17,51 +19,6 @@ export const DescriptionOverlay: React.FC<OverlayProps> = ({ isExpanded, metrics
             <div className="Expand" onClick={handleMenuChange} style={{
                 backgroundImage: `url(/assets/${isExpanded ? 'minus_icon.png' : 'plus_icon.png'})`
             }}/>
-        </div>
-    );
-}
-
-export const PokemonCardOverlay: React.FC<OverlayProps> = ({ teamAreaRef, metrics, offset, onClickRelease }) => {
-
-    const [position, setPosition] = useState<{ x: number; y: number }>({
-        x: metrics.left,
-        y: metrics.top,
-    });
-
-    console.log(offset)
-    
-    useEffect(() => {
-        const handleMouseMove = (e: globalThis.MouseEvent) => {
-            setPosition({
-                x: e.clientX - offset.x,
-                y: e.clientY - offset.y,
-            });
-        };
-
-        const handleMouseLeave = (e: globalThis.MouseEvent) => {
-            onClickRelease();
-        };
-
-        const teamAreaElement = teamAreaRef.current;
-
-        teamAreaElement.addEventListener("mousemove", handleMouseMove);
-        teamAreaElement.addEventListener("mouseup", handleMouseLeave);
-        teamAreaElement.addEventListener("mouseleave", handleMouseLeave);
-
-        return () => {
-            // Cleanup listener
-            teamAreaElement.removeEventListener("mousemove", handleMouseMove);
-            teamAreaElement.addEventListener("mouseup", handleMouseLeave);
-            teamAreaElement.removeEventListener("mouseleave", handleMouseLeave);
-        };
-    }, []);
-
-    return (
-        <div style={{ 
-            top: `${position.y}px`, left: `${position.x}px`, height: `${metrics.height}px`, width: `${metrics.width}px`,
-            backgroundColor: 'red', position: 'absolute', cursor: 'pointer'
-        }}>
-
         </div>
     );
 }

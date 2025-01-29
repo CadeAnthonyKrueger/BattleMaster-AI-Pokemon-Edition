@@ -123,7 +123,7 @@ const DescriptionContainer: React.FC<DescriptionContainerProps> = ({}) => {
                 <div className="Description">{description}</div>
             </div>
             <div className="Expand" onClick={handleMenuChange} style={{
-                backgroundImage: `url(/assets/${isExpanded ? 'minus_icon.png' : 'plus_icon.png'})`
+                backgroundImage: `url(/assets/${isExpanded ? 'minus_icon.png' : 'plus_icon_innerwhite.png'})`
             }}/>
         </div>
     )

@@ -13,14 +13,17 @@
 }
 
 .TrainerBackground {
+    position: relative;
+    z-index: -1;
     margin-top: 2%;
     margin-left: 2%;
     height: 90%;
     aspect-ratio: 1/1;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: inset 0px 0px 20px 0px rgb(0, 0, 0);
+    //box-shadow: inset 0px 0px 20px 0px rgb(0, 0, 0);
     //background-color: rgba(255, 255, 255, 0.3);
+    background: radial-gradient(circle at 50% 160%, rgba(179, 41, 61, 0.2) 60%, rgba(0, 0, 0, 0) 80%);
     cursor: pointer;
 }
 

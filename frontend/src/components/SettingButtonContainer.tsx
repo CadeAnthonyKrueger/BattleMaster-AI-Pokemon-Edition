@@ -107,7 +107,7 @@ const SettingButtonContainer: React.FC<SettingButtonContainerProps> = ({
     useEffect(() => {
         if (!refWidths) return;
         
-        console.log(checkPoint.distance);
+        //console.log(checkPoint.distance);
         const { button: buttonWidth, title: titleWidth, icon: iconWidth } = refWidths;
         if (asControl && checkPoint?.distance && !buttonRef.current) {
             if (buttonWidth > iconWidth && checkPoint?.distance > 0) { 
