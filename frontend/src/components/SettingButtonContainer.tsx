@@ -8,6 +8,7 @@ interface SettingButtonContainerProps {
     asControl: boolean;
     setAsControl: Dispatch<SetStateAction<boolean>>;
     settingButtonProps: SettingButtonProps[];
+    parentWidthRatio?: number;
 }
 
 interface Dimensions { 
@@ -18,7 +19,7 @@ interface Dimensions {
 }
 
 const SettingButtonContainer: React.FC<SettingButtonContainerProps> = ({ 
-    className, iconOnly, setIconOnly, asControl, setAsControl, settingButtonProps
+    className, iconOnly, setIconOnly, asControl, setAsControl, settingButtonProps, parentWidthRatio
 }) => {
 
     const [buttonRef, titleRef, iconRef] = settingButtonProps[2].refs ? settingButtonProps[2].refs : [];
@@ -109,10 +110,10 @@ const SettingButtonContainer: React.FC<SettingButtonContainerProps> = ({
         
         //console.log(checkPoint.distance);
         const { button: buttonWidth, title: titleWidth, icon: iconWidth } = refWidths;
-        if (asControl && checkPoint?.distance && !buttonRef.current) {
-            if (buttonWidth > iconWidth && checkPoint?.distance > 0) { 
+        if (asControl && checkPoint.distance && !buttonRef.current) {
+            if ((parentWidthRatio && parentWidthRatio <= 88) && buttonWidth > iconWidth && checkPoint?.distance > 0) { 
                 setTimeout(() => {
-                    if (checkPoint?.distance && checkPoint?.distance > 4) setAsControl(false); 
+                    if (checkPoint.distance && checkPoint?.distance > 4) setAsControl(false); 
                 }, 100);
             }
         } else if (iconOnly && !asControl && buttonRef.current) {

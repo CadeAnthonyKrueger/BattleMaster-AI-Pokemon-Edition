@@ -1,6 +1,6 @@
 .DragAndDropTestPage {
     position: absolute;
-    background-color: rgb(190, 29, 29);
+    background-color: rgb(31, 31, 31);
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -9,55 +9,41 @@
     overflow: hidden;
 }
 
-// .HPbarContainer {
-//     position: relative;
-//     height: 11px;
-//     aspect-ratio: 132/32;
-//     //background-color: blue;
-//     display: flex;
-//     align-items: center;
-// }
+.TooltipContainer {
+    height: 50%;
+    width: 50%;
+    background-color: rgb(255, 255, 255);
+}
 
-// .HPLabel {
-//     position: relative;
-//     z-index: 3;
-//     font-family: 'Public Pixel', sans-serif;
-//     font-size: 7px;
-//     padding-left: 1px;
-//     color: white;
-//     //background-color: gray;
-//     height: 100%;
+// .Tooltip {
+//     border-radius: 5px;
+//     height: fit-content;
 //     width: fit-content;
+//     padding: 10px;
+//     background-color: rgb(30, 30, 30, 1);
+//     background: linear-gradient(to bottom, rgba(30, 30, 30, 0.5), rgb(30, 30, 30, 1) 50%);
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
 //     display: flex;
 //     justify-content: center;
 //     align-items: center;
+//     transform: translateX(-50%) translateY(-50%);
+//     font-size: 15px;
+//     font-family: "Public Pixel", sans-serif;
+//     color: white;
 // }
 
-// .HPBarUnder {
-//     position: relative;
-//     flex: 1 1;
-//     height: 100%;
-//     width: 100%;
-//     //background-color: aqua;
-// }
-
-// .HPBarU {
+// .Tooltip::after {
+//     content: '';
 //     position: absolute;
-//     bottom: 0%;
-//     height: 50%;
-//     width: 100%;
-//     //background-color: rgb(27, 27, 27);
-//     background: linear-gradient(to top, rgb(27, 27, 27) 40%, rgb(60, 60, 60) 70%);
-//     clip-path: polygon(0% 0%, 95% 0%, 100% 100%, 0% 100%);
-// }
-
-// .HPBar {
-//     position: absolute;
-//     bottom: 10%;
-//     height: 44%;
-//     width: 90%;
-//     //background-color: #1db849;
-//     background: linear-gradient(to bottom, #1db849 60%, #169339 80%);
+//     background-color: rgb(30, 30, 30, 1);
+//     height: 30%;
+//     aspect-ratio: 1/1;
+//     bottom: 0;
+//     left: 50%;
+//     transform: translateX(-50%) translateY(50%) rotate(-135deg);
+//     //clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
 // }
 
 

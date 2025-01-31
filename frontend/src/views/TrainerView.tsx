@@ -44,7 +44,6 @@ const TrainerView = () => {
                 </div>
                 <div className="PokemonTeamArea">
                     <PokemonTeam/>
-                    {/* <div style={{ backgroundColor: 'white', height: '100%', width: '100%' }}/> */}
                 </div>
             </div>
         </div>

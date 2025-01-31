@@ -1,6 +1,4 @@
-import React, { useRef, useState } from "react";
-import SettingButtonContainer from "../components/SettingButtonContainer";
-import { SettingButtonProps } from "../components/SettingButton";
+import React, { RefObject, useEffect, useRef, useState } from "react";
 
 interface OverlayProps {
     [key: string]: any;

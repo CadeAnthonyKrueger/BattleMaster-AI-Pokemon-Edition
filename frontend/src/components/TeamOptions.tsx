@@ -13,7 +13,7 @@ const TeamOptions: React.FC<TeamOptionsProps> = () => {
                 Settings
                 <div className="CardTitleShadow">Settings</div>
             </div>
-            <ControlsContainer/>
+            <ControlsContainer container="TeamOptions"/>
         </div>
     );
 

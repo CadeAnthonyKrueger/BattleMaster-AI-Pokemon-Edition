@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { RefObject, useEffect, useRef, useState } from "react";
 import "./styles/PokemonCard.scss";
 import SpriteSheetMap from "../utilities/SpriteSheetMap";
 import { PokemonInstance } from "./PokemonTeam";
 import HPBar from "./HPBar";
+import { useTooltip } from "../utilities/TooltipContext";
 
 interface PokemonCardProps {
     pokemonInstance: PokemonInstance;
@@ -12,6 +13,7 @@ interface PokemonCardProps {
 const PokemonCard: React.FC<PokemonCardProps> = ({ pokemonInstance, removePokemon }) => {
 
     const spriteSheetRef = useRef<SpriteSheetMap>(null);
+    const bgRef = useRef<HTMLDivElement>(null);
     const [columns, setColumns] = useState<number>(1);
     const [isAnimated, setIsAnimated] = useState<boolean>(true);
 
@@ -20,11 +22,17 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemonInstance, removePokemo
         '#D87B38', '#437BB9', '#4EA745', '#DEBA1F', '#F85888', '#5EAEA2', '#085BA5', '#565062', '#C874C2'
     ];
 
-    const optionButtons = [
-        { name: 'view', style: { marginRight: '1.5px' }, onClick: (e: any) => undefined },
-        { name: 'edit', style: {}, onClick: (e: any) => undefined },
-        { name: 'remove', style: {}, onClick: removePokemon }
-    ];
+    const handleRemove = () => {
+        removePokemon(pokemonInstance.id);
+        setOptionsMenuVisible(false);
+        unregisterTooltip(optionButtons[2].ref);
+    }
+
+    const [optionButtons, setOptionButtons] = useState<any>([
+        { title: 'View', style: { marginRight: '1.5px' }, onClick: (e: any) => undefined, ref: useRef<HTMLDivElement | null>(null) },
+        { title: 'Edit', style: {}, onClick: (e: any) => undefined, ref: useRef<HTMLDivElement | null>(null) },
+        { title: 'Remove', style: {}, onClick: handleRemove, ref: useRef<HTMLDivElement | null>(null) }
+    ]);
 
     const cycle = () => {
         let count = 0;
@@ -79,13 +87,47 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemonInstance, removePokemo
         if (!isDragging) { ref.style.cursor = 'pointer'; }
     };
 
+    const optionsRef = useRef<HTMLDivElement>(null);
+    const [optionsIconClicked, setOptionsIconClicked] = useState<boolean>(false);
+
+    const { registerTooltip, unregisterTooltip } = useTooltip();
+
+    useEffect(() => {
+        let timeout: NodeJS.Timeout;
+    
+        if (optionsMenuVisible) {
+            timeout = setTimeout(() => {
+                optionButtons.forEach((element: any) => {
+                    const ref = element.ref.current;
+                    let clear;
+                    if (ref) clear = registerTooltip(ref, element.title, 'top', element.title === 'Remove' && optionsIconClicked);
+                    setOptionsIconClicked(false);
+                    return clear;
+                });
+            }, 300);
+        } else {
+            optionButtons.forEach((element: any) => {
+                const ref = element.ref.current;
+                if (ref) return unregisterTooltip(ref);
+            });
+    
+            timeout = setTimeout(() => {
+                const ref = optionsRef.current;
+                if (ref) return registerTooltip(ref, 'Options');
+            }, 300);
+        }
+    
+        return () => clearTimeout(timeout);
+    }, [optionsMenuVisible, optionsRef, optionsIconClicked]);
+    
+
     return (
         <div className="PokemonCard" ref={cardRef} onMouseDown={() => handleGrab(true)}
             onMouseUp={() => handleGrab(false)} onMouseLeave={handleMouseLeave}>
             <div className="PokemonCardContent">
-                <div className="PokemonBackground" style={{ 
-                    background: `radial-gradient(circle at 50% 160%, 
-                        ${typeColors[pokemonInstance.pokemon.typeIndexes[0]]} 60%, 
+                <div className="PokemonBackground" ref={bgRef} style={{ 
+                    backgroundImage: `radial-gradient(circle at 50% 160%, 
+                        ${typeColors[pokemonInstance.pokemon.typeIndexes[0]]} 60%,
                         rgba(0, 0, 0, 0) 80%)`
                 }}/>
                 <div className='ImageContainer'>
@@ -136,10 +178,11 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemonInstance, removePokemo
                 </div>
             </div>
             <div className="OptionsContainer" style={{ width: `${optionsMenuVisible ? 48 : 15}px` }}>
-                {!optionsMenuVisible ? <div className="OptionIcon closed"/> : 
-                    optionButtons.map((option) => { 
-                        return <div className="OptionIcon" key={option.name} onMouseUp={() => option.onClick(pokemonInstance.id)} 
-                            style={{ ...{ backgroundImage: `url('/assets/${option.name}.png')` }, ...option.style}}/> 
+                {!optionsMenuVisible ? <div className="OptionIcon closed" ref={optionsRef} onMouseDown={() => setOptionsIconClicked(true)}/> : 
+                    optionButtons.map((option: any) => { 
+                        return <div className="OptionIcon" ref={option.ref} key={option.name} 
+                            onMouseUp={option.onClick} 
+                            style={{ ...{ backgroundImage: `url('/assets/${option.title}.png')` }, ...option.style}}/> 
                     })
                 }
             </div>

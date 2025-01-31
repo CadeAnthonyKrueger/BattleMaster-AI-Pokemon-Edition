@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React, { RefObject, useEffect, useRef } from "react";
 import "./styles/SupportPokeball.scss";
 import SpriteSheetMap from "../utilities/SpriteSheetMap";
+import { useTooltip } from "../utilities/TooltipContext";
 
 interface SupportPokeballProps {}
 
@@ -13,7 +14,7 @@ const SupportPokeball: React.FC<SupportPokeballProps> = () => {
         const interval = setInterval(() => {
             count++;
             spriteSheetRef.current?.decrementSprite();
-            //if (count === 7) { clearInterval(interval) };
+            if (count === 7) { clearInterval(interval) };
         }, 100);
     
         return () => clearInterval(interval);
@@ -25,8 +26,17 @@ const SupportPokeball: React.FC<SupportPokeballProps> = () => {
         }
     }, []);
 
+    const self = useRef<HTMLDivElement>(null);
+    const { registerTooltip, unregisterTooltip } = useTooltip();
+
+    useEffect(() => {
+        if (self.current) {
+            registerTooltip((self as RefObject<HTMLDivElement>), 'Help', 'left');
+        }
+    }, [self]);
+
     return (
-        <div className="SupportPokeball">
+        <div className="SupportPokeball" ref={self} onMouseDown={spin}>
             <SpriteSheetMap 
                 ref={spriteSheetRef} 
                 src="hd_pokeball_sheet.png" 

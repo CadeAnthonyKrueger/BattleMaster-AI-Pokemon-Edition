@@ -4,6 +4,7 @@ import NavigationView from "../views/NavigationView";
 import TrainerView from "../views/TrainerView";
 import OverlayPane from "../views/OverlayPane";
 import { OverlayProvider } from "../utilities/OverlayContext";
+import { TooltipProvider } from "../utilities/TooltipContext";
 
 const BattleSetupPage = () => {
 
@@ -39,13 +40,15 @@ const BattleSetupPage = () => {
             {showDimensions && <div className='Dimension width'>{screenSize.width}</div>}
             {showDimensions && <div className='Dimension height'>{screenSize.height}</div>}
             <div className="BattleSetupBackground"/>
-            <OverlayProvider>
-                <div className="ContentPane" ref={contentRef}>
-                    <NavigationView/>
-                    <TrainerView/>
-                </div>
-                <OverlayPane contentRef={contentRef}/>
-            </OverlayProvider>
+            <TooltipProvider>
+                <OverlayProvider>
+                    <div className="ContentPane" ref={contentRef}>
+                        <NavigationView/>
+                        <TrainerView/>
+                    </div>
+                    <OverlayPane contentRef={contentRef}/>
+                </OverlayProvider>
+            </TooltipProvider>
         </div>
     )
 }

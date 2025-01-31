@@ -1,4 +1,4 @@
-import React, { RefObject, useRef, useState } from "react";
+import React, { RefObject, useEffect, useRef, useState } from "react";
 import "./styles/PokemonTeam.scss";
 import "./styles/SharedStyles.scss";
 import PokemonTeamGridArea from "./PokemonTeamGridArea";
@@ -26,6 +26,23 @@ export interface PokemonInstance {
 const PokemonTeam: React.FC<PokemonTeamProps> = () => {
 
     const teamAreaRef = useRef<HTMLDivElement | null>(null);
+    const teamInnerRef = useRef<HTMLDivElement | null>(null);
+    const [parentWidthRatio, setParentWidthRatio] = useState<number>(0);
+
+    useEffect(() => {
+        const { teamRef, innerRef } = { teamRef: teamAreaRef.current, innerRef: teamInnerRef.current };
+        if (!(teamRef && innerRef)) return;
+
+        const handleResize = () => {
+            // console.log(`Team width: ${teamRef.getBoundingClientRect().width}  Inner width: ${innerRef.getBoundingClientRect().width}`);
+            // console.log(`Team width: ${innerRef.getBoundingClientRect().width / teamRef.getBoundingClientRect().width}`);
+            setParentWidthRatio((innerRef.getBoundingClientRect().width / teamRef.getBoundingClientRect().width) * 100);
+        };
+    
+        window.addEventListener("resize", handleResize);
+
+        return () => window.removeEventListener("resize", handleResize);
+      }, []);
 
     const buttonRef = useRef<HTMLDivElement | null>(null);
     const titleRef = useRef<HTMLDivElement | null>(null);
@@ -47,12 +64,13 @@ const PokemonTeam: React.FC<PokemonTeamProps> = () => {
                 <div className="CardTitleShadow" style={{ color: 'none' }}>Pokemon</div>
             </div>
             <div className="PokemonTeamInner">
-                <PokemonTeamGridArea/>
+                <PokemonTeamGridArea  ref={teamInnerRef}/>
                 <SettingButtonContainer className="PokemonSettings" iconOnly={iconOnly} setIconOnly={setIconOnly} 
                     asControl={asControl} setAsControl={setAsControl} settingButtonProps={settingButtonProps}
+                    parentWidthRatio={parentWidthRatio}
                 />
             </div>
-            <ControlsContainer additionalControls={settingButtonProps.map((setting) => { 
+            <ControlsContainer container='PokemonTeam' additionalControls={settingButtonProps.map((setting) => { 
                 return { title: setting.title, image: setting.image } 
             })} additionalActive={asControl}/>
         </div>

@@ -101,7 +101,7 @@ const TrainerCard: React.FC<TrainerCardProps> = () => {
                     </div>
                 </div>
             </div>
-            <ControlsContainer/>
+            <ControlsContainer container='TrainerCard'/>
         </div>
     )
 

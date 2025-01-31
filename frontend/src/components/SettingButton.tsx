@@ -1,6 +1,7 @@
 import React, { Dispatch, RefObject, SetStateAction, useEffect, useRef, useState } from "react";
 import "./styles/SettingButton.scss";
 import "./styles/TrainerCard.scss";
+import { useTooltip } from "../utilities/TooltipContext";
 
 export interface SettingButtonProps {
     title: string;
@@ -19,9 +20,19 @@ const SettingButton: React.FC<SettingButtonProps> = ({
 
     const stateFunc = states ? () => states[0]((prev: any) => !prev) : () => undefined;
 
+    const sub = useRef<HTMLDivElement>(null);
+    
+    const { registerTooltip, unregisterTooltip } = useTooltip();
+
+    useEffect(() => {
+        let ref = !(refs && refs[0]) ? sub.current : refs[0].current;
+        if (!ref) return;
+        return iconOnly ? registerTooltip(ref, title) : unregisterTooltip(ref);
+    }, [refs, iconOnly]);
+
     return (
         <>
-            {!asControl && <div className={`SettingButton ${styleName}`} ref={refs ? refs[0] : null} 
+            {!asControl && <div className={`SettingButton ${styleName}`} ref={refs ? refs[0] : sub} 
                 onMouseEnter={stateFunc} onMouseLeave={stateFunc}
             >
                 <div className={`SettingInner ${styleName}`}>
