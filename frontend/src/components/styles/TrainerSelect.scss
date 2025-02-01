@@ -69,3 +69,30 @@
     background-color: white;
     opacity: 0.1;
 }
+
+.CloseSelectMenu {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 30px;
+    aspect-ratio: 1/1;
+    border-radius: 25%;
+    //background-color: crimson;
+    background-image: url(../../../public/assets/plus_icon_innerwhite.png);
+    background-position: 0 0;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    transform: scale(1) rotate(45deg);
+    cursor: pointer;
+    opacity: 0.5;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.CloseSelectMenu:hover {
+    transform: scale(1.1) rotate(45deg);
+    opacity: 0.8;
+}
+
+.CloseSelectMenu:active {
+    transform: scale(0.99) rotate(45deg);
+}

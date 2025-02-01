@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
+import TrainerRouter from './routers/TrainerRouter';
 
 const app = express();
 const PORT = 3001;
@@ -17,6 +18,8 @@ app.use(express.static(trainersFolder)); // Now, images will be accessible direc
 app.get('/', (req, res) => {
   res.send('Server is running! Access images directly by their filename, e.g., http://localhost:3001/g.png');
 });
+
+app.use("/trainers", TrainerRouter);
 
 //app.use('/images', express.static(path.join(__dirname, 'public/images')));
 

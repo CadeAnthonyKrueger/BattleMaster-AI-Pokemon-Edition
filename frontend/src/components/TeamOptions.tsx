@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import "./styles/TeamOptions.scss";
 import "./styles/SharedStyles.scss";
 import ControlsContainer from "./ControlsContainer";
+import CardTitleContainer from "./CardTitleContainer";
 
 interface TeamOptionsProps {}
 
@@ -9,10 +10,7 @@ const TeamOptions: React.FC<TeamOptionsProps> = () => {
 
     return (
         <div className="TeamOptions">
-            <div className="CardTitle" style={{ width: '94%', marginTop: '3.65px' }}>
-                Settings
-                <div className="CardTitleShadow">Settings</div>
-            </div>
+            <CardTitleContainer text={'Settings'} style={{ width: '94%', marginTop: '3.65px' }}/>
             <ControlsContainer container="TeamOptions"/>
         </div>
     );

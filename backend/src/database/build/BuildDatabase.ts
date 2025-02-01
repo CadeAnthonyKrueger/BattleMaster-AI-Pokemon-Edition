@@ -15,6 +15,7 @@ db.prepare(`
 `).run();
 
 db.prepare(`DELETE FROM trainers`).run();
+db.prepare(`DELETE FROM sqlite_sequence WHERE name='trainers'`).run();
 
 trainerData.forEach((row) => {
     db.prepare(`

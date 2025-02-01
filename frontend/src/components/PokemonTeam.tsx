@@ -6,6 +6,7 @@ import ControlsContainer from "./ControlsContainer";
 //import SettingButton from "./SettingButton";
 import SettingButtonContainer from "./SettingButtonContainer";
 import { SettingButtonProps } from "./SettingButton";
+import CardTitleContainer from "./CardTitleContainer";
 
 interface PokemonTeamProps {}
 
@@ -59,10 +60,7 @@ const PokemonTeam: React.FC<PokemonTeamProps> = () => {
 
     return (
         <div className="PokemonTeam" ref={teamAreaRef}>
-            <div className="CardTitle" style={{ width: '95%', marginTop: '3.65px' }}>
-                Pokemon
-                <div className="CardTitleShadow" style={{ color: 'none' }}>Pokemon</div>
-            </div>
+            <CardTitleContainer text={'Pokemon'} style={{ width: '95%', marginTop: '3.65px' }}/>
             <div className="PokemonTeamInner">
                 <PokemonTeamGridArea  ref={teamInnerRef}/>
                 <SettingButtonContainer className="PokemonSettings" iconOnly={iconOnly} setIconOnly={setIconOnly} 

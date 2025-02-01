@@ -23,11 +23,14 @@ export const DescriptionOverlay: React.FC<OverlayProps> = ({ isExpanded, metrics
     );
 }
 
-export const TrainerSelectOverlay: React.FC<OverlayProps> = () => {
-
+export const TrainerSelectOverlay: React.FC<OverlayProps> = ({ isClicked, setIsClicked }) => {
+    
     return (
-        <div className='TrainerSelect Overlay'>
-            <TrainerSelect/>
-        </div>
+        <>
+            {isClicked && <div className='TrainerSelect Overlay'>
+                <TrainerSelect/>
+                <div className="CloseSelectMenu" onClick={() => setIsClicked(false)}/>
+            </div>}
+        </>
     );
 }

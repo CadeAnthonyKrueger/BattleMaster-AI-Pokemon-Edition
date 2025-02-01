@@ -3,7 +3,9 @@ import "./styles/DescriptionContainer.scss";
 import { useOverlay } from "../utilities/OverlayContext";
 import { DescriptionOverlay } from "../utilities/Overlays";
 
-interface DescriptionContainerProps {}
+interface DescriptionContainerProps {
+    description: string;
+}
 
 interface ElementMetrics {
     width: number;
@@ -12,9 +14,9 @@ interface ElementMetrics {
     y: number;
 }
 
-const DescriptionContainer: React.FC<DescriptionContainerProps> = ({}) => {
+const DescriptionContainer: React.FC<DescriptionContainerProps> = ({ description }) => {
 
-    const description = "May is a skilled Pokémon Trainer from Hoenn with a balanced and strategic approach to battles. She favors well-rounded teams and often uses Pokémon like Blaziken, Beautifly, and Glaceon. May's battling style combines precision with adaptability, making her a formidable opponent and a talented coordinator in Pokémon Contests.";
+    //const description = "May is a skilled Pokémon Trainer from Hoenn with a balanced and strategic approach to battles. She favors well-rounded teams and often uses Pokémon like Blaziken, Beautifly, and Glaceon. May's battling style combines precision with adaptability, making her a formidable opponent and a talented coordinator in Pokémon Contests.";
     const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
     const descRef = useRef<HTMLDivElement | null>(null);

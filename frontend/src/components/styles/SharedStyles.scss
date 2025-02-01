@@ -1,14 +1,22 @@
-.CardTitle {
+.CardTitleContainer {
     position: relative;
     width: 98%;
     height: fit-content;
     padding-block: 6.075px;
+    border-bottom: solid 2px rgba(255, 255, 255, 0.1);
+}
+
+.CardTitle {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    //padding-block: 6.075px;
     //margin-right: 6.075px;
     font-family: "Public Pixel", sans-serif;
     //font-size: 19.47px;
     font-size: clamp(14.6072px, 3.1vh, 3.1vh);
     color: rgb(255, 255, 255);
-    border-bottom: solid 2px rgba(255, 255, 255, 0.1);
+    //border-bottom: solid 2px rgba(255, 255, 255, 0.1);
     text-wrap: nowrap;
     //background-color: cornflowerblue;
 }
@@ -18,9 +26,9 @@
     z-index: -1;
     top: 1.8px;
     left: 1.8px;
-    width: 98%;
+    width: 100%;
     height: fit-content;
-    padding-block: 6.075px;
+    //padding-block: 6.075px;
     font-family: "Public Pixel", sans-serif;
     //font-size: 2.8cqh;
     //font-size: 19.47px;

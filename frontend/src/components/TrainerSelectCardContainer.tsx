@@ -1,6 +1,7 @@
-import React, { RefObject, useEffect, useRef, useState } from "react";
+import React, { Dispatch, RefObject, SetStateAction, useEffect, useRef, useState } from "react";
 import "./styles/TrainerSelectCardContainer.scss";
 import TrainerCard from "./TrainerCard";
+import fetchAllTrainers, { TrainerSchema } from "../requests/TrainerRequests";
 
 interface TrainerSelectCardContainerProps {
     layout: boolean;
@@ -8,12 +9,24 @@ interface TrainerSelectCardContainerProps {
 
 const TrainerSelectCardContainer: React.FC<TrainerSelectCardContainerProps> = ({ layout }) => {
 
-    const arr = Array.from({ length: 15 }, (_, i) => i);
-    //const []
+    const [trainers, setTrainers] = useState<TrainerSchema[]>([]);
+    
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await fetchAllTrainers();
+                setTrainers(data);
+            } catch (error) {
+                console.error("Error fetching trainers:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     return (
         <div className="TrainerSelectCardContainer">
-            {arr.map(() => <TrainerCard isSelect={true} isMinimized={layout}/>)}
+            {trainers.map((trainer) => <TrainerCard trainer={trainer} isSelect={true} isMinimized={layout} key={trainer.id}/>)}
         </div>
     );
 

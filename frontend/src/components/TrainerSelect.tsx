@@ -1,8 +1,9 @@
-import React, { RefObject, useEffect, useRef, useState } from "react";
+import React, { Dispatch, RefObject, SetStateAction, useEffect, useRef, useState } from "react";
 import "./styles/TrainerSelect.scss";
 import SearchBar from "./SearchBar";
 import LayoutIcon from "./LayoutIcon";
 import TrainerSelectCardContainer from "./TrainerSelectCardContainer";
+import { TrainerSchema } from "../requests/TrainerRequests";
 
 interface TrainerSelectProps {}
 

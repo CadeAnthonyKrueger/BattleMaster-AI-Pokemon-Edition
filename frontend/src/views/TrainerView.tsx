@@ -4,6 +4,14 @@ import SupportPokeball from "../components/SupportPokeball";
 import TrainerCard from "../components/TrainerCard";
 import TeamOptions from "../components/TeamOptions";
 import PokemonTeam from "../components/PokemonTeam";
+import { TrainerSchema } from "../requests/TrainerRequests";
+import { useGlobalState } from "../utilities/GlobalStateContext";
+
+export interface SelectedTrainer { 
+    current: TrainerSchema; 
+    loaded: TrainerSchema; 
+    default: TrainerSchema;
+}
 
 const TrainerView = () => {
 
@@ -29,6 +37,14 @@ const TrainerView = () => {
         };
     }, []);
 
+    const trainerPlaceholder: TrainerSchema = { 
+        id: 73, name: 'Trainer', description: ' ', player_trainer: false, image: '/assets/profile_placeholder.png', color: 'black' 
+    };
+
+    const [selectedTrainer, setSelectedTrainer] = useGlobalState<SelectedTrainer>(
+        'selectedTrainer', { current: trainerPlaceholder, loaded: trainerPlaceholder, default: trainerPlaceholder }
+    );
+
     return (
         <div className="TrainerView">
             <div className="Header">
@@ -37,7 +53,7 @@ const TrainerView = () => {
             </div>
             <div className="Options" ref={optionsRef}>
                 <div className="TrainerCardArea">
-                    <TrainerCard/>
+                    <TrainerCard trainer={selectedTrainer.current}/>
                 </div>
                 <div className="OptionsArea">
                     <TeamOptions/>

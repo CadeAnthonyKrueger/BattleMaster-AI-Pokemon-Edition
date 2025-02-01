@@ -99,7 +99,7 @@ export const TooltipProvider: React.FC<TooltipProviderProps> = ({ children }) =>
     };
 
     const unregisterTooltip = (ref: React.RefObject<HTMLDivElement> | HTMLDivElement) => {
-        console.log(ref);
+        //console.log(ref);
     
         // Get the actual DOM element
         const element = ref instanceof HTMLElement ? ref : ref.current;
