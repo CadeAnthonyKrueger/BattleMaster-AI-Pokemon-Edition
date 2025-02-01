@@ -14,6 +14,8 @@ db.prepare(`
     );
 `).run();
 
+db.prepare(`DELETE FROM trainers`).run();
+
 trainerData.forEach((row) => {
     db.prepare(`
         INSERT INTO trainers (name, description, player_trainer, image, color) 

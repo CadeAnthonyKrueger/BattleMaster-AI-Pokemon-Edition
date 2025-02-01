@@ -1,4 +1,6 @@
 import React, { RefObject, useEffect, useRef, useState } from "react";
+import '../components/styles/TrainerSelect.scss';
+import TrainerSelect from "../components/TrainerSelect";
 
 interface OverlayProps {
     [key: string]: any;
@@ -17,6 +19,15 @@ export const DescriptionOverlay: React.FC<OverlayProps> = ({ isExpanded, metrics
             <div className="Expand" onClick={handleMenuChange} style={{
                 backgroundImage: `url(/assets/${isExpanded ? 'minus_icon.png' : 'plus_icon.png'})`
             }}/>
+        </div>
+    );
+}
+
+export const TrainerSelectOverlay: React.FC<OverlayProps> = () => {
+
+    return (
+        <div className='TrainerSelect Overlay'>
+            <TrainerSelect/>
         </div>
     );
 }

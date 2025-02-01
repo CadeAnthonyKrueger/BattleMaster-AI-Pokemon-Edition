@@ -1,0 +1,71 @@
+.TrainerSelect.Overlay {
+    position: fixed;
+    z-index: 1000;
+    height: 60vh;
+    width: 40vw;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 5px 0 rgba(255, 255, 255, 0.2);
+}
+
+.TrainerSelect {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.SearchContainer {
+    position: relative;
+    height: 40px;
+    padding: 5px;
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: solid 2px rgba(255, 255, 255, 0.1);
+}
+
+.Filter {
+    height: 50%;
+    aspect-ratio: 1/1;
+    background-image: url(../../../public/assets/filter.png);
+    background-position: 0 0;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    filter: invert(1);
+    margin-left: 5px;
+    opacity: 0.1;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.Filter:hover {
+    opacity: 0.5;
+}
+
+.LayoutContainer {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50%;
+    aspect-ratio: 2.4/1;
+    margin-left: auto;
+    //background-color: crimson;
+}
+
+.LayoutContainer::after {
+    content: '';
+    position: absolute;
+    height: 120%;
+    width: 1px;
+    left: 49%;
+    background-color: white;
+    opacity: 0.1;
+}

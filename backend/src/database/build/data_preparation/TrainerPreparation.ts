@@ -143,11 +143,13 @@ trainers.forEach((trainer, index) => {
     trainerData.push({ 
         name: trainer, 
         description: trainerDescriptions[index], 
-        player_trainer: trainer == 'Brendan' ? true : 
-                        trainer == 'May' ? true : 
-                        trainer == 'Leaf' ? true : 
-                        trainer == 'Red' ? true : false, 
+        player_trainer: trainer.includes('Brendan') ? true : 
+                        trainer.includes('May') ? true : 
+                        trainer.includes('Leaf') ? true : 
+                        trainer.includes('Red') ? true : false, 
         image: fileNames[index], 
         color: trainerColors[index] 
     });
 });
+
+console.log(trainerData)

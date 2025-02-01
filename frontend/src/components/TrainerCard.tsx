@@ -5,10 +5,15 @@ import "./styles/SettingButton.scss";
 import DescriptionContainer from "./DescriptionContainer";
 import ControlsContainer from "./ControlsContainer";
 import SettingButton from "./SettingButton";
+import { useOverlay } from "../utilities/OverlayContext";
+import { TrainerSelectOverlay } from "../utilities/Overlays";
 
-interface TrainerCardProps {}
+interface TrainerCardProps {
+    isSelect?: boolean;
+    isMinimized?: boolean;
+}
 
-const TrainerCard: React.FC<TrainerCardProps> = () => {
+const TrainerCard: React.FC<TrainerCardProps> = ({ isSelect = false, isMinimized = false }) => {
 
     const [iconOnly, setIconOnly] = useState<boolean>(false);
 
@@ -77,21 +82,39 @@ const TrainerCard: React.FC<TrainerCardProps> = () => {
         }
     }, [refWidths]);
 
+    const { addOverlay } = useOverlay();
+
+    useEffect(() => {
+        addOverlay({
+            className: "TrainerSelect Overlay",
+            component: TrainerSelectOverlay,
+            props: {},
+            flag: true
+        });
+    }, []);
+
     const [isHovered, setIsHovered] = useState<boolean>(false);
     const [bagItemCount, setBagItemCount] = useState<number>(0);
 
     return (
-        <div className="TrainerCard">
-            <div className="TrainerBackground">
-                <div className="TrainerImage Sprite"><div className="TrainerAvatar"/></div>
+        <div className={`TrainerCard ${isMinimized ? 'minimized' : ''}`}>
+            <div className={`TrainerBackground ${isMinimized ? 'minimized' : ''}`}>
+                <div className="TrainerImage Sprite">
+                    <div className="TrainerAvatar"/>
+                    {isMinimized && <div className="CardTitle" style={{ position: 'absolute', top: '5px', left: '10px', borderBottom: 'none' }}>
+                        May
+                        <div className="CardTitleShadow" style={{ color: 'rgb(251, 0, 0)' }}>May</div>
+                    </div>}
+                    {!isSelect && <div className="Edit tc" style={{ backgroundImage: `url('/assets/edit.png')`, filter: 'invert(1)' }}/>}
+                </div>
             </div>
-            <div className="TrainerInfo">
+            {!isMinimized && <div className="TrainerInfo">
                 <div className="CardTitle">
                     May
                     <div className="CardTitleShadow" style={{ color: 'rgb(251, 0, 0)' }}>May</div>
                 </div>
                 <DescriptionContainer/>
-                <div className="TrainerOptions">
+                {!isSelect && <div className="TrainerOptions">
                     <SettingButton title="Presets" image={`pokeball_icon${!isHovered ? '_bw' : ''}.png`} 
                         styleName="tc" states={[setIsHovered]} refs = {[buttonRef, titleRef, iconRef]}
                         iconOnly={iconOnly}
@@ -99,9 +122,9 @@ const TrainerCard: React.FC<TrainerCardProps> = () => {
                     <div className="Bag">
                         <div className="ItemCount">{bagItemCount}</div>
                     </div>
-                </div>
-            </div>
-            <ControlsContainer container='TrainerCard'/>
+                </div>}
+            </div>}
+            {!isSelect && <ControlsContainer container='TrainerCard'/>}
         </div>
     )
 
