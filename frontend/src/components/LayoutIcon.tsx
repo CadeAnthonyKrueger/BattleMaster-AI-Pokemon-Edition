@@ -12,7 +12,7 @@ const LayoutIcon: FC<LayoutIconProps> = ({ layout, isSelected, onClick }) => {
     return (
         <div className={`LayoutIcon ${layout === 'Small Icons' ? 'small' : ''} ${isSelected ? 'selected' : ''}`}
             onClick={onClick}>
-            {[0, 1, 2, 3].map(() => <div className="LayoutIconSlot"/>)}
+            {[0, 1, 2, 3].map((i) => <div className="LayoutIconSlot" key={i}/>)}
         </div>
     );
 }

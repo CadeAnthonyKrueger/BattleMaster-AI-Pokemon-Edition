@@ -8,7 +8,7 @@ import SettingButton from "./SettingButton";
 import { useOverlay } from "../utilities/OverlayContext";
 import { TrainerSelectOverlay } from "../utilities/Overlays";
 import { TrainerSchema } from "../requests/TrainerRequests";
-import { useGlobalState } from "../utilities/GlobalStateContext";
+import { useGlobalState } from "../utilities/GlobalStateStore";
 import { SelectedTrainer } from "../views/TrainerView";
 import CardTitleContainer from "./CardTitleContainer";
 
@@ -101,14 +101,14 @@ const TrainerCard: React.FC<TrainerCardProps> = ({ trainer, isSelect = false, is
         }
     }, [isClicked]);
 
-    const [selectedTrainer, setSelectedTrainer] = useGlobalState<SelectedTrainer>('selectedTrainer');
+    const { selectedTrainer, setSelectedTrainer } = useGlobalState();
         
     const [isTrainerChoice, setIsTrainerChoice] = useState<boolean>(false);
 
     const handleSelect = () => { 
         if (isSelect && selectedTrainer) {
             setSelectedTrainer(prev => { 
-                return { ...prev, loaded: (prev.loaded !== trainer) ? trainer : prev.default } 
+                return { ...prev, loaded: (prev.loaded !== trainer && typeof trainer.id === 'number') ? trainer : prev.default } 
             });
         }
     };

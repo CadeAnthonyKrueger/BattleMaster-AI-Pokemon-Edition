@@ -3,22 +3,30 @@ import "./styles/TrainerSelect.scss";
 import SearchBar from "./SearchBar";
 import LayoutIcon from "./LayoutIcon";
 import TrainerSelectCardContainer from "./TrainerSelectCardContainer";
+import CardTitleContainer from "./CardTitleContainer";
 import { TrainerSchema } from "../requests/TrainerRequests";
 
-interface TrainerSelectProps {}
+interface TrainerSelectProps {
+    trainers: TrainerSchema[];
+    setTrainers: Dispatch<SetStateAction<TrainerSchema[]>>;
+}
 
-const TrainerSelect: React.FC<TrainerSelectProps> = () => {
+const TrainerSelect: React.FC<TrainerSelectProps> = ({ trainers, setTrainers }) => {
 
     const [layoutSelected, setLayoutSelected] = useState<boolean>(false);
+
+    useEffect(() => {
+        console.log("TrainerSelect mounted");
+        return () => {
+            console.log("TrainerSelect unmounted");
+        }
+    }, []);
 
     const handleLayoutChange = () => { setLayoutSelected(prev => !prev); };
 
     return (
         <div className="TrainerSelect">
-            <div className="CardTitle" style={{ width: '95%', marginTop: '3.65px' }}>
-                Trainer Select
-                <div className="CardTitleShadow">Trainer Select</div>
-            </div>
+            <CardTitleContainer text={'Trainer Select'} style={{ width: '95%', marginTop: '3.65px' }}/>
             <div className="SearchContainer">
                 <SearchBar/>
                 <div className="Filter"/>
@@ -27,7 +35,7 @@ const TrainerSelect: React.FC<TrainerSelectProps> = () => {
                     <LayoutIcon layout="Large Icons" isSelected={!layoutSelected} onClick={handleLayoutChange}/>
                 </div>
             </div>
-            <TrainerSelectCardContainer layout={layoutSelected}/>
+            <TrainerSelectCardContainer trainers={trainers} setTrainers={setTrainers} layout={layoutSelected}/>
         </div>
     );
 

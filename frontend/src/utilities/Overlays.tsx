@@ -1,6 +1,7 @@
 import React, { RefObject, useEffect, useRef, useState } from "react";
 import '../components/styles/TrainerSelect.scss';
 import TrainerSelect from "../components/TrainerSelect";
+import { TrainerSchema } from "../requests/TrainerRequests";
 
 interface OverlayProps {
     [key: string]: any;
@@ -24,13 +25,13 @@ export const DescriptionOverlay: React.FC<OverlayProps> = ({ isExpanded, metrics
 }
 
 export const TrainerSelectOverlay: React.FC<OverlayProps> = ({ isClicked, setIsClicked }) => {
+
+    const [trainers, setTrainers] = useState<TrainerSchema[]>([]);
     
     return (
-        <>
-            {isClicked && <div className='TrainerSelect Overlay'>
-                <TrainerSelect/>
-                <div className="CloseSelectMenu" onClick={() => setIsClicked(false)}/>
-            </div>}
-        </>
+        isClicked && <div className='TrainerSelect Overlay'>
+            <TrainerSelect trainers={trainers} setTrainers={setTrainers}/>
+            <div className="CloseSelectMenu" onClick={() => setIsClicked(false)}/>
+        </div>
     );
 }
