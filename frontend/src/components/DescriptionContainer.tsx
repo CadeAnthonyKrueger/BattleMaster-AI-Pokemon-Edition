@@ -5,6 +5,7 @@ import { DescriptionOverlay } from "../utilities/Overlays";
 
 interface DescriptionContainerProps {
     description: string;
+    overflow: boolean;
 }
 
 interface ElementMetrics {
@@ -14,7 +15,7 @@ interface ElementMetrics {
     y: number;
 }
 
-const DescriptionContainer: React.FC<DescriptionContainerProps> = ({ description }) => {
+const DescriptionContainer: React.FC<DescriptionContainerProps> = ({ description, overflow }) => {
 
     //const description = "May is a skilled Pokémon Trainer from Hoenn with a balanced and strategic approach to battles. She favors well-rounded teams and often uses Pokémon like Blaziken, Beautifly, and Glaceon. May's battling style combines precision with adaptability, making her a formidable opponent and a talented coordinator in Pokémon Contests.";
     const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -120,13 +121,13 @@ const DescriptionContainer: React.FC<DescriptionContainerProps> = ({ description
         <div className='DescriptionContainer Static' ref={descRef} style={{
             opacity: `${isExpanded ? 0 : 1}`
         }}>
-            <div className={`DescriptionMask ${isExpanded ? 'Expanded' : ''}`}>
+            <div className={`DescriptionMask ${isExpanded ? 'Expanded' : ''}`}  style={{ overflowY: `${overflow ? 'scroll' : 'hidden'}` }}>
                 <div className="DescriptionTitle">Description</div>
                 <div className="Description">{description}</div>
             </div>
-            <div className="Expand" onClick={handleMenuChange} style={{
+            {!overflow && <div className="Expand" onClick={handleMenuChange} style={{
                 backgroundImage: `url(/assets/${isExpanded ? 'minus_icon.png' : 'plus_icon_innerwhite.png'})`
-            }}/>
+            }}/>}
         </div>
     )
 }

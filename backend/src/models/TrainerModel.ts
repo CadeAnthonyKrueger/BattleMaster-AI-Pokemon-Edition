@@ -1,5 +1,5 @@
 export interface Trainer {
-    id?: number;
+    id: number;
     name: string;
     description: string;
     player_trainer: boolean;

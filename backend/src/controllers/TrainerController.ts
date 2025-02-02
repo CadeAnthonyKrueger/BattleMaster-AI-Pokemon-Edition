@@ -2,9 +2,12 @@ import { Request, Response } from "express"
 import { Trainer, TrainerSchema } from "../models/TrainerModel";
 import { db } from "../database/db";
 
-export const GetAll = (req: Request, res: Response) => {
+export const GetById = (req: Request, res: Response) => {
     try {
-        const result: Trainer[] = db.prepare("SELECT * FROM trainers").all() as Trainer[];
+        const id = parseInt(req.params.id, 10);
+        const schemaId = TrainerSchema.schema.id;
+        if (!schemaId.validator(id)) { res.status(400).json({ error: schemaId.message }); }
+        const result: Trainer = db.prepare("SELECT * FROM trainers WHERE id = ?").all(id)[0] as Trainer;
         console.log(result);
         res.status(200).json(result);
     } catch (error) {

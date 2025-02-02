@@ -13,9 +13,10 @@ interface ControlsContainerProps {
     container: string;
     additionalControls?: Control[];
     additionalActive?: boolean;
+    functions: { [key: string]: () => void; };
 }
 
-const ControlsContainer: FC<ControlsContainerProps> = ({ container, additionalControls, additionalActive }) => {
+const ControlsContainer: FC<ControlsContainerProps> = ({ container, additionalControls, additionalActive, functions }) => {
 
     const controlRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -48,6 +49,7 @@ const ControlsContainer: FC<ControlsContainerProps> = ({ container, additionalCo
         <div className="ControlsContainer">
             {controls.map((control, index) => 
                 <div className="Control" ref={el => { controlRefs.current[index] = el; }} 
+                    onClick={functions[control.title.toLowerCase()]} 
                     style={{ backgroundImage: `url('/assets/${control.image}')`}} key={index}/>
             )}
         </div>

@@ -1,9 +1,9 @@
 import express from "express"
-import { GetAll, Get } from "../controllers/TrainerController";
+import { GetById, Get } from "../controllers/TrainerController";
 
 const router = express.Router();
 
-router.get("/getAll", GetAll);
+router.get("/getById/:id", GetById);
 
 router.post("/get", Get);
 

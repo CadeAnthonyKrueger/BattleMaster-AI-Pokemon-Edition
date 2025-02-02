@@ -1,7 +1,7 @@
 import React, { Dispatch, RefObject, SetStateAction, use, useEffect, useRef, useState } from "react";
 import "./styles/TrainerSelectCardContainer.scss";
 import TrainerCard from "./TrainerCard";
-import { fetchTrainers, fetchAllTrainers, TrainerSchema } from "../requests/TrainerRequests";
+import { fetchTrainers, TrainerSchema } from "../requests/TrainerRequests";
 import { useGlobalState } from "../utilities/GlobalStateStore";
 
 interface TrainerSelectCardContainerProps {
@@ -14,16 +14,30 @@ const TrainerSelectCardContainer: React.FC<TrainerSelectCardContainerProps> = ({
 
     const { selectedTrainer, setSelectedTrainer } = useGlobalState();
     const [updater, setUpdater] = useState<number>(0);
+    const [dataSize, setDataSize] = useState<number>(0);
+    const lastTrainerId = useRef<number>(0);
+    
+    useEffect(() => {
+        if (trainers.length > 0) { lastTrainerId.current = trainers[trainers.length - 1].id; }
+        console.log(lastTrainerId.current);
+    }, [trainers]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const excluded = trainers.map((trainer) => trainer.id) as number[];
+                const excluded = selectedTrainer.current.id ? [selectedTrainer.current.id] : [];
                 console.log(excluded)
-                const data: TrainerSchema[] = await fetchTrainers(12, excluded);
+                const data: TrainerSchema[] = await fetchTrainers({ 
+                    limit: 20 - excluded.length + 1, 
+                    exclude: excluded, 
+                    lastElement: lastTrainerId.current,
+                    returnWithSize: true
+                });
+                if (lastTrainerId.current === 0) { setDataSize(data[data.length - 1] as unknown as number); }
                 setTrainers(prev => {
-                    const selected = excluded !== undefined ? [selectedTrainer.current] : [];
-                    return selected.concat(prev.concat(data));
+                    const condition = (selectedTrainer.current !== selectedTrainer.default) && prev[0] !== selectedTrainer.current;
+                    const selected = condition ? [selectedTrainer.current] : [];
+                    return selected.concat(prev.concat(data.slice(0, data.length - 1)));
                 });
             } catch (error) {
                 console.error("Error fetching trainers:", error);
@@ -47,14 +61,14 @@ const TrainerSelectCardContainer: React.FC<TrainerSelectCardContainerProps> = ({
             //console.log(`position: ${scrollPosition} container: ${containerHeight} scroll: ${scrollHeight}`);
     
             if ((scrollPosition + containerHeight >= scrollHeight / 2)) {
-                setUpdater(prev => prev + 1);
+                if (lastTrainerId.current < dataSize) setUpdater(prev => prev + 1);
             }
         };
     
         container.addEventListener("scroll", handleScroll);
     
-        return () => container?.removeEventListener("scroll", handleScroll);
-    }, []);
+        return () => container.removeEventListener("scroll", handleScroll);
+    }, [lastTrainerId, dataSize, layout]);
 
     return (
         <div className="TrainerSelectCardContainer" ref={containerRef}>

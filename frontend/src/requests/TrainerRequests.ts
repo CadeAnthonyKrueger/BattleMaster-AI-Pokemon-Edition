@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export interface TrainerSchema {
-    id?: number;
+    id: number;
     name: string;
     description: string;
     player_trainer: boolean;
@@ -9,24 +9,28 @@ export interface TrainerSchema {
     color: string;
 }
 
-export const fetchAllTrainers = async () => {
+interface FetchTrainersParams {
+    field?: string;
+    asc?: boolean;
+    limit?: number;
+    exclude?: number[];
+    lastElement?: any;
+    returnWithSize?: boolean;
+}
+
+export const fetchTrainerById = async (id: number) => {
     try {
-        const response = await axios.get('http://localhost:3001/trainers/getAll');
-        //console.log(response.data);
-        return response.data; // Return the data from the API response
+        const response = await axios.get(`http://localhost:3001/trainers/getById/${id}`);
+        return response.data as TrainerSchema; // Return the data from the API response
     } catch (error) {
         throw error; // If the request fails, throw the error
     }
 };
 
-export const fetchTrainers = async (limit: number, excludeIds: number[] | undefined = [73]) => {
+export const fetchTrainers = async (params: FetchTrainersParams = {}) => {
     try {
-        const response = await axios.post("http://localhost:3001/trainers/getBySize", {
-            limit,
-            exclude: excludeIds
-        });
-
-        return response.data; // Return the data from the API response
+        const response = await axios.post("http://localhost:3001/trainers/get", params);
+        return response.data as TrainerSchema[]; // Return the data from the API response
     } catch (error) {
         throw error; // If the request fails, throw the error
     }

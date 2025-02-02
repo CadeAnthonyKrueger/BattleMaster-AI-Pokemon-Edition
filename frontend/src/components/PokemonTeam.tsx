@@ -58,6 +58,14 @@ const PokemonTeam: React.FC<PokemonTeamProps> = () => {
     const [iconOnly, setIconOnly] = useState<boolean>(false);
     const [asControl, setAsControl] = useState<boolean>(false);
 
+    const controlFunctions = { 
+        'randomize': () => undefined, 
+        'reset': () => undefined,
+        'save': () => undefined,
+        'load': () => undefined,
+        'presets': () => undefined
+    };
+
     return (
         <div className="PokemonTeam" ref={teamAreaRef}>
             <CardTitleContainer text={'Pokemon'} style={{ width: '95%', marginTop: '3.65px' }}/>
@@ -68,7 +76,7 @@ const PokemonTeam: React.FC<PokemonTeamProps> = () => {
                     parentWidthRatio={parentWidthRatio}
                 />
             </div>
-            <ControlsContainer container='PokemonTeam' additionalControls={settingButtonProps.map((setting) => { 
+            <ControlsContainer container='PokemonTeam' functions={controlFunctions} additionalControls={settingButtonProps.map((setting) => { 
                 return { title: setting.title, image: setting.image } 
             })} additionalActive={asControl}/>
         </div>

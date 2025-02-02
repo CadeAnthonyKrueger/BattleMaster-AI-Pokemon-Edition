@@ -2,6 +2,7 @@ import React, { RefObject, useEffect, useRef, useState } from "react";
 import '../components/styles/TrainerSelect.scss';
 import TrainerSelect from "../components/TrainerSelect";
 import { TrainerSchema } from "../requests/TrainerRequests";
+import { useGlobalState } from "./GlobalStateStore";
 
 interface OverlayProps {
     [key: string]: any;
@@ -26,7 +27,17 @@ export const DescriptionOverlay: React.FC<OverlayProps> = ({ isExpanded, metrics
 
 export const TrainerSelectOverlay: React.FC<OverlayProps> = ({ isClicked, setIsClicked }) => {
 
+    const { selectedTrainer, setSelectedTrainer } = useGlobalState();
     const [trainers, setTrainers] = useState<TrainerSchema[]>([]);
+
+    useEffect(() => {
+        if (!isClicked) {
+            console.log('setting current')
+            setSelectedTrainer(prev => {
+                return { ...prev, current: prev.loaded } 
+            });
+        }
+    }, [isClicked]);
     
     return (
         isClicked && <div className='TrainerSelect Overlay'>

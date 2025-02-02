@@ -179,8 +179,8 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemonInstance, removePokemo
             </div>
             <div className="OptionsContainer" style={{ width: `${optionsMenuVisible ? 48 : 15}px` }}>
                 {!optionsMenuVisible ? <div className="OptionIcon closed" ref={optionsRef} onMouseDown={() => setOptionsIconClicked(true)}/> : 
-                    optionButtons.map((option: any) => { 
-                        return <div className="OptionIcon" ref={option.ref} key={option.name} 
+                    optionButtons.map((option: any, index: number) => { 
+                        return <div className="OptionIcon" ref={option.ref} key={index} 
                             onMouseUp={option.onClick} 
                             style={{ ...{ backgroundImage: `url('/assets/${option.title}.png')` }, ...option.style}}/> 
                     })

@@ -28,7 +28,7 @@ let trainerNames = [
     'Sophia', 'Zoe', 'Mia & Noah', 'Dean', '', '', '', '', 'Logan', 'Sam', 'Victor', 'Henry', 'George', 
     'Paul', 'Olivia', 'Lily', '', '', '', '', '', '', '', '', 'Elise', 'Hannah', 'Owen', 'Daisy', 'Finn', 
     'Violet', '', '', '', '', 'Oak', 'Isaac', 'Claire', 'Blue', 'Gary', 'Miles', 'Giovanni', 'Arthur', 'Troy', 
-    'Albert', 'Mia & Alex', 'Eric', 'Daniel', 'Chloe', 'Tyler', 'Katie', 'Felix', 'Grunt', 'Grunt', 'Ella', 
+    'Albert', 'Mia & Alex', 'Eric', 'Chloe', 'Daniel', 'Katie', 'Tyler', 'Felix', 'Grunt', 'Grunt', 'Ella', 
     'Liam', 'Sophie', 'Jack', 'Anna & Bella', 'Grace & Ryan', 'Joey'
 ];
 
@@ -141,6 +141,7 @@ const trainerDescriptions: string[] = [
 
 trainers.forEach((trainer, index) => {
     trainerData.push({ 
+        id: index + 1,
         name: trainer.trimEnd(), 
         description: trainerDescriptions[index], 
         player_trainer: trainer.includes('Brendan') ? true : 

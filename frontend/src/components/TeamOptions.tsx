@@ -8,10 +8,15 @@ interface TeamOptionsProps {}
 
 const TeamOptions: React.FC<TeamOptionsProps> = () => {
 
+    const controlFunctions = { 
+        'randomize': () => undefined, 
+        'reset': () => undefined
+    };
+
     return (
         <div className="TeamOptions">
             <CardTitleContainer text={'Settings'} style={{ width: '94%', marginTop: '3.65px' }}/>
-            <ControlsContainer container="TeamOptions"/>
+            <ControlsContainer functions={controlFunctions} container="TeamOptions"/>
         </div>
     );
 

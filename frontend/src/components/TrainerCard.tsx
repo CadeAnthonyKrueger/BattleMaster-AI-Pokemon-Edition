@@ -7,9 +7,8 @@ import ControlsContainer from "./ControlsContainer";
 import SettingButton from "./SettingButton";
 import { useOverlay } from "../utilities/OverlayContext";
 import { TrainerSelectOverlay } from "../utilities/Overlays";
-import { TrainerSchema } from "../requests/TrainerRequests";
+import { fetchTrainerById, TrainerSchema } from "../requests/TrainerRequests";
 import { useGlobalState } from "../utilities/GlobalStateStore";
-import { SelectedTrainer } from "../views/TrainerView";
 import CardTitleContainer from "./CardTitleContainer";
 
 interface TrainerCardProps {
@@ -92,6 +91,7 @@ const TrainerCard: React.FC<TrainerCardProps> = ({ trainer, isSelect = false, is
 
     useEffect(() => {
         if (!isSelect) {
+            console.log('adding overlay')
             addOverlay({
                 className: "TrainerSelect Overlay",
                 component: TrainerSelectOverlay,
@@ -102,33 +102,31 @@ const TrainerCard: React.FC<TrainerCardProps> = ({ trainer, isSelect = false, is
     }, [isClicked]);
 
     const { selectedTrainer, setSelectedTrainer } = useGlobalState();
-        
-    const [isTrainerChoice, setIsTrainerChoice] = useState<boolean>(false);
+    const isTrainerChoice = selectedTrainer?.loaded === trainer;
 
-    const handleSelect = () => { 
-        if (isSelect && selectedTrainer) {
-            setSelectedTrainer(prev => { 
-                return { ...prev, loaded: (prev.loaded !== trainer && typeof trainer.id === 'number') ? trainer : prev.default } 
-            });
-        }
+    const handleSelect = () => {
+        if (!isSelect || !selectedTrainer) return;
+        setSelectedTrainer(prev => {
+            return { ...prev, loaded: (prev.loaded === trainer ? prev.default : trainer) }
+        });
     };
-
-    useEffect(() => {
-        //console.log(selectedTrainer?.loaded)
-        setIsTrainerChoice(selectedTrainer?.loaded === trainer);
-    }, [selectedTrainer]);
-
-    useEffect(() => {
-        if (!isClicked) {
-            setSelectedTrainer(prev => { 
-                if (prev.loaded === prev.default) return prev;
-                return { ...prev, current: prev.loaded } 
-            });
-        }
-    }, [isClicked]);
 
     const [isHovered, setIsHovered] = useState<boolean>(false);
     const [bagItemCount, setBagItemCount] = useState<number>(0);
+
+    const fetchData = async () => {
+        try {
+            const data: TrainerSchema = await fetchTrainerById(Math.floor(Math.random() * 72));
+            setSelectedTrainer(prev => { return { ...prev, loaded: data, current: data }; });
+        } catch (error) {
+            console.error("Error fetching trainers:", error);
+        }
+    };
+
+    const controlFunctions = { 
+        'randomize': () => fetchData(), 
+        'reset': () => setSelectedTrainer(prev => { return { ...prev, current: prev.default } })
+    };
 
     return (
         <div className={
@@ -141,15 +139,16 @@ const TrainerCard: React.FC<TrainerCardProps> = ({ trainer, isSelect = false, is
                     backgroundImage: trainer.image.slice(0, 1) === '/' ? `url('${trainer.image}')` : `url('http://localhost:3001/${trainer.image}')` 
                 }}>
                     <div className="TrainerAvatar"/>
-                    {isMinimized && <CardTitleContainer text={trainer.name} color={trainer.color} wrap={true} fontSize={12} style={{
-                        position: 'absolute', top: '5px', left: '10px', borderBottom: 'none', backgroundColor: 'rgba(24, 24, 24, 0.7)'
+                    {isMinimized && <CardTitleContainer text={trainer.name} color={trainer.color} wrap={true} fontSize={11} style={{
+                        position: 'absolute', top: '5px', left: '10px', borderBottom: 'none', backgroundColor: 'rgba(24, 24, 24, 0.7)',
+                        width: '90%'
                     }}/>}
                     {!isSelect && <div className="Edit tc" style={{ backgroundImage: `url('/assets/edit.png')`, filter: 'invert(1)' }}/>}
                 </div>
             </div>
             {!isMinimized && <div className="TrainerInfo">
                 <CardTitleContainer text={trainer.name} width={isSelect ? 100 : 80} color={trainer.color} wrap={true}/>
-                <DescriptionContainer description={trainer.description}/>
+                <DescriptionContainer description={trainer.description} overflow={isSelect}/>
                 {!isSelect && <div className="TrainerOptions">
                     <SettingButton title="Presets" image={`pokeball_icon${!isHovered ? '_bw' : ''}.png`} 
                         styleName="tc" states={[setIsHovered]} refs = {[buttonRef, titleRef, iconRef]}
@@ -160,7 +159,7 @@ const TrainerCard: React.FC<TrainerCardProps> = ({ trainer, isSelect = false, is
                     </div>
                 </div>}
             </div>}
-            {!isSelect && <ControlsContainer container='TrainerCard'/>}
+            {!isSelect && <ControlsContainer functions={controlFunctions} container='TrainerCard'/>}
         </div>
     )
 
