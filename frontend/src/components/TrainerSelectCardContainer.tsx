@@ -1,4 +1,4 @@
-import React, { Dispatch, RefObject, SetStateAction, useEffect, useRef, useState } from "react";
+import React, { Dispatch, RefObject, SetStateAction, use, useEffect, useRef, useState } from "react";
 import "./styles/TrainerSelectCardContainer.scss";
 import TrainerCard from "./TrainerCard";
 import { fetchTrainers, fetchAllTrainers, TrainerSchema } from "../requests/TrainerRequests";
@@ -12,18 +12,18 @@ interface TrainerSelectCardContainerProps {
 
 const TrainerSelectCardContainer: React.FC<TrainerSelectCardContainerProps> = ({ trainers, setTrainers, layout }) => {
 
-    const [fetchCount, setFetchCount] = useState<number>(0);
     const { selectedTrainer, setSelectedTrainer } = useGlobalState();
-    
-    useEffect(() => {
+    const [updater, setUpdater] = useState<number>(0);
 
+    useEffect(() => {
         const fetchData = async () => {
             try {
-                const data: TrainerSchema[] = await fetchTrainers(12, fetchCount);
-                console.log(data);
+                const excluded = trainers.map((trainer) => trainer.id) as number[];
+                console.log(excluded)
+                const data: TrainerSchema[] = await fetchTrainers(12, excluded);
                 setTrainers(prev => {
-                    if (selectedTrainer.current !== selectedTrainer.default) return [(selectedTrainer.current)].concat(prev.concat(data));
-                    return prev.concat(data);
+                    const selected = excluded !== undefined ? [selectedTrainer.current] : [];
+                    return selected.concat(prev.concat(data));
                 });
             } catch (error) {
                 console.error("Error fetching trainers:", error);
@@ -31,7 +31,7 @@ const TrainerSelectCardContainer: React.FC<TrainerSelectCardContainerProps> = ({
         };
 
         fetchData();
-    }, [fetchCount]);
+    }, [updater]);
 
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -47,8 +47,7 @@ const TrainerSelectCardContainer: React.FC<TrainerSelectCardContainerProps> = ({
             //console.log(`position: ${scrollPosition} container: ${containerHeight} scroll: ${scrollHeight}`);
     
             if ((scrollPosition + containerHeight >= scrollHeight / 2)) {
-                setFetchCount(prev => prev + 12);
-                console.log('here')
+                setUpdater(prev => prev + 1);
             }
         };
     

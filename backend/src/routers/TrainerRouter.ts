@@ -1,10 +1,10 @@
 import express from "express"
-import { GetAll, GetBySize } from "../controllers/TrainerController";
+import { GetAll, Get } from "../controllers/TrainerController";
 
 const router = express.Router();
 
 router.get("/getAll", GetAll);
 
-router.get("/getBySize/:limit/:minId", GetBySize);
+router.post("/get", Get);
 
 export default router;
