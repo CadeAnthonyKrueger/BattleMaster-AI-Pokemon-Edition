@@ -64,6 +64,7 @@ const TrainerSelectCardContainer: React.FC<TrainerSelectCardContainerProps> = ({
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     //console.log("Card in view:", entry.target);
+                    
                     setCardsScrolled(prev => prev + 1);
                     setLastScrolled(entry.target as HTMLDivElement);
                 }
@@ -77,6 +78,10 @@ const TrainerSelectCardContainer: React.FC<TrainerSelectCardContainerProps> = ({
     
         return () => observer.disconnect();
     }, [containerRef, trainers, layout]);
+
+    useEffect(() => {
+        console.log('Number of cards scrolled: ' + cardsScrolled);
+    }, [cardsScrolled]);
 
     useEffect(() => {
         console.log(lastScrolled);
