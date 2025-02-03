@@ -140,8 +140,8 @@ const TrainerCard: React.FC<TrainerCardProps> = ({ trainer, isSelect = false, is
                 }}>
                     <div className="TrainerAvatar"/>
                     {isMinimized && <CardTitleContainer text={trainer.name} color={trainer.color} wrap={true} fontSize={11} style={{
-                        position: 'absolute', top: '5px', left: '10px', borderBottom: 'none', backgroundColor: 'rgba(24, 24, 24, 0.7)',
-                        width: '90%'
+                        position: 'absolute', top: '0', left: '0', borderBottom: 'none', backgroundColor: 'rgba(24, 24, 24, 0.7)',
+                        width: '100%', paddingLeft: '5%', paddingRight: '5%', paddingTop: '5%', boxSizing: 'border-box'
                     }}/>}
                     {!isSelect && <div className="Edit tc" style={{ backgroundImage: `url('/assets/edit.png')`, filter: 'invert(1)' }}/>}
                 </div>

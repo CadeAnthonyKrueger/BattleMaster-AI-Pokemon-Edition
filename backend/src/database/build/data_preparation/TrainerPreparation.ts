@@ -26,8 +26,8 @@ let trainerClasses = fileNames.map((image) => {
 let trainerNames = [
     'Emily', 'Sarah', 'Jake', 'Alex', 'Hiro', 'Tim', 'Max', 'Liam', 'Ethan', 'Mira', 'Emma & Jack', 'Ryan', 
     'Sophia', 'Zoe', 'Mia & Noah', 'Dean', '', '', '', '', 'Logan', 'Sam', 'Victor', 'Henry', 'George', 
-    'Paul', 'Olivia', 'Lily', '', '', '', '', '', '', '', '', 'Elise', 'Hannah', 'Owen', 'Daisy', 'Finn', 
-    'Violet', '', '', '', '', 'Oak', 'Isaac', 'Claire', 'Blue', 'Gary', 'Miles', 'Giovanni', 'Arthur', 'Troy', 
+    'Paul', 'Olivia', 'Lily', '', '', '', '', '', '', '', '', 'Elise', 'Hannah', 'Owen', 'Daisy', 'Violet', 
+    'Finn', '', '', '', '', 'Oak', 'Isaac', 'Claire', 'Blue', 'Gary', 'Miles', 'Giovanni', 'Arthur', 'Troy', 
     'Albert', 'Mia & Alex', 'Eric', 'Chloe', 'Daniel', 'Katie', 'Tyler', 'Felix', 'Grunt', 'Grunt', 'Ella', 
     'Liam', 'Sophie', 'Jack', 'Anna & Bella', 'Grace & Ryan', 'Joey'
 ];
@@ -47,7 +47,7 @@ const trainerColors: string[] = [
     '#FF4500', '#4682B4', '#87CEEB', '#F08080', '#FFC0CB', '#696969', '#8A2BE2', '#A0522D', '#1E90FF', '#FFB6C1', 
     '#FFD700', '#87CEFA', '#DAA520', '#D3D3D3', '#8B0000', '#7FFFD4', '#FFC0CB', '#FF69B4', '#FF8C00', '#8B4513',
     '#32CD32', '#808080', '#A9A9A9', '#00BFFF', '#BA55D3', '#FFD700', '#FF6347', '#FFDAB9', '#7B68EE', '#FFDEAD', 
-    '#00CED1', '#9370DB', '#00FA9A', '#98FB98', '#FF69B4', '#DC143C', '#696969', '#4169E1', '#FF00FF', '#4169E1', 
+    '#9370DB', '#00CED1', '#00FA9A', '#98FB98', '#FF69B4', '#DC143C', '#696969', '#4169E1', '#FF00FF', '#4169E1', 
     '#4169E1', '#FF4500', '#2F4F4F', '#CD853F', '#4682B4', '#B0C4DE', '#FF7F50', '#FFD700', '#1E90FF', '#87CEFA', 
     '#00BFFF', '#ADD8E6', '#D2691E', '#2E8B57', '#2E8B57', '#F0E68C', '#FFA07A', '#FF69B4', '#FF6347', '#FFC0CB', 
     '#DAA520', '#FFA500'
@@ -105,8 +105,8 @@ const trainerDescriptions: string[] = [
     "Picnicker Hannah is a cheerful and adventurous trainer who favors Pokémon like Ivysaur, Nidorina, and Meowth. Her battles are lighthearted yet effective, showcasing her playful nature.",
     "PokéManiac Owen is an eccentric collector who battles with rare Pokémon such as Lickitung, Aerodactyl, and Kangaskhan. His unpredictable style stems from his passion for unique Pokémon.",
     "Pokémon Breeder Daisy is a caring and supportive trainer who relies on Pokémon like Clefairy, Blissey, and Azumarill. Her strategy focuses on nurturing her team and ensuring their longevity in battles.",
-    "Pokémon Ranger Finn is a resourceful and courageous trainer who uses Pokémon like Manectric, Tropius, and Flygon. His battle strategies are grounded in adaptability and a deep respect for nature.",
     "Pokémon Ranger Violet is an agile and clever trainer who commands Pokémon like Roserade, Staraptor, and Luxray. Her speed-focused tactics emphasize precise strikes and quick maneuvers.",
+    "Pokémon Ranger Finn is a resourceful and courageous trainer who uses Pokémon like Manectric, Tropius, and Flygon. His battle strategies are grounded in adaptability and a deep respect for nature.",
     "Brendan is a confident and well-rounded Pokémon Trainer from Hoenn. His team includes Pokémon like Sceptile, Swellow, and Aggron, showcasing his ability to adapt to various challenges.",
     "Leaf is a skilled and determined trainer from Kanto with a balanced team of Pokémon like Venusaur, Nidoqueen, and Pidgeot. Her strategic approach emphasizes her team’s strengths in battle.",
     "May is a talented Pokémon Trainer from Hoenn known for her balanced team featuring Pokémon like Blaziken, Beautifly, and Glaceon. Her adaptable and precise strategies make her a formidable opponent and an expert in Pokémon Contests.",
@@ -125,8 +125,8 @@ const trainerDescriptions: string[] = [
     "Super Nerd Eric is a highly intelligent trainer who specializes in Poison- and Electric-type Pokémon like Muk, Magnemite, and Koffing. His analytical battle strategies focus on exploiting weaknesses.",
     "Swimmer Daniel is a swift and confident Water-type specialist who uses Pokémon like Starmie, Seaking, and Lapras. His fast and fluid strategies make him a formidable trainer in water battles.",
     "Swimmer Chloe is a graceful and resourceful trainer who excels with Water-type Pokémon like Milotic, Luvdisc, and Azumarill. Her battle style reflects her elegance and adaptability.",
-    "Swimmer Tyler is a spirited trainer who favors Water-type Pokémon like Gyarados, Kingdra, and Mantine. His bold and powerful attacks make him a challenging opponent.",
     "Swimmer Katie is a vibrant and determined trainer who specializes in Water-type Pokémon like Corsola, Vaporeon, and Lanturn. Her strategies blend speed with resilience.",
+    "Swimmer Tyler is a spirited trainer who favors Water-type Pokémon like Gyarados, Kingdra, and Mantine. His bold and powerful attacks make him a challenging opponent.",
     "Tamer Felix is a commanding and fearless trainer who excels with Dragon- and Dark-type Pokémon like Salamence, Houndoom, and Tyranitar. His aggressive battle style highlights his dominance.",
     "Team Rocket Grunt is a resourceful but less experienced member of Team Rocket. Their team often includes Pokémon like Raticate, Zubat, and Koffing, using basic yet cunning strategies.",
     "Team Rocket Grunt is a resourceful but less experienced member of Team Rocket. Their team often includes Pokémon like Raticate, Zubat, and Koffing, using basic yet cunning strategies.",
