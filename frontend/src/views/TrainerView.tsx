@@ -55,7 +55,7 @@ const TrainerView = () => {
             </div>
             <div className="Options" ref={optionsRef}>
                 <div className="TrainerCardArea">
-                    <TrainerCard trainer={selectedTrainer.current}/>
+                    <TrainerCard id={Infinity} trainer={selectedTrainer.current}/>
                 </div>
                 <div className="OptionsArea">
                     <TeamOptions/>

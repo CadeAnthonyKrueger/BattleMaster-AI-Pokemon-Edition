@@ -12,12 +12,13 @@ import { useGlobalState } from "../utilities/GlobalStateStore";
 import CardTitleContainer from "./CardTitleContainer";
 
 interface TrainerCardProps {
+    id: number;
     trainer: TrainerSchema;
     isSelect?: boolean;
     isMinimized?: boolean;
 }
 
-const TrainerCard: React.FC<TrainerCardProps> = ({ trainer, isSelect = false, isMinimized = false }) => {
+const TrainerCard: React.FC<TrainerCardProps> = ({ id, trainer, isSelect = false, isMinimized = false }) => {
 
     const [iconOnly, setIconOnly] = useState<boolean>(false);
 
@@ -91,7 +92,7 @@ const TrainerCard: React.FC<TrainerCardProps> = ({ trainer, isSelect = false, is
 
     useEffect(() => {
         if (!isSelect) {
-            console.log('adding overlay')
+            //console.log('adding overlay')
             addOverlay({
                 className: "TrainerSelect Overlay",
                 component: TrainerSelectOverlay,
@@ -116,7 +117,7 @@ const TrainerCard: React.FC<TrainerCardProps> = ({ trainer, isSelect = false, is
 
     const fetchData = async () => {
         try {
-            const data: TrainerSchema = await fetchTrainerById(Math.floor(Math.random() * 72));
+            const data: TrainerSchema = await fetchTrainerById(Math.floor(Math.random() * 72) + 1);
             setSelectedTrainer(prev => { return { ...prev, loaded: data, current: data }; });
         } catch (error) {
             console.error("Error fetching trainers:", error);
@@ -129,14 +130,15 @@ const TrainerCard: React.FC<TrainerCardProps> = ({ trainer, isSelect = false, is
     };
 
     return (
+
         <div className={
             `TrainerCard ${isMinimized ? 'minimized' : ''} ${isSelect ? 'select' : ''} ${isSelect && isTrainerChoice ? 'choice' : ''}`
-        } onClick={handleSelect}>
+        } onClick={handleSelect} id={`${id}`}>
             <div className={`TrainerBackground ${isMinimized ? 'minimized' : ''}`} style={{ 
                     background: `radial-gradient(circle at 50% 160%, ${trainer.color} 60%, rgba(0, 0, 0, 0) 80%)` }}
                 >
                 <div className="TrainerImage Sprite" onClick={() => isSelect ? undefined : setIsClicked(true)} style={{ 
-                    backgroundImage: trainer.image.slice(0, 1) === '/' ? `url('${trainer.image}')` : `url('http://localhost:3001/${trainer.image}')` 
+                    backgroundImage: trainer.image && trainer.image.slice(0, 1) === '/' ? `url('${trainer.image}')` : `url('http://localhost:3001/${trainer.image}')` 
                 }}>
                     <div className="TrainerAvatar"/>
                     {isMinimized && <CardTitleContainer text={trainer.name} color={trainer.color} wrap={true} fontSize={11} style={{

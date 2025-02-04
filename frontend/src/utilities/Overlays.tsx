@@ -32,7 +32,7 @@ export const TrainerSelectOverlay: React.FC<OverlayProps> = ({ isClicked, setIsC
 
     useEffect(() => {
         if (!isClicked) {
-            console.log('setting current')
+            //console.log('setting current')
             setSelectedTrainer(prev => {
                 return { ...prev, current: prev.loaded } 
             });
