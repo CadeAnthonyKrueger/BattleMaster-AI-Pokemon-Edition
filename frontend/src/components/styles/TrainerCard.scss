@@ -26,10 +26,6 @@
     box-shadow: 0px 0px 5px 0px white;
 }
 
-.TrainerCard.select:active {
-    transform: scale(0.99);
-}
-
 .TrainerCard.choice {
     outline: 3px solid rgba(0, 140, 226);
 }
@@ -40,25 +36,20 @@
     align-items: center;
     aspect-ratio: 1/1;
     flex: 1 1 auto;
-    //min-width: 167px;
-    //flex-basis: 167px;
     min-width: 150px;
-    //max-width: 250px;
-    //width: calc(33% - 10px);
-    //flex-basis: calc(33% - 10px);
     height: auto;
     width: auto;
     margin: 0;
 }
 
-.TrainerCard.minimized.lastRow {
+.TrainerCard.minimized.isLastRow {
     flex: 0 1 auto;
 }
 
-.TrainerCard.choice.minimized {
-    min-width: 144px;
-    width: calc(auto - 6px);
-}
+// .TrainerCard.choice.minimized {
+//     //min-width: 144px;
+//     //width: calc(auto - 6px);
+// }
 
 // .TrainerCard.minimized.choice {
 //     //border: 1px solid rgba(255, 255, 255, 0.1);

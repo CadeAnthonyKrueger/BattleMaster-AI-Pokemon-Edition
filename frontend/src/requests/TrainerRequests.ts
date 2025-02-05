@@ -9,7 +9,7 @@ export interface TrainerSchema {
     color: string;
 }
 
-interface FetchTrainersParams {
+export interface FetchTrainersParams {
     field?: string;
     asc?: boolean;
     limit?: number;

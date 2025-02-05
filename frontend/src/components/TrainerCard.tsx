@@ -1,4 +1,4 @@
-import React, { Dispatch, RefObject, SetStateAction, useEffect, useRef, useState } from "react";
+import React, { CSSProperties, Dispatch, RefObject, SetStateAction, useEffect, useRef, useState } from "react";
 import "./styles/TrainerCard.scss";
 import "./styles/SharedStyles.scss";
 import "./styles/SettingButton.scss";
@@ -16,9 +16,10 @@ interface TrainerCardProps {
     trainer: TrainerSchema;
     isSelect?: boolean;
     isMinimized?: boolean;
+    cardWidth?: number;
 }
 
-const TrainerCard: React.FC<TrainerCardProps> = ({ id, trainer, isSelect = false, isMinimized = false }) => {
+const TrainerCard: React.FC<TrainerCardProps> = ({ id, trainer, isSelect = false, isMinimized = false, cardWidth }) => {
 
     const [iconOnly, setIconOnly] = useState<boolean>(false);
 
@@ -132,8 +133,8 @@ const TrainerCard: React.FC<TrainerCardProps> = ({ id, trainer, isSelect = false
     return (
 
         <div className={
-            `TrainerCard ${isMinimized ? 'minimized' : ''} ${isSelect ? 'select' : ''} ${isSelect && isTrainerChoice ? 'choice' : ''}`
-        } onClick={handleSelect} id={`${id}`}>
+            `TrainerCard ${isMinimized ? 'minimized' : ''} ${isSelect ? 'select' : ''} ${isSelect && isTrainerChoice ? 'choice' : ''} ${isSelect && cardWidth ? 'isLastRow' : ''}`
+        } onClick={handleSelect} id={`${id}`} style={cardWidth ? { width: cardWidth } : {}}>
             <div className={`TrainerBackground ${isMinimized ? 'minimized' : ''}`} style={{ 
                     background: `radial-gradient(circle at 50% 160%, ${trainer.color} 60%, rgba(0, 0, 0, 0) 80%)` }}
                 >
