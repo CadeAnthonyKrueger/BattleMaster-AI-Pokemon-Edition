@@ -52,7 +52,7 @@ const PokemonTeam: React.FC<PokemonTeamProps> = () => {
     const settingButtonProps: SettingButtonProps[] = [
         { title: 'Save', image: 'save.png', blackIcon: true },
         { title: 'Load', image: 'load.png', blackIcon: true },
-        { title: 'Presets', image: 'pokeball_icon_bw.png', blackIcon: false, refs: [buttonRef, titleRef, iconRef] }
+        { title: 'Presets', image: 'pokeball_icon.png', blackIcon: false, refs: [buttonRef, titleRef, iconRef] }
     ];
 
     const [iconOnly, setIconOnly] = useState<boolean>(false);

@@ -22,7 +22,11 @@ const SettingButtonContainer: React.FC<SettingButtonContainerProps> = ({
     className, iconOnly, setIconOnly, asControl, setAsControl, settingButtonProps, parentWidthRatio
 }) => {
 
-    const [buttonRef, titleRef, iconRef] = settingButtonProps[2].refs ? settingButtonProps[2].refs : [];
+    const lastItem = settingButtonProps[settingButtonProps.length - 1] || {};
+    const refs = lastItem.refs || [];
+
+    const [buttonRef, titleRef, iconRef] = refs;
+
 
     const minWidthRatios = { asControl: 60.79, iconOnly: 67 };
 

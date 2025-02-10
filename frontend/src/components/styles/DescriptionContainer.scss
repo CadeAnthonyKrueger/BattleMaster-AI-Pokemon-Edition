@@ -3,7 +3,7 @@
     flex-direction: column;
     border-radius: 10px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    //border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .DescriptionContainer.Static {
@@ -75,12 +75,12 @@
 .DescriptionTitle {
     height: fit-content;
     margin-inline: 5px;
-    background-color: rgba(31, 31, 31, 0.4);
+    background-color: rgba(31, 31, 31, 0.9);
     border-radius: 5px;
     font-family: "Public Pixel", sans-serif;
     line-height: 18px;
     text-indent: 5px;
-    font-size: 10px;
+    font-size: 11px;
     color: rgb(255, 255, 255);
     user-select: none;
 }

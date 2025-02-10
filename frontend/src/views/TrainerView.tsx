@@ -37,14 +37,6 @@ const TrainerView = () => {
         };
     }, []);
 
-    // const trainerPlaceholder: TrainerSchema = { 
-    //     id: 73, name: 'Trainer', description: ' ', player_trainer: false, image: '/assets/profile_placeholder.png', color: 'black' 
-    // };
-
-    // const [selectedTrainer, setSelectedTrainer] = useGlobalState<SelectedTrainer>(
-    //     'selectedTrainer', { current: trainerPlaceholder, loaded: trainerPlaceholder, default: trainerPlaceholder }
-    // );
-
     const { selectedTrainer, setSelectedTrainer } = useGlobalState();
 
     return (

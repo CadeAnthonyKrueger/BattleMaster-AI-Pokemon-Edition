@@ -1,5 +1,5 @@
 .BattleSetupPage {
-    background-color: #141414;
+    //background-color: #000000;
     //background-color: rgb(65, 65, 65);
     height: 100vh;
     width: 100vw;
@@ -7,7 +7,8 @@
 }
 
 .BattleSetupBackground {
-    background-image: url('../../../public/assets/pokemon_backdrop2.jpg');
+    background-image: url(../../../public/assets/bg3.gif);
+    //background-image: linear-gradient(to top, rgba(112, 248, 194, 0.5), rgb(52, 209, 126, 0.5), black, black);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-position: 0 0;
@@ -42,6 +43,11 @@
     width: 100%;
     filter: blur();
     transition: filter 0.5s ease;
+    //background-color: rgb(12, 67, 126);
+    // background-image: url(../../../public/assets/pgbg.png);
+    // background-position: center;
+    // background-size: 100% 100%;
+    // background-repeat: no-repeat;
 }
 
 .Dimension {

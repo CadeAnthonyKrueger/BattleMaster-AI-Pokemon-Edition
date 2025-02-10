@@ -153,9 +153,8 @@ const TrainerCard: React.FC<TrainerCardProps> = ({ id, trainer, isSelect = false
                 <CardTitleContainer text={trainer.name} width={isSelect ? 100 : 80} color={trainer.color} wrap={true}/>
                 <DescriptionContainer description={trainer.description} overflow={isSelect}/>
                 {!isSelect && <div className="TrainerOptions">
-                    <SettingButton title="Presets" image={`pokeball_icon${!isHovered ? '_bw' : ''}.png`} 
-                        styleName="tc" states={[setIsHovered]} refs = {[buttonRef, titleRef, iconRef]}
-                        iconOnly={iconOnly}
+                    <SettingButton title="Presets" image={`pokeball_icon.png`} 
+                        styleName="tc" refs={[buttonRef, titleRef, iconRef]} iconOnly={iconOnly}
                     />
                     <div className="Bag">
                         <div className="ItemCount">{bagItemCount}</div>

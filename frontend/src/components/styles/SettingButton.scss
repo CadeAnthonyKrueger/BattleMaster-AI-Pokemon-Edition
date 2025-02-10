@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    //border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .SettingInner {
@@ -79,7 +79,7 @@
 .SettingIcon.tc {
     height: 75%;
     opacity: .3;
-    filter: grayscale(.5);
+    //filter: grayscale(.5);
 }
 
 .SettingButton.tc:hover .SettingIcon {

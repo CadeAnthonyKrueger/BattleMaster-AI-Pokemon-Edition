@@ -1,4 +1,4 @@
-import React, { FC, RefObject, useState } from "react";
+import React, { FC, RefObject, useRef, useState } from "react";
 import PokemonCard from "./PokemonCard";
 import { PokemonInstance } from "./PokemonTeam";
 import { DndContext, closestCenter } from "@dnd-kit/core";
@@ -26,12 +26,12 @@ const PokemonTeamGridArea: FC<PokemonTeamGridAreaProps> = ({ ref }) => {
         //{ id: 'hydreigon', pokemon: { name: 'Hydreigon', pokedexNumber: '0635', typeIndexes: [17, 16], image: 'HYDREIGON.png' }, level: 64, gender: 'male' },
         //{ id: 'luxray', pokemon: { name: 'Luxray', pokedexNumber: '0405', typeIndexes: [13], image: 'LUXRAY.png' }, level: 39, gender: 'male' },
         //{ id: 'vanilluxe', pokemon: { name: 'Vanilluxe', pokedexNumber: '0584', typeIndexes: [15], image: 'VANILLUXE.png' }, level: 36, gender: 'female' },
-        //{ id: 'dhelmise', pokemon: { name: 'Dhelmise', pokedexNumber: '0781', typeIndexes: [7, 12], image: 'DHELMISE.png' }, level: 29, gender: 'male' },
+        { id: 'dhelmise', pokemon: { name: 'Dhelmise', pokedexNumber: '0781', typeIndexes: [7, 12], image: 'DHELMISE.png' }, level: 29, gender: 'male' },
         //{ id: 'flygon', pokemon: { name: 'Flygon', pokedexNumber: '0330', typeIndexes: [4, 16], image: 'FLYGON.png' }, level: 50, gender: 'female' },
         //{ id: 'porygon2', pokemon: { name: 'Porygon2', pokedexNumber: '0233', typeIndexes: [0], image: 'PORYGON2.png' }, level: 23, gender: 'female' },
-        { id: 'xerneas', pokemon: { name: 'Xerneas', pokedexNumber: '0716', typeIndexes: [18], image: 'XERNEAS_1.png' }, level: 75, gender: 'female' },
+        //{ id: 'xerneas', pokemon: { name: 'Xerneas', pokedexNumber: '0716', typeIndexes: [18], image: 'XERNEAS_1.png' }, level: 75, gender: 'female' },
         //{ id: 'gengar', pokemon: { name: 'Gengar', pokedexNumber: '0094', typeIndexes: [7, 3], image: 'GENGAR.png' }, level: 52, gender: 'male' },
-        // { id: 'palossand', pokemon: { name: 'Palossand', pokedexNumber: '0770', typeIndexes: [7, 4], image: 'PALOSSAND.png' }, level: 48, gender: 'male' },
+        { id: 'palossand', pokemon: { name: 'Palossand', pokedexNumber: '0770', typeIndexes: [7, 4], image: 'PALOSSAND.png' }, level: 48, gender: 'male' },
         // { id: 'dusknoir', pokemon: { name: 'Dusknoir', pokedexNumber: '0477', typeIndexes: [7], image: 'DUSKNOIR.png' }, level: 47, gender: 'male' },
         // { id: 'chandelure', pokemon: { name: 'Chandelure', pokedexNumber: '0609', typeIndexes: [7, 10], image: 'CHANDELURE.png' }, level: 50, gender: 'female' },
         //{ id: 'drifblim', pokemon: { name: 'Drifblim', pokedexNumber: '0426', typeIndexes: [7, 2], image: 'DRIFBLIM.png' }, level: 49, gender: 'male' },
@@ -40,7 +40,7 @@ const PokemonTeamGridArea: FC<PokemonTeamGridAreaProps> = ({ ref }) => {
         //{ id: 'tyranitar', pokemon: { name: 'Tyranitar', pokedexNumber: '0248', typeIndexes: [5, 17], image: 'TYRANITAR.png' }, level: 59, gender: 'male' },
         //{ id: 'greninja', pokemon: { name: 'Greninja', pokedexNumber: '0658', typeIndexes: [11, 17], image: 'GRENINJA_2.png' }, level: 40, gender: 'male' },
         //{ id: 'sylveon', pokemon: { name: 'Sylveon', pokedexNumber: '0700', typeIndexes: [18], image: 'SYLVEON.png' }, level: 29, gender: 'female' },
-        //{ id: 'leafeon', pokemon: { name: 'Leafeon', pokedexNumber: '0470', typeIndexes: [12], image: 'LEAFEON.png' }, level: 29, gender: 'female' },
+        { id: 'leafeon', pokemon: { name: 'Leafeon', pokedexNumber: '0470', typeIndexes: [12], image: 'LEAFEON.png' }, level: 29, gender: 'female' },
         //{ id: 'umbreon', pokemon: { name: 'Umbreon', pokedexNumber: '0197', typeIndexes: [17], image: 'UMBREON.png' }, level: 29, gender: 'male' },
         //{ id: 'glaceon', pokemon: { name: 'Glaceon', pokedexNumber: '0471', typeIndexes: [15], image: 'GLACEON.png' }, level: 29, gender: 'female' },
         //{ id: 'espeon', pokemon: { name: 'Espeon', pokedexNumber: '0196', typeIndexes: [14], image: 'ESPEON.png' }, level: 29, gender: 'female' },
@@ -48,12 +48,12 @@ const PokemonTeamGridArea: FC<PokemonTeamGridAreaProps> = ({ ref }) => {
         //{ id: 'honedge', pokemon: { name: 'Honedge', pokedexNumber: '0679', typeIndexes: [8, 7], image: 'HONEDGE.png' }, level: 17, gender: 'male' },
         //{ id: 'chesnaught', pokemon: { name: 'Chesnaught', pokedexNumber: '0652', typeIndexes: [12, 1], image: 'CHESNAUGHT.png' }, level: 38, gender: 'male' },
         //{ id: 'rotom', pokemon: { name: 'Rotom', pokedexNumber: '0479', typeIndexes: [13], image: 'ROTOM.png' }, level: 20, gender: 'male' },
-        //{ id: 'ariados', pokemon: { name: 'Ariados', pokedexNumber: '0168', typeIndexes: [6, 3], image: 'ARIADOS.png' }, level: 30, gender: 'male' },
+        { id: 'ariados', pokemon: { name: 'Ariados', pokedexNumber: '0168', typeIndexes: [6, 3], image: 'ARIADOS.png' }, level: 30, gender: 'male' },
         //{ id: 'garbodor', pokemon: { name: 'Garbodor', pokedexNumber: '0569', typeIndexes: [3], image: 'GARBODOR.png' }, level: 40, gender: 'male' },
         //{ id: 'dragonair', pokemon: { name: 'Dragonair', pokedexNumber: '0158', typeIndexes: [16], image: 'DRAGONAIR.png' }, level: 40, gender: 'female' },
         //{ id: 'druddigon', pokemon: { name: 'Druddigon', pokedexNumber: '0621', typeIndexes: [16], image: 'DRUDDIGON.png' }, level: 45, gender: 'male' },
         //{ id: 'haxorus', pokemon: { name: 'Haxorus', pokedexNumber: '0384', typeIndexes: [16], image: 'HAXORUS.png' }, level: 62, gender: 'female' },
-        { id: 'rayquaza', pokemon: { name: 'Rayquaza', pokedexNumber: '0612', typeIndexes: [16, 2], image: 'RAYQUAZA.png' }, level: 75, gender: 'male' },
+        //{ id: 'rayquaza', pokemon: { name: 'Rayquaza', pokedexNumber: '0612', typeIndexes: [16, 2], image: 'RAYQUAZA.png' }, level: 75, gender: 'male' },
         //{ id: 'bulbasaur', pokemon: { name: 'Bulbasaur', pokedexNumber: '0001', typeIndexes: [12, 3], image: 'BULBASAUR.png' }, level: 12, gender: 'male' },
         //{ id: 'cyndaquil', pokemon: { name: 'Cyndaquil', pokedexNumber: '0155', typeIndexes: [10], image: 'CYNDAQUIL.png' }, level: 11, gender: 'male' },
         //{ id: 'mudkip', pokemon: { name: 'Mudkip', pokedexNumber: '0258', typeIndexes: [11], image: 'MUDKIP.png' }, level: 13, gender: 'male' },
@@ -64,10 +64,10 @@ const PokemonTeamGridArea: FC<PokemonTeamGridAreaProps> = ({ ref }) => {
         //{ id: 'braviary', pokemon: { name: 'Braviary', pokedexNumber: '0628', typeIndexes: [2, 0], image: 'BRAVIARY.png' }, level: 54, gender: 'female' },
         //{ id: 'zarude', pokemon: { name: 'Zarude', pokedexNumber: '0893', typeIndexes: [17, 12], image: 'ZARUDE.png' }, level: 49, gender: 'male' },
         //{ id: 'honchkrow', pokemon: { name: 'Honchkrow', pokedexNumber: '0430', typeIndexes: [17, 2], image: 'HONCHKROW.png' }, level: 53, gender: 'female' },
-        { id: 'dialga', pokemon: { name: 'Dialga', pokedexNumber: '0483', typeIndexes: [8, 16], image: 'DIALGA.png' }, level: 75, gender: 'male' },
-        { id: 'lugia', pokemon: { name: 'Lugia', pokedexNumber: '0249', typeIndexes: [14, 2], image: 'LUGIA.png' }, level: 75, gender: 'female' },
-        { id: 'mew', pokemon: { name: 'Mew', pokedexNumber: '0151', typeIndexes: [14], image: 'MEW.png' }, level: 75, gender: 'female' },
-        { id: 'xurkitree', pokemon: { name: 'Xurkitree', pokedexNumber: '0796', typeIndexes: [13], image: 'XURKITREE.png' }, level: 75, gender: 'male' },
+        //{ id: 'dialga', pokemon: { name: 'Dialga', pokedexNumber: '0483', typeIndexes: [8, 16], image: 'DIALGA.png' }, level: 75, gender: 'male' },
+        //{ id: 'lugia', pokemon: { name: 'Lugia', pokedexNumber: '0249', typeIndexes: [14, 2], image: 'LUGIA.png' }, level: 75, gender: 'female' },
+        //{ id: 'mew', pokemon: { name: 'Mew', pokedexNumber: '0151', typeIndexes: [14], image: 'MEW.png' }, level: 75, gender: 'female' },
+        //{ id: 'xurkitree', pokemon: { name: 'Xurkitree', pokedexNumber: '0796', typeIndexes: [13], image: 'XURKITREE.png' }, level: 75, gender: 'male' },
 
     ]);
 
@@ -112,13 +112,18 @@ const PokemonTeamGridArea: FC<PokemonTeamGridAreaProps> = ({ ref }) => {
         });
     };
 
+    const handleHover = (event: React.MouseEvent<HTMLDivElement>, isHovered: boolean) => {
+        event.currentTarget.style.boxShadow = isHovered ? '0px 0px 5px 0px white' : 'none';
+    };
+
     return (
         <DndContext collisionDetection={closestCenter} onDragOver={handleDragOver} onDragEnd={handleDragEnd}>
             <div className="PokemonTeamGridArea">
                 <div className="PokemonTeamGrid" ref={ref}>
                     {[0, 1, 2, 3, 4, 5].map((i) => 
                         <div className='PokemonSlot' key={i}>
-                            <div className="PokemonCardEmpty" key={i}>
+                            <div className="PokemonCardEmpty" onMouseEnter={(e) => handleHover(e, true)} 
+                                onMouseLeave={(e) => handleHover(e, false)} key={i}>
                                 {i >= pokemonTeam.length && <div className="EmptyPlaceholder" key={i}/>}
                             </div>
                         </div>

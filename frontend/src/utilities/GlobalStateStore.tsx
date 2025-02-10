@@ -16,7 +16,7 @@ const trainerPlaceholder: TrainerSchema = {
     description: ' ',
     player_trainer: false,
     image: '/assets/profile_placeholder.png',
-    color: 'rgb(0, 140, 226)'
+    color: 'black'
 };
 
 // Define the global state

@@ -1,5 +1,6 @@
 .CardTitleContainer {
     position: relative;
+    zindex: 0;
     width: 98%;
     height: fit-content;
     padding-block: 6.075px;
@@ -9,6 +10,7 @@
 .CardTitle {
     position: relative;
     width: 100%;
+    z-index: 2;
     height: fit-content;
     //padding-block: 6.075px;
     //margin-right: 6.075px;

@@ -31,10 +31,9 @@ const NavSection: React.FC<NavSectionProps> = ({ pageNumber, currentPage, setCur
                 backgroundImage: `url('${pathPrefix + info.icon}')`
             }}/>
             <div className={`IconTitle${isActive ? " active" : ""}`}>{info.title}</div>
-            <div className={`TrainerIcon${isActive ? " active" : ""}`} style={{
-                backgroundImage: `url('${pathPrefix + info.trainer}')`,
-                
-            }}/>
+            {/* <div className={`TrainerIcon${isActive ? " active" : ""}`} style={{
+                backgroundImage: `url('${pathPrefix + info.trainer}')`,  
+            }}/> */}
         </div>
     )
 
