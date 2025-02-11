@@ -1,18 +1,9 @@
-// export interface Move {
-//     id?: number;
-//     type_id: number;
-//     name: string;
-//     description: string;
-//     category: string;
-//     power: number;
-//     accuracy: number;
-//     pp: number;
-// }
-
+import { db } from "../database/db";
 import { MoveCategory } from "../enums/MoveEnums";
 
-interface Move {
+export interface Move {
     id: string;
+    type_id: number;
     name: string;
     description: string;
     category: string;
@@ -26,6 +17,26 @@ export const MoveSchema = {
         id: {
             validator: (id: any): boolean => typeof id === 'number',
             message: 'id must be a number',
+            type: 'number'
+        },
+        type_id: {
+            validator: async (id: any): Promise<boolean> => {
+                // Check if id is a number
+                if (typeof id !== 'number') {
+                    throw new Error('id must be a number');
+                }
+        
+                // Query to check if the type_id exists in the types table
+                const result = await db.prepare('SELECT 1 FROM types WHERE id = ?').get(id);
+                
+                // Return true if a record exists, otherwise false
+                if (result) {
+                    return true;
+                } else {
+                    throw new Error('id must be a valid type_id in the types table');
+                }
+            },
+            message: 'id must be a number and exist in the types table',
             type: 'number'
         },
         name: {
