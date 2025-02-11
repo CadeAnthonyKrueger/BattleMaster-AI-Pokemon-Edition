@@ -19,6 +19,7 @@ interface PokemonRaw {
     pokedex_entry: string;
     generation: number;
     evolutions: { name: string, method: string, level?: number, condition?: string };
+    flags: string[];
     image: string;
 }
 
@@ -55,9 +56,27 @@ const statement = (key: string, value: string, row: Partial<any>) => {
         }
         return acc;
       }, []); break;
+      case 'Flags': row.flags = value.split(','); break;
   }
 }
 
 const pokemonDataRaw: PokemonRaw[] = parseData('pokemon.txt', statement);
 
-console.log(pokemonDataRaw);
+//console.log(pokemonDataRaw.map((obj) => obj.flags).filter((flag) => flag !== undefined));
+
+// const uniqueFlags = [...new Set(pokemonDataRaw.map((obj) => obj.flags).filter((flag) => flag !== undefined))];
+
+// console.log(uniqueFlags);
+
+// [
+//   'HasGenderedSprites',
+//   'Legendary',
+//   'Mythical',
+//   'InheritFormFromMother',
+//   'DefaultForm_0',
+//   'UltraBeast',
+//   'DefaultForm_1',
+//   'InheritFormWithEverStone',
+//   'DefaultForm_2',
+//   'InheritFormWithEverStone'
+// ]
