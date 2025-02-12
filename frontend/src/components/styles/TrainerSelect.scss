@@ -72,6 +72,7 @@
 
 .CloseSelectMenu {
     position: absolute;
+    z-index: 1000000;
     top: 5px;
     right: 5px;
     height: 30px;
