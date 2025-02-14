@@ -13,7 +13,7 @@ const OverlayPane = ({ contentRef }: { contentRef: RefObject<HTMLDivElement | nu
         const ref = self.current;
         const active = overlays.filter((o) => o.flag == true).length;
         if (active > 0 && container && ref) {
-            container.style.filter = 'blur(4px)';
+            container.style.filter = 'blur(10px)';
             ref.style.pointerEvents = 'all';
         }
         if (active <= 0 && container && ref) {

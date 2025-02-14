@@ -9,93 +9,57 @@
     overflow: hidden;
 }
 
-.TooltipContainer {
-    height: 50%;
-    width: 50%;
-    background-color: rgb(255, 255, 255);
+.Underlying {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: filter 0.3s ease;
 }
 
-// .Tooltip {
-//     border-radius: 5px;
-//     height: fit-content;
-//     width: fit-content;
-//     padding: 10px;
-//     background-color: rgb(30, 30, 30, 1);
-//     background: linear-gradient(to bottom, rgba(30, 30, 30, 0.5), rgb(30, 30, 30, 1) 50%);
-//     position: absolute;
-//     top: 50%;
-//     left: 50%;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     transform: translateX(-50%) translateY(-50%);
-//     font-size: 15px;
-//     font-family: "Public Pixel", sans-serif;
-//     color: white;
-// }
-
-// .Tooltip::after {
-//     content: '';
-//     position: absolute;
-//     background-color: rgb(30, 30, 30, 1);
-//     height: 30%;
-//     aspect-ratio: 1/1;
-//     bottom: 0;
-//     left: 50%;
-//     transform: translateX(-50%) translateY(50%) rotate(-135deg);
-//     //clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.DndGridArea {
-    position: relative;
-    height: 50%;
-    aspect-ratio: 3/2;
-    //background-color: rgb(54, 54, 54);
+.Underlying.overlayActive {
+    filter: blur(10px);
 }
 
-.DndGrid {
+.MenuButtons {
+    height: 200px;
+    width: 620px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.MenuButton {
+    background-color: black;
+    user-select: none;
+    color: white;
+    height: 90%;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.MenuButton:hover {
+    outline: 2px solid red;
+}
+
+.MenuButton:active {
+    transform: scale(0.94);
+}
+
+.Overlying {
     position: absolute;
-    padding: 10px;
-    height: calc(100% - 20px);
-    width: calc(100% - 20px);
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 10px;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
 }
 
-.GridSlot {
-    cursor: grab;
-}
-
-.GridSlot:active {
-    cursor: grabbing;
+.Overlying.overlayActive {
+    pointer-events: all;
 }

@@ -120,7 +120,8 @@ export const TooltipProvider: React.FC<TooltipProviderProps> = ({ children }) =>
             {children}
             {tooltip && (
                 <div className="Tooltip" style={{ 
-                    top: `${tooltip.position.y}px`, left: `${tooltip.position.x}px`, transform: orientations[tooltip.orient].transform 
+                    top: `${tooltip.position.y}px`, left: `${tooltip.position.x}px`, transform: orientations[tooltip.orient].transform,
+                    zIndex: 1000000000000
                 }}>
                     {tooltip.title}
                     <div className="TooltipArrow" style={{ ...{ 

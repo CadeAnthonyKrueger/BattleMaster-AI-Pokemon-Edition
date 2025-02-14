@@ -1,0 +1,88 @@
+.SortFilterOptions {
+    position: relative;
+    height: 0;
+    width: 95%;
+    display: flex;
+    transition: height 0.3s ease;
+}
+
+.SortFilterOptions.sort {
+    border-bottom: solid 2px rgba(255, 255, 255, 0.1);
+}
+
+.SortFilterOptions.expanded {
+    height: fit-content;
+    box-sizing: border-box;
+}
+
+.OptionTypeContainer {
+    height: 100%;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.OptionTypeTitle {
+    height: fit-content;
+    width: fit-content;
+    color: white;
+    font-size: 10px;
+    font-family: "Public Pixel", sans-serif;
+    opacity: 0.4;
+    padding-inline: 3px;
+}
+
+.ClearSortFilterSelections {
+    height: fit-content;
+    width: fit-content;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.01);
+    align-self: center;
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: 1px;
+    padding-inline: 4px;
+    margin-inline: 15px;
+    color: white;
+    font-size: 10px;
+    font-family: "Pixelify Sans", sans-serif;
+    user-select: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.ClearSortFilterSelections:hover {
+    transform: scale(1.05);
+}
+
+.ClearSortFilterSelections:active {
+    transform: scale(0.99);
+}
+
+.SortFilterOptionsContainer {
+    height: fit-content;
+    width: auto;
+    flex: 1 1;
+    display: flex;
+    padding-right: 2.5%;
+    padding-left: 1px;
+    padding-block: 8px;
+    overflow-x: scroll;
+    align-items: center;
+    &::-webkit-scrollbar {
+        display: flex;
+        height: 2px;
+        background-color: rgba(31, 31, 31, 0.6);
+    }
+    &::-webkit-scrollbar-thumb {
+        display: flex;
+        height: 2px;
+        background-color: rgba(71, 71, 71, 0.6);
+    }
+
+    -webkit-mask: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 10%);
+    mask: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 10%);
+}

@@ -43,7 +43,7 @@ const TrainerView = () => {
         <div className="TrainerView">
             <div className="Header">
                 <div className="Title">My Trainer</div>
-                <SupportPokeball />
+                <SupportPokeball/>
             </div>
             <div className="Options" ref={optionsRef}>
                 <div className="TrainerCardArea">

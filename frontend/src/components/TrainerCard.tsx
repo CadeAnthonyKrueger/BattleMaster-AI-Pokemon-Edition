@@ -131,7 +131,6 @@ const TrainerCard: React.FC<TrainerCardProps> = ({ id, trainer, isSelect = false
     };
 
     return (
-
         <div className={
             `TrainerCard ${isMinimized ? 'minimized' : ''} ${isSelect ? 'select' : ''} ${isSelect && isTrainerChoice ? 'choice' : ''} ${isSelect && cardWidth ? 'isLastRow' : ''}`
         } onClick={handleSelect} id={`${id}`} style={cardWidth ? { width: cardWidth } : {}}>
