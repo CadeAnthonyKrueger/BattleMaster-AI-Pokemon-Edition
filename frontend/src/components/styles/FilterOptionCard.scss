@@ -45,13 +45,19 @@
     justify-content: center;
     align-items: center;
     height: fit-content;
+    width: fit-content;
     border-radius: 2px;
-    font-size: 14px;
+    font-size: 9px;
     background-color: rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
-    width: 18px;
-    font-family: sans-serif;
+    //width: 18px;
+    padding-inline: 3px;
+    font-family: "Pixelify Sans", sans-serif;
     pointer-events: none;
+}
+
+.ConditionButton.conditionSelected {
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .ConditionButton.conditionSelected {
@@ -61,7 +67,8 @@
 .NumberConditionInput {
     margin-inline: 3px;
     width: 28px;
-    height: 20px;
+    font-size: 12px;
+    height: fit-content;
     background-color: transparent;
     border: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);

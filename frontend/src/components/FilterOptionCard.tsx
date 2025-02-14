@@ -11,35 +11,20 @@ interface FilterOptionCardProps {
 const FilterOptionCard: FC<FilterOptionCardProps> = ({ option, optionsSelected, setOptionsSelected }) => {
 
     const [isSelected, setIsSelected] = useState<boolean>(false);
-    const [isAsc, setIsAsc] = useState<boolean>(true);
 
     const handleClick = () => {
-        if (isSelected) {
-            setIsAsc(!isAsc);
-            if (!isAsc) {
-                setIsSelected(false);
-                setOptionsSelected(prev => {
-                    return {
-                        ...prev,
-                        filtersSelected: prev.filtersSelected.filter(item => item !== option)
-                    };
-                });
-            }
-        } else {
-            setIsSelected(true);
-            setOptionsSelected(prev => {
-                return {
-                    ...prev,
-                    filtersSelected: [...prev.filtersSelected, option]
-                };
-            });
-        }
+        setOptionsSelected(prev => {
+            return {
+                ...prev,
+                filtersSelected: isSelected ? prev.filtersSelected.filter(item => item !== option) : [...prev.filtersSelected, option]
+            };
+        });
+        setIsSelected(prev => !prev);
     };
 
     useEffect(() => {
         if (optionsSelected.filtersSelected.length === 0) {
             setIsSelected(false);
-            setIsAsc(true);
         }
     }, [optionsSelected.filtersSelected]);
 
@@ -47,7 +32,7 @@ const FilterOptionCard: FC<FilterOptionCardProps> = ({ option, optionsSelected, 
         <div className={`FilterOptionCard ${isSelected ? 'optionSelected' : ''}`} onClick={handleClick}>
             {option}
             <div className={`FilterConditionContainer`}>
-                {['>'].map((cond) => <div className='ConditionButton'>{cond}</div>)}
+                {['⇄'].map((cond) => <div className='ConditionButton'>{cond}</div>)}
                 <input className='NumberConditionInput' placeholder="0"/>
             </div>
         </div>
