@@ -1,6 +1,7 @@
 import React, { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
 import "./styles/FilterOptionCard.scss";
 import { OptionsSelected } from "../views/SelectMenu";
+import FilterConditionContainer from "./FilterConditionContainer";
 
 interface FilterOptionCardProps {
     option: string;
@@ -11,6 +12,7 @@ interface FilterOptionCardProps {
 const FilterOptionCard: FC<FilterOptionCardProps> = ({ option, optionsSelected, setOptionsSelected }) => {
 
     const [isSelected, setIsSelected] = useState<boolean>(false);
+    const [betweenConditionSelected, setBetweenConditionSelected] = useState<boolean>(false);
 
     const handleClick = () => {
         setOptionsSelected(prev => {
@@ -28,13 +30,19 @@ const FilterOptionCard: FC<FilterOptionCardProps> = ({ option, optionsSelected, 
         }
     }, [optionsSelected.filtersSelected]);
 
+    console.log(betweenConditionSelected)
+
     return (
-        <div className={`FilterOptionCard ${isSelected ? 'optionSelected' : ''}`} onClick={handleClick}>
+        <div 
+            className={`FilterOptionCard ${isSelected ? 'optionSelected' : ''}`} 
+            onClick={handleClick} 
+            //onMouseLeave={(event) => handleConditionMenuChange(event, false)}
+        >
+            {betweenConditionSelected && 
+                <FilterConditionContainer isSelected={isSelected} isBefore={true}/>
+            }
             {option}
-            <div className={`FilterConditionContainer`}>
-                {['⇄'].map((cond) => <div className='ConditionButton'>{cond}</div>)}
-                <input className='NumberConditionInput' placeholder="0"/>
-            </div>
+            <FilterConditionContainer isSelected={isSelected} isBefore={false} setBetweenConditionSelected={setBetweenConditionSelected}/>
         </div>
     );
 };

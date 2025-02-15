@@ -21,18 +21,18 @@ export interface FetchTrainersParams {
 export const fetchTrainerById = async (id: number) => {
     try {
         const response = await axios.get(`http://localhost:3001/trainers/getById/${id}`);
-        return response.data as TrainerSchema; // Return the data from the API response
+        return response.data as TrainerSchema;
     } catch (error) {
-        throw error; // If the request fails, throw the error
+        throw error;
     }
 };
 
 export const fetchTrainers = async (params: FetchTrainersParams = {}) => {
     try {
         const response = await axios.post("http://localhost:3001/trainers/get", params);
-        return response.data as TrainerSchema[]; // Return the data from the API response
+        return response.data as TrainerSchema[];
     } catch (error) {
-        throw error; // If the request fails, throw the error
+        throw error;
     }
 };
 
