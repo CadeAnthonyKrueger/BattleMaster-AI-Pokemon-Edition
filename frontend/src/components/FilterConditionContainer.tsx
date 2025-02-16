@@ -18,7 +18,7 @@ const FilterConditionContainer: FC<FilterConditionContainerProps> = ({ isSelecte
         e.stopPropagation();
         if (isOpening) {
             setConditionMenuOpen(prev => !prev);
-            setConditions(['>', '=', '<', '⇄']);
+            setConditions(isBefore ? ['>', '<', 'x'] : ['>', '=', '<', '⇄']);
         } else {
             setConditionMenuOpen(false);
             setConditions([conditionSelected]);

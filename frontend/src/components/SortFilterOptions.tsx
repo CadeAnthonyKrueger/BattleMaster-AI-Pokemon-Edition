@@ -2,13 +2,13 @@ import React, { Dispatch, FC, SetStateAction, useState } from "react";
 import "./styles/SortFilterOptions.scss";
 import SortOptionCard from "./SortOptionCard";
 import { toTitleCase } from "../utilities/HelperFunctions";
-import { OptionsSelected } from "../views/SelectMenu";
+import { FilterOptions, OptionsSelected } from "../views/SelectMenu";
 import FilterOptionCard from "./FilterOptionCard";
 
 interface SortFilterOptionsProps {
     optionType: string;
     expanded: boolean;
-    options: string[];
+    options: string[] | FilterOptions[];
     optionsSelected: OptionsSelected;
     setOptionsSelected: Dispatch<SetStateAction<OptionsSelected>>;
 }
@@ -32,10 +32,18 @@ const SortFilterOptions: FC<SortFilterOptionsProps> = ({ optionType, expanded, o
                 </div>
                 <div className='SortFilterOptionsContainer' style={{ visibility: `${expanded ? 'visible' : 'hidden'}`}}>
                     {optionType === 'sort' && options.map((option) => 
-                        <SortOptionCard option={option} optionsSelected={optionsSelected} setOptionsSelected={setOptionsSelected}/>
+                        <SortOptionCard 
+                            option={option as string} 
+                            optionsSelected={optionsSelected} 
+                            setOptionsSelected={setOptionsSelected}
+                        />
                     )}
                     {optionType === 'filter' && options.map((option) => 
-                        <FilterOptionCard option={option} optionsSelected={optionsSelected} setOptionsSelected={setOptionsSelected}/>
+                        <FilterOptionCard 
+                            option={option as FilterOptions} 
+                            optionsSelected={optionsSelected} 
+                            setOptionsSelected={setOptionsSelected}
+                        />
                     )}
                 </div>
                 <div 
