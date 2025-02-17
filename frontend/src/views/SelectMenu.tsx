@@ -51,18 +51,16 @@ const SelectMenu: FC<SelectMenuProps> = ({ currentMenu }) => {
     // Animation for menu transition
     const [menuClosing, setMenuClosing] = useState<boolean>(false);
 
-    const { className, styles } = useAnchorMenuTransition({
-        baseRef,
-        finalClassName: useClassNameBuilder("SelectMenu", [
-            { cond: filterClicked, class: "filterMenuOpen" },
-            { cond: sortByClicked, class: "sortByMenuOpen" },
-        ]),
-        menuClosing,
-        closeMenu,
-    });
+    const { className, styles } = useAnchorMenuTransition({ baseRef, finalClassName: 'SelectMenu', menuClosing, closeMenu });
+
+    // Class name for css
+    const selectMenu = useClassNameBuilder(className, [
+        { cond: filterClicked, class: 'filterMenuOpen' },
+        { cond: sortByClicked, class: 'sortByMenuOpen' }
+    ])
 
     return (
-        <div className={className} style={styles.menu}>
+        <div className={selectMenu} style={styles.menu}>
             <div className='SelectContent' style={styles.content}>
                 <CardTitleContainer text={`${toTitleCase(currentMenu as string)} Select`} style={{ width: '95%', marginTop: '3.65px' }}/>
                 <SelectSearchContainer 
