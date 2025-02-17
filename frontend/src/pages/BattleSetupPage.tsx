@@ -3,8 +3,8 @@ import "./styles/BattleSetupPage.scss";
 import NavigationView from "../views/NavigationView";
 import TrainerView from "../views/TrainerView";
 import OverlayPane from "../views/OverlayPane";
-import { OverlayProvider } from "../utilities/OverlayContext";
-import { TooltipProvider } from "../utilities/TooltipContext";
+import { OverlayProvider } from "../utils/OverlayContext";
+import { TooltipProvider } from "../contexts/TooltipContext";
 
 const BattleSetupPage = () => {
 

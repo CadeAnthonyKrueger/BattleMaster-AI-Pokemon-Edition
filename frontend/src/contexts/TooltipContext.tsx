@@ -2,8 +2,8 @@ import React, { createContext, useContext, useState, useEffect, useRef, ReactNod
 import '../pages/styles/BattleSetupPage.scss';
 
 interface TooltipContextType {
-    registerTooltip: (ref: React.RefObject<HTMLDivElement> | HTMLDivElement, title: string, orient?: string, active?: boolean) => void;
-    unregisterTooltip: (ref: React.RefObject<HTMLDivElement> | HTMLDivElement) => void;
+    registerTooltip: (ref: React.RefObject<HTMLDivElement | null> | HTMLDivElement, title: string, orient?: string, active?: boolean) => void;
+    unregisterTooltip: (ref: React.RefObject<HTMLDivElement | null> | HTMLDivElement) => void;
 }
 
 const TooltipContext = createContext<TooltipContextType | undefined>(undefined);
@@ -31,7 +31,7 @@ interface TooltipOrientation {
 
 export const TooltipProvider: React.FC<TooltipProviderProps> = ({ children }) => {
     const [tooltip, setTooltip] = useState<{ title: string; orient: string, position: { x: number; y: number } } | null>(null);
-    const elementsRef = useRef<Map<React.RefObject<HTMLDivElement> | HTMLDivElement, string>>(new Map());
+    const elementsRef = useRef<Map<React.RefObject<HTMLDivElement | null> | HTMLDivElement, { title: string; handlers: (() => void)[] }>>(new Map());
 
     const orientations: TooltipOrientation = {
         'top': { 
@@ -64,10 +64,9 @@ export const TooltipProvider: React.FC<TooltipProviderProps> = ({ children }) =>
         return () => { elementsRef.current.clear(); };
     }, []);
 
-    let handlers: (() => void)[] = [];
-
-    const registerTooltip = (ref: RefObject<HTMLDivElement> | HTMLDivElement, title: string, orient: string = 'top', active: boolean = false) => {
-        elementsRef.current.set(ref, title);
+    const registerTooltip = (ref: RefObject<HTMLDivElement | null> | HTMLDivElement, title: string, orient: string = 'top', active: boolean = false) => {
+        
+        if (ref) elementsRef.current.set(ref, { title: title, handlers: [] });
 
         const element = (ref instanceof HTMLDivElement) ? ref : ref.current;
         if (element) {
@@ -85,8 +84,7 @@ export const TooltipProvider: React.FC<TooltipProviderProps> = ({ children }) =>
             };
 
             if (active) handleMouseEnter();
-            handlers.push(handleMouseEnter);
-            handlers.push(handleMouseLeave);
+            elementsRef.current.get(element)?.handlers.push(handleMouseEnter, handleMouseLeave);
 
             element.addEventListener('mouseenter', handleMouseEnter);
             element.addEventListener('mouseleave', handleMouseLeave);
@@ -98,20 +96,18 @@ export const TooltipProvider: React.FC<TooltipProviderProps> = ({ children }) =>
         }
     };
 
-    const unregisterTooltip = (ref: React.RefObject<HTMLDivElement> | HTMLDivElement) => {
-        //console.log(ref);
-    
-        // Get the actual DOM element
+    const unregisterTooltip = (ref: React.RefObject<HTMLDivElement | null> | HTMLDivElement) => {
         const element = ref instanceof HTMLElement ? ref : ref.current;
+        if (!ref || !element) return;
+        const handlers = elementsRef.current.get(element)?.handlers;
         
-        if (element) {
+        if (element && handlers) {
             element.removeEventListener('mouseenter', handlers[0]);
             element.removeEventListener('mouseleave', handlers[1]);
             setTooltip(null);
         }
     
         elementsRef.current.delete(ref);
-        //console.log(elementsRef.current)
     };
     
 

@@ -1,7 +1,7 @@
 import React, { Dispatch, RefObject, SetStateAction, useEffect, useRef, useState } from "react";
 import "./styles/SettingButton.scss";
 import "./styles/TrainerCard.scss";
-import { useTooltip } from "../utilities/TooltipContext";
+import { useTooltip } from "../contexts/TooltipContext";
 
 export interface SettingButtonProps {
     title: string;

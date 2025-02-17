@@ -1,6 +1,6 @@
 import React, { RefObject, useEffect, useRef } from "react";
 import "./styles/OverlayPane.scss";
-import { useOverlay, OverlayContext, Overlay } from "../utilities/OverlayContext";
+import { useOverlay, OverlayContext, Overlay } from "../utils/OverlayContext";
 
 const OverlayPane = ({ contentRef }: { contentRef: RefObject<HTMLDivElement | null> }) => {
 

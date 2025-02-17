@@ -2,7 +2,7 @@ import React, { Dispatch, RefObject, SetStateAction, use, useEffect, useRef, use
 import "./styles/TrainerSelectCardContainer.scss";
 import TrainerCard from "./TrainerCard";
 import { fetchTrainers, FetchTrainersParams, TrainerSchema } from "../requests/TrainerRequests";
-import { useGlobalState } from "../utilities/GlobalStateStore";
+import { useGlobalState } from "../utils/GlobalStateStore";
 import { LayoutGroup } from "framer-motion";
 
 interface TrainerSelectCardContainerProps {

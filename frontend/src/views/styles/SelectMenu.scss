@@ -1,7 +1,7 @@
 .SelectMenu {
-    position: fixed;
+    position: absolute;
     z-index: 1000;
-    height: 60vh;
+    height: clamp(60vh, 60vh, 100vh);
     width: 50vw;
     top: 50%;
     left: 50%;
@@ -12,6 +12,29 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: opacity 0.1s ease, height 0.3s ease, all 1s ease;
+}
+
+.SelectMenu.filterMenuOpen {
+    height: clamp(calc(60vh + 57px), calc(60vh + 57px), 100vh);
+}
+
+.SelectMenu.sortByMenuOpen {
+    height: clamp(calc(60vh + 47.6px), calc(60vh + 47.6px), 100vh);
+}
+
+.SelectMenu.filterMenuOpen.sortByMenuOpen {
+    height: clamp(calc(60vh + 57px + 47.6px), calc(60vh + 57px + 47.6px), 100vh);
+}
+
+.SelectContent {
+    height: 100%;
+    width: 100%; 
+    opacity: 0; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: opacity 1s ease;
 }
 
 .CloseSelectMenu {

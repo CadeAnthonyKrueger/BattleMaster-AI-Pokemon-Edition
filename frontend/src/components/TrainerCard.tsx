@@ -5,10 +5,10 @@ import "./styles/SettingButton.scss";
 import DescriptionContainer from "./DescriptionContainer";
 import ControlsContainer from "./ControlsContainer";
 import SettingButton from "./SettingButton";
-import { useOverlay } from "../utilities/OverlayContext";
-import { TrainerSelectOverlay } from "../utilities/Overlays";
+import { useOverlay } from "../utils/OverlayContext";
+import { TrainerSelectOverlay } from "../utils/Overlays";
 import { fetchTrainerById, TrainerSchema } from "../requests/TrainerRequests";
-import { useGlobalState } from "../utilities/GlobalStateStore";
+import { useGlobalState } from "../utils/GlobalStateStore";
 import CardTitleContainer from "./CardTitleContainer";
 
 interface TrainerCardProps {

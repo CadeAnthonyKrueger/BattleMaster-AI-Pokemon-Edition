@@ -11,43 +11,65 @@
 .Filter {
     height: 50%;
     aspect-ratio: 1/1;
-    background-image: url(../../../public/assets/filter.png);
+    background-image: url(../../../../public/assets/filter.png);
     background-position: 0 0;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     filter: invert(1);
     margin-left: 5px;
     opacity: 0.1;
-    transition: opacity 0.3s ease, background-color 0.3s ease;
+    transition: all 0.3s ease;
     cursor: pointer;
+}
+
+.Filter.isOpen {
+    opacity: 0.5;
 }
 
 .Filter:hover {
     opacity: 0.5;
 }
 
+.Filter:active {
+    transform: scale(0.95);
+}
+
+.Filter.optionsSelected {
+    opacity: 0.9;
+    filter: none;
+    background-image: url(../../../../public/assets/filter_blue.png);
+}
+
 .SortBy {
     height: 50%;
     aspect-ratio: 1/1;
-    background-image: url(../../../public/assets/sortby.png);
+    background-image: url(../../../../public/assets/sortby.png);
     background-position: 0 0;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     filter: invert(1);
     margin-left: 5px;
     opacity: 0.1;
-    transition: opacity 0.3s ease;
+    transition: all 0.3s ease;
     cursor: pointer;
+}
+
+.SortBy.isOpen {
+    opacity: 0.5;
 }
 
 .SortBy:hover {
     opacity: 0.5;
 }
 
+.SortBy:active {
+    transform: scale(0.95);
+}
+
 .SortBy.optionsSelected {
     opacity: 0.9;
     filter: none;
-    background-image: url(../../../public/assets/sortby_blue.png);
+    background-image: url(../../../../public/assets/sortby_blue.png);
 }
 
 .LayoutContainer {

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./styles/DragAndDropTestPage.scss";
 import SelectMenu from "../views/SelectMenu";
-import { useSelectMenuStore } from "../global_stores/SelectMenuStore";
-import { TooltipProvider } from "../utilities/TooltipContext";
+import { useSelectMenuStore } from "../stores/SelectMenuStore";
+import { TooltipProvider } from "../contexts/TooltipContext";
 
 const DragAndDropTestPage = () => {
 
@@ -15,7 +15,13 @@ const DragAndDropTestPage = () => {
       <div className="DragAndDropTestPage">
         <div className={`Underlying ${selectMenuActive ? 'overlayActive' : ''}`}>
           <div className="MenuButtons">
-            {menuButtons.map((button) => <div className='MenuButton' onClick={() => openMenu(button.toLowerCase())}>{button} Menu</div>)}
+            {menuButtons.map((button) => 
+              <div className='MenuButton' key={button} onClick={
+                (e) => openMenu(button.toLowerCase(), e.currentTarget)
+              }>
+                {button} Menu
+              </div>
+            )}
           </div>
         </div>
         <div className={`Overlying ${selectMenuActive ? 'overlayActive' : ''}`}>

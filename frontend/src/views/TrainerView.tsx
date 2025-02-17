@@ -5,7 +5,7 @@ import TrainerCard from "../components/TrainerCard";
 import TeamOptions from "../components/TeamOptions";
 import PokemonTeam from "../components/PokemonTeam";
 import { TrainerSchema } from "../requests/TrainerRequests";
-import { useGlobalState } from "../utilities/GlobalStateStore";
+import { useGlobalState } from "../utils/GlobalStateStore";
 
 export interface SelectedTrainer { 
     current: TrainerSchema; 

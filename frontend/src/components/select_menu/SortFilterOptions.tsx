@@ -1,19 +1,23 @@
-import React, { Dispatch, FC, SetStateAction, useState } from "react";
+import React, { Dispatch, FC, SetStateAction, useEffect, useRef, useState } from "react";
 import "./styles/SortFilterOptions.scss";
 import SortOptionCard from "./SortOptionCard";
-import { toTitleCase } from "../utilities/HelperFunctions";
-import { FilterOptions, OptionsSelected } from "../views/SelectMenu";
+import { FilterOptions, OptionsSelected } from "../../views/SelectMenu";
 import FilterOptionCard from "./FilterOptionCard";
 
 interface SortFilterOptionsProps {
     optionType: string;
     expanded: boolean;
+    closeMenu: Dispatch<SetStateAction<boolean>>;
     options: string[] | FilterOptions[];
     optionsSelected: OptionsSelected;
     setOptionsSelected: Dispatch<SetStateAction<OptionsSelected>>;
 }
 
-const SortFilterOptions: FC<SortFilterOptionsProps> = ({ optionType, expanded, options, optionsSelected, setOptionsSelected }) => {
+const SortFilterOptions: FC<SortFilterOptionsProps> = ({ optionType, expanded, closeMenu, options, optionsSelected, setOptionsSelected }) => {
+
+    const scrollRef = useRef<HTMLDivElement>(null);
+    const [filtersReset, setFiltersReset] = useState<boolean>(false);
+    const [sortByReset, setSortByReset] = useState<boolean>(false);
 
     const handleReset = () => {
         setOptionsSelected(prev => {
@@ -21,21 +25,29 @@ const SortFilterOptions: FC<SortFilterOptionsProps> = ({ optionType, expanded, o
                 filtersSelected: optionType === 'filter' ? [] : prev.filtersSelected,
                 sortBySelected: optionType === 'sort' ? [] : prev.sortBySelected
             }
-        })
+        });
     };
 
     return (
         <div className={`SortFilterOptions ${optionType} ${expanded ? 'expanded' : ''}`}>
             <>
                 <div className="OptionTypeContainer" style={{ visibility: `${expanded ? 'visible' : 'hidden'}`}}>
-                    <div className='OptionTypeTitle'>{toTitleCase(optionType)} By:</div>
+                    <div 
+                        className={`OptionTypeIcon ${optionType === 'filter' ? 'filter' : 'sortBy'}`} 
+                        onClick={() => closeMenu(false)}
+                    />
                 </div>
-                <div className='SortFilterOptionsContainer' style={{ visibility: `${expanded ? 'visible' : 'hidden'}`}}>
+                <div 
+                    className='SortFilterOptionsContainer' 
+                    style={{ visibility: `${expanded ? 'visible' : 'hidden'}`}}
+                    ref={scrollRef}
+                >
                     {optionType === 'sort' && options.map((option) => 
                         <SortOptionCard 
                             option={option as string} 
                             optionsSelected={optionsSelected} 
                             setOptionsSelected={setOptionsSelected}
+                            parent={scrollRef}
                         />
                     )}
                     {optionType === 'filter' && options.map((option) => 
@@ -43,6 +55,7 @@ const SortFilterOptions: FC<SortFilterOptionsProps> = ({ optionType, expanded, o
                             option={option as FilterOptions} 
                             optionsSelected={optionsSelected} 
                             setOptionsSelected={setOptionsSelected}
+                            parent={scrollRef}
                         />
                     )}
                 </div>

@@ -1,0 +1,33 @@
+.FilterOptionCard {
+    height: fit-content;
+    width: fit-content;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: "Public Pixel", sans-serif;
+    font-size: 9px;
+    text-wrap: nowrap;
+    background-color: rgba(32, 32, 32, 0.7);
+    padding: 8px;
+    margin-inline: 3px;
+    border-radius: 5px;
+    user-select: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.FilterOptionCard.optionSelected {
+    background-color: rgb(0, 140, 226);
+    color: rgb(255, 255, 255);
+}
+
+.FilterOptionCard:hover {
+    color: rgba(255, 255, 255, 0.9);
+    transform: scale(1.02);
+}
+
+.FilterOptionCard:active {
+    transform: scale(0.98);
+}

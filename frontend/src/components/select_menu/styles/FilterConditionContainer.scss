@@ -1,0 +1,42 @@
+.FilterConditionContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: width 0.3s ease;
+}
+
+.NumberConditionInput {
+    margin-inline: 3px;
+    width: 28px;
+    font-size: 12px;
+    color: white;
+    height: fit-content;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    box-sizing: border-box;
+    font-family: sans-serif;
+    pointer-events: none;
+}
+
+.NumberConditionInput.isWritable {
+    pointer-events: all;
+}
+
+.NumberConditionInput::placeholder {
+    color: white;
+}
+
+.ConditionOptionsMenu {
+    position: relative;
+    height: fit-content;
+    width: 25px;
+    display: flex;
+    border-radius: 3px;
+    padding: 3px;
+    transition: width 0.3s ease;
+}
+
+.ConditionOptionsMenu.menuOpen {
+    width: 100px;
+}

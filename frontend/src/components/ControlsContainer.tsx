@@ -1,6 +1,6 @@
 import React, { FC, RefObject, useEffect, useRef, useState } from "react";
 import "./styles/ControlsContainer.scss";
-import { useTooltip } from "../utilities/TooltipContext";
+import { useTooltip } from "../contexts/TooltipContext";
 
 interface Control {
     title: string;

@@ -1,17 +1,21 @@
 import React, { Dispatch, FC, SetStateAction, useEffect, useRef, useState } from "react";
 import "./styles/SelectSearchContainer.scss";
-import SearchBar from "../components/SearchBar";
-import LayoutIcon from "../components/LayoutIcon";
-import { useTooltip } from "../utilities/TooltipContext";
-import { OptionsSelected } from "../views/SelectMenu";
+import SearchBar from "../SearchBar";
+import LayoutIcon from "../LayoutIcon";
+import { useTooltip } from "../../contexts/TooltipContext";
+import { OptionsSelected } from "../../views/SelectMenu";
 
 interface SelectSearchContainerProps {
+    filterClicked: boolean;
+    sortByClicked: boolean;
     setFilterClicked: Dispatch<SetStateAction<boolean>>;
     setSortByClicked: Dispatch<SetStateAction<boolean>>;
     optionsSelected: OptionsSelected;
 }
 
-const SelectSearchContainer: FC<SelectSearchContainerProps> = ({ setFilterClicked, setSortByClicked, optionsSelected }) => {
+const SelectSearchContainer: FC<SelectSearchContainerProps> = ({ 
+    filterClicked, sortByClicked, setFilterClicked, setSortByClicked, optionsSelected 
+}) => {
 
     // Layout vars
     const [layoutSelected, setLayoutSelected] = useState<boolean>(false);
@@ -34,12 +38,12 @@ const SelectSearchContainer: FC<SelectSearchContainerProps> = ({ setFilterClicke
         <div className="SelectSearchContainer">
             <SearchBar/>
             <div 
-                className={`Filter ${optionsSelected.filtersSelected.length > 0 ? 'optionsSelected' : ''}`} 
+                className={`Filter ${optionsSelected.filtersSelected.length > 0 ? 'optionsSelected' : ''} ${filterClicked ? 'isOpen' : ''}`} 
                 ref={(el) => { refs.current[0] = el; }} 
                 onClick={() => setFilterClicked(prev => !prev)}
             />
             <div 
-                className={`SortBy ${optionsSelected.sortBySelected.length > 0 ? 'optionsSelected' : ''}`} 
+                className={`SortBy ${optionsSelected.sortBySelected.length > 0 ? 'optionsSelected' : ''} ${sortByClicked ? 'isOpen' : ''}`} 
                 ref={(el) => { refs.current[1] = el; }} 
                 onClick={() => setSortByClicked(prev => !prev)}
             />

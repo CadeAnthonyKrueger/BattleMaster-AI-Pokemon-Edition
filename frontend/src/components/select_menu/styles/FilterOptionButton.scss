@@ -1,0 +1,28 @@
+.FilterOptionButton {
+    margin-inline: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15px;
+    aspect-ratio: 1/1;
+    border-radius: 2px;
+    font-size: 14px;
+    background-color: rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    padding-inline: 5px;
+    font-family: "Pixelify Sans", sans-serif;
+    pointer-events: none;
+    transition: transform 0.3s ease;
+}
+
+.FilterOptionButton.isClickable {
+    pointer-events: all;
+}
+
+.FilterOptionButton.isClickable:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.FilterOptionButton.conditionIsSelected {
+    background-color: rgba(0, 0, 0, 0.4);
+}

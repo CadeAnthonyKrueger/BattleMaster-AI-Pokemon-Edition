@@ -5,7 +5,7 @@
     font-family: "Public Pixel", sans-serif;
     font-size: 9px;
     text-wrap: nowrap;
-    background-color: rgb(32, 32, 32);
+    background-color: rgba(32, 32, 32, 0.7);
     padding: 8px;
     margin-inline: 3px;
     border-radius: 5px;
@@ -22,15 +22,15 @@
 
 .SortOptionCard:hover {
     color: rgba(255, 255, 255, 0.9);
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 .SortOptionCard:active {
-    transform: scale(0.95);
+    transform: scale(0.98);
 }
 
 .AscIndicator {
-    background-image: url(../../../public/assets/up_arrow.png);
+    background-image: url(../../../../public/assets/up_arrow.png);
     background-position: 0 0;
     background-repeat: no-repeat;
     background-size: 100% 100%;

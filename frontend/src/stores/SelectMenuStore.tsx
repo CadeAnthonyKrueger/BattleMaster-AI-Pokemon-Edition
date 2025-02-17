@@ -1,35 +1,41 @@
+import { RefObject, useRef } from "react";
+import { NormalModule } from "webpack";
 import { create } from "zustand";
 
 interface SelectMenuStore {
     selectMenuActive: boolean;
-    currentMenuActive: string | null; // New field to track the current active menu
+    currentMenuActive: string | null;
     pokemonMenuActive: boolean;
     trainerMenuActive: boolean;
     itemMenuActive: boolean;
-    openMenu: (menu: string) => void;
+    baseRef: HTMLElement | null;
+    openMenu: (menu: string, ref: HTMLElement) => void;
     closeMenu: () => void;
 }
 
 export const useSelectMenuStore = create<SelectMenuStore>((set) => ({
     selectMenuActive: false,
-    currentMenuActive: null,  // Initialize as null or default to 'pokemon' or any other menu
+    currentMenuActive: null,
     pokemonMenuActive: false,
     trainerMenuActive: false,
     itemMenuActive: false,
-
-    openMenu: (menu) => set(() => ({
+    baseRef: null,
+    
+    openMenu: (menu: string, ref: HTMLElement) => set(() => ({
         selectMenuActive: true,
-        currentMenuActive: menu, // Set the active menu to the selected menu
+        currentMenuActive: menu,
         pokemonMenuActive: menu === "pokemon",
         trainerMenuActive: menu === "trainer",
         itemMenuActive: menu === "item",
+        baseRef: ref
     })),
 
     closeMenu: () => set(() => ({
         selectMenuActive: false,
-        currentMenuActive: null,  // Reset the active menu to null when closing
+        currentMenuActive: null,
         pokemonMenuActive: false,
         trainerMenuActive: false,
         itemMenuActive: false,
+        baseRef: null
     })),
 }));

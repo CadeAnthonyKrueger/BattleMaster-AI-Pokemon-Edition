@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./styles/DescriptionContainer.scss";
-import { useOverlay } from "../utilities/OverlayContext";
-import { DescriptionOverlay } from "../utilities/Overlays";
+import { useOverlay } from "../utils/OverlayContext";
+import { DescriptionOverlay } from "../utils/Overlays";
 
 interface DescriptionContainerProps {
     description: string;

@@ -1,7 +1,7 @@
 import React, { RefObject, useEffect, useRef } from "react";
 import "./styles/SupportPokeball.scss";
-import SpriteSheetMap from "../utilities/SpriteSheetMap";
-import { useTooltip } from "../utilities/TooltipContext";
+import SpriteSheetMap from "../utils/SpriteSheetMap";
+import { useTooltip } from "../contexts/TooltipContext";
 
 interface SupportPokeballProps {}
 

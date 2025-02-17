@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.scss";
 import AppRouter from "./router/AppRouter";
-import { TooltipProvider } from "./utilities/TooltipContext";
+import { TooltipProvider } from "./contexts/TooltipContext";
 
 const App = () => {
 

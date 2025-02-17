@@ -1,9 +1,9 @@
 import React, { RefObject, useEffect, useRef, useState } from "react";
 import "./styles/PokemonCard.scss";
-import SpriteSheetMap from "../utilities/SpriteSheetMap";
+import SpriteSheetMap from "../utils/SpriteSheetMap";
 import { PokemonInstance } from "./PokemonTeam";
 import HPBar from "./HPBar";
-import { useTooltip } from "../utilities/TooltipContext";
+import { useTooltip } from "../contexts/TooltipContext";
 
 interface PokemonCardProps {
     pokemonInstance: PokemonInstance;
