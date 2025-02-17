@@ -6,6 +6,7 @@ import { useSelectMenuStore } from "../stores/SelectMenuStore";
 import SortFilterOptions from "../components/select_menu/SortFilterOptions";
 import { toTitleCase } from "../utils/HelperFunctions";
 import useClassNameBuilder from "../hooks/useClassNameBuilder";
+import { useAnchorMenuTransition } from "../hooks/useAnchorMenuTransition";
 
 export interface OptionsSelected { filtersSelected: string[], sortBySelected: string[] }
 
@@ -42,34 +43,23 @@ const SelectMenu: FC<SelectMenuProps> = ({ currentMenu }) => {
     ];
     const tempSortByOptions = ['National No.', 'Name', 'Type', 'Generation', 'Rarity', 'HP', 'Attack', 'Defense', 'Sp. Atk.', 'Sp. Def.', 'Speed'];
 
+    // Keeps track of fields that are selected for filtering and sorting
     const [optionsSelected, setOptionsSelected] = useState<OptionsSelected>({ 
         filtersSelected: [], sortBySelected: []
     });
 
-    const [className, setClassName] = useState<string>('');
-    const finalClassName = useClassNameBuilder('SelectMenu', [
-        { cond: filterClicked, class: 'filterMenuOpen' },
-        { cond: sortByClicked, class: 'sortByMenuOpen' },
-    ]);
+    // Animation for menu transition
+    const [menuClosing, setMenuClosing] = useState<boolean>(false);
 
-    const [styles, setStyles] = useState<{ menu: CSSProperties, content: CSSProperties }>({ 
-        menu: { transition: 'all 1s ease', position: 'absolute' }, 
-        content: {} 
+    const { className, styles } = useAnchorMenuTransition({
+        baseRef,
+        finalClassName: useClassNameBuilder("SelectMenu", [
+            { cond: filterClicked, class: "filterMenuOpen" },
+            { cond: sortByClicked, class: "sortByMenuOpen" },
+        ]),
+        menuClosing,
+        closeMenu,
     });
-
-    useEffect(() => {
-        if (!baseRef) return;
-        const { height, width, left, top } = baseRef.getBoundingClientRect();
-        const backgroundColor = baseRef.style.backgroundColor;
-        setStyles(prev => { return { ...prev, menu: { height, width, left, top, backgroundColor }} });
-        setTimeout(() => {
-            setClassName(finalClassName);
-            setStyles(prev => { return { ...prev, menu: {} } });
-        }, 20);
-        setTimeout(() => {
-            setStyles(prev => { return { ...prev, content: { opacity: 1 } } });
-        }, 700);
-    }, [baseRef]);
 
     return (
         <div className={className} style={styles.menu}>
@@ -98,7 +88,7 @@ const SelectMenu: FC<SelectMenuProps> = ({ currentMenu }) => {
                     setOptionsSelected={setOptionsSelected}
                 />
             {/* <TrainerSelectCardContainer trainers={trainers} setTrainers={setTrainers} layout={layoutSelected}/> */}
-            <div className="CloseSelectMenu" onClick={closeMenu}/>
+            <div className="CloseSelectMenu" onClick={() => setMenuClosing(true)}/>
             </div>
         </div>
     );
